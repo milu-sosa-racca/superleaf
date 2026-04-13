@@ -365,4 +365,11 @@
   .caja-accion { background: #f9f9f9 !important; }
   .dialogo { background: #f9f9f9 !important; }
   .personaje-card { border: 1px solid #ccc !important; }
+
+  /* Reducir padding extra en páginas de créditos y dedicatoria */
+  .pag-body[style*="padding-top:50px"],
+  .pag-body[style*="padding-top: 50px"] {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
 }
