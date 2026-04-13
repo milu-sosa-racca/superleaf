@@ -301,6 +301,19 @@
   padding: 4px 6px;
   line-height: 1;
 }
+.topbar-print {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 16px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-left: auto;
+}
+.topbar-print:hover { background: rgba(255,255,255,0.25); }
 .sidebar-overlay {
   display: none;
   position: fixed;
