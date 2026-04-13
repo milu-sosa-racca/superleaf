@@ -312,3 +312,44 @@
 
 /* Ajuste de padding para topbar */
 .pagina { padding-top: 60px !important; }
+
+/* IMPRESIÓN */
+@media print {
+  /* Ocultar toda la UI de navegación */
+  .topbar, .sidebar, .sidebar-overlay { display: none !important; }
+  .btn-nav, .btn-nav-esp, .hamburger { display: none !important; }
+  .lib-footer, .pag-footer { display: none !important; }
+
+  /* Mostrar todas las páginas */
+  .pagina { display: block !important; padding: 20px 0 !important; }
+
+  /* Salto de página entre secciones */
+  .pagina { break-after: page; page-break-after: always; }
+
+  /* Fondo blanco en todo */
+  body { background: white !important; }
+  .portada { display: none !important; }
+
+  /* Corregir headers oscuros → claros */
+  .libro-header, .pag-header {
+    background: #f0f0f0 !important;
+    color: #222 !important;
+    border-radius: 0 !important;
+  }
+  .lib-titulo { color: #1a3a1f !important; }
+  .lib-num { color: #555 !important; opacity: 1 !important; }
+
+  /* Eliminar sombras y bordes decorativos */
+  .libro-pagina, .pag-especial {
+    box-shadow: none !important;
+    border-left: 4px solid #2d7a3a !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Fondo blanco en cajas de contenido */
+  .fin-capitulo { background: #f9f9f9 !important; }
+  .caja-accion { background: #f9f9f9 !important; }
+  .dialogo { background: #f9f9f9 !important; }
+  .personaje-card { border: 1px solid #ccc !important; }
+}
