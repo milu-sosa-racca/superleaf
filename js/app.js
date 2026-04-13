@@ -50,9 +50,6 @@ async function irA(id) {
   document.getElementById('sidebar').classList.add('visible');
   document.getElementById('portada-page').style.display = 'none';
 
-  // Actualizar título
-  document.getElementById('topbar-titulo').textContent = TITULOS[id] || id;
-
   // Marcar activo en sidebar
   document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('activo'));
   const btn = document.querySelector(`.sidebar-btn[data-page="${id}"]`);
@@ -72,5 +69,5 @@ async function irA(id) {
 }
 
 function comenzar() {
-  irA('indice');
+  irA('personajes');
 }
