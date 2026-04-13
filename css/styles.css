@@ -338,6 +338,7 @@
 
   /* Salto de página entre secciones */
   .pagina { break-after: page; page-break-after: always; }
+  .pagina:last-child { break-after: auto !important; page-break-after: auto !important; }
 
   /* Fondo blanco en todo */
   body { background: white !important; }
