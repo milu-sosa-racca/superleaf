@@ -386,6 +386,25 @@
   .dialogo { background: #f9f9f9 !important; }
   .personaje-card { border: 1px solid #ccc !important; }
 
+  /* Mapa: reemplazar fondos de color con versiones claras para ahorrar tinta */
+  #mapa [style*="background:linear-gradient"] {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    color: #222 !important;
+  }
+  #mapa [style*="color:white"],
+  #mapa [style*="color: white"] {
+    color: #222 !important;
+    text-shadow: none !important;
+  }
+  #mapa [style*="color:#ffe066"] { color: #1a3a1f !important; }
+  #mapa [style*="color:#aed6f1"] { color: #1a5276 !important; }
+  #mapa [style*="color:#bdc3c7"] { color: #2c3e50 !important; }
+  #mapa [style*="color:#d7bde2"] { color: #4a235a !important; }
+  #mapa [style*="color:#d5d8dc"] { color: #222 !important; }
+  #mapa [style*="color:#a9dfbf"] { color: #1a5c2a !important; }
+  #mapa [style*="color:#9b59b6"] { color: #4a235a !important; }
+
   /* Reducir padding extra en páginas de créditos y dedicatoria */
   .pag-body[style*="padding-top:50px"],
   .pag-body[style*="padding-top: 50px"] {
