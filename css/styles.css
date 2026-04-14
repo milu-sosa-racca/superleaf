@@ -326,8 +326,24 @@
 /* Ajuste de padding para topbar */
 .pagina { padding-top: 60px !important; }
 
+/* TAPA DE IMPRESIÓN */
+.tapa-impresion {
+  display: none;
+}
+
 /* IMPRESIÓN */
 @media print {
+  .tapa-impresion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    break-after: page;
+    page-break-after: always;
+    background: white;
+  }
   /* Ocultar toda la UI de navegación */
   .topbar, .sidebar, .sidebar-overlay { display: none !important; }
   .btn-nav, .btn-nav-esp, .hamburger { display: none !important; }
