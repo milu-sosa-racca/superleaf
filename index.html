@@ -40,6 +40,7 @@
   <button class="sidebar-btn" data-page="dedicatoria" onclick="irA('dedicatoria')">💖 Dedicatoria</button>
   <button class="sidebar-btn" data-page="indice" onclick="irA('indice')">📋 Índice</button>
   <button class="sidebar-btn" data-page="intro" onclick="irA('intro')">📖 Introducción</button>
+  <button class="sidebar-btn" data-page="mapa" onclick="irA('mapa')">🗺️ Mapa del Mundo</button>
   <div class="sidebar-grupo">Capítulos</div>
   <button class="sidebar-btn" data-page="cap0" onclick="irA('cap0')">🌱 Cap. 0 — El Día que Todo Empezó</button>
   <button class="sidebar-btn" data-page="cap1" onclick="irA('cap1')">🌿 Cap. 1 — Super Leaf y el Bosque Mágico</button>
@@ -245,6 +246,7 @@
     <div class="indice-item" onclick="irA('personajes')"><span class="indice-texto" style="color:#2d7a3a;">👥 Personajes</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('dedicatoria')"><span class="indice-texto" style="color:#8e3a8e;">💖 Dedicatoria</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('intro')"><span class="indice-texto" style="color:#1a237e;">🌟 Introducción</span><div class="indice-right"><span>→</span></div></div>
+    <div class="indice-item" onclick="irA('mapa')"><span class="indice-texto" style="color:#2d6a4f;">🗺️ Mapa del Mundo</span><div class="indice-right"><span>→</span></div></div>
 
     <p style="font-family:'Bubblegum Sans',cursive;font-size:0.85rem;color:#aaa;margin:12px 0 8px;text-align:center;">— Capítulos —</p>
     <div class="indice-item" onclick="irA('cap0')"><span class="indice-texto" style="color:#0d3b0d;">🌱 Capítulo 0 — El Día que Todo Empezó</span><div class="indice-right"><span>→</span></div></div>
@@ -314,10 +316,88 @@
     </div>
     <div class="pag-footer">
       <button class="btn-nav-esp" onclick="irA('dedicatoria')">← Dedicatoria</button>
-      <button class="btn-nav-esp" onclick="irA('cap0')">Cap. 0 →</button>
+      <button class="btn-nav-esp" onclick="irA('mapa')">Mapa →</button>
     </div>
   </div>
 
+</div>
+
+<div class="pagina" id="mapa" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#3e2723,#5d4037,#795548);">
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:0.9rem;opacity:0.8;">🗺️</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:2rem;color:#ffe066;">Mapa del Mundo</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);margin-top:4px;">El mundo de Super Leaf y el Equipo Leaf</div>
+    </div>
+    <div class="pag-body" style="padding:16px;">
+      <div style="display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:3px;border:3px solid #5d4037;border-radius:10px;overflow:hidden;font-family:'Bubblegum Sans',cursive;">
+
+        <!-- Fila 1 -->
+        <div style="background:linear-gradient(160deg,#e8f4f8,#aed6f1,#d6eaf8);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">❄️</div>
+          <div style="font-size:0.8rem;color:#1a5276;font-weight:bold;margin-top:4px;">Nieves de Sofi</div>
+        </div>
+        <div style="background:linear-gradient(160deg,#b0bec5,#90a4ae,#78909c);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">🏙️</div>
+          <div style="font-size:0.8rem;color:#1c2833;font-weight:bold;margin-top:4px;">Ciudad de Cata ⭐</div>
+        </div>
+        <div style="background:linear-gradient(160deg,#fce4ec,#f8bbd0,#e1bee7);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">🌸</div>
+          <div style="font-size:0.8rem;color:#880e4f;font-weight:bold;margin-top:4px;">Jardín de Lara</div>
+        </div>
+
+        <!-- Fila 2 -->
+        <div style="background:linear-gradient(160deg,#4a0000,#b71c1c,#e64a19);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;">
+          <div style="font-size:2rem;">🌋</div>
+          <div style="font-size:0.8rem;color:white;font-weight:bold;margin-top:4px;text-shadow:1px 1px 0 rgba(0,0,0,0.6);">Volcán de Juana</div>
+        </div>
+        <div style="background:linear-gradient(160deg,#0a3d1a,#1a6b2a,#2e9e50);padding:16px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;gap:6px;">
+          <div style="font-size:0.95rem;color:#ffe066;font-weight:bold;text-shadow:1px 1px 0 rgba(0,0,0,0.6);">🌿 EL BOSQUE MÁGICO</div>
+          <div style="background:rgba(0,0,0,0.25);border-radius:8px;padding:5px 10px;width:100%;">
+            <div style="font-size:1.2rem;">🌳</div>
+            <div style="font-size:0.65rem;color:#ffe066;">Árbol de la Memoria</div>
+          </div>
+          <div style="display:flex;gap:4px;width:100%;">
+            <div style="background:rgba(0,0,0,0.2);border-radius:6px;padding:5px 3px;flex:1;font-size:0.6rem;color:#a9dfbf;line-height:1.4;">🏠 Casita<br>de Mimi</div>
+            <div style="background:rgba(0,0,0,0.35);border-radius:6px;padding:5px 3px;flex:1;font-size:0.6rem;color:#d7bde2;line-height:1.4;">🚪 Puerta<br>Sombras</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(160deg,#0d47a1,#1565c0,#2196f3);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;">
+          <div style="font-size:2rem;">🌊</div>
+          <div style="font-size:0.8rem;color:white;font-weight:bold;margin-top:4px;text-shadow:1px 1px 0 rgba(0,0,0,0.5);">Mar de Calu</div>
+        </div>
+
+        <!-- Fila 3 -->
+        <div style="background:linear-gradient(160deg,#050a05,#0d160d,#162316);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">🌑</div>
+          <div style="font-size:0.75rem;color:#aed6f1;font-weight:bold;margin-top:4px;">Bosque Sombrío</div>
+          <div style="font-size:0.65rem;color:#7fb3d3;margin-top:2px;">(Hogar de Umbra)</div>
+        </div>
+        <div style="background:linear-gradient(160deg,#1c2833,#2c3e50,#3d5166);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">🌫️</div>
+          <div style="font-size:0.8rem;color:#bdc3c7;font-weight:bold;margin-top:4px;">Valle Oscuro</div>
+        </div>
+        <div style="background:linear-gradient(160deg,#455a64,#546e7a,#607d8b);padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px;">
+          <div style="font-size:2rem;">🌆</div>
+          <div style="font-size:0.8rem;color:white;font-weight:bold;margin-top:4px;">Ciudad Enorme</div>
+          <div style="font-size:0.7rem;color:#d5d8dc;">de Cata 🔮</div>
+        </div>
+
+        <!-- Fila 4: Dimensión de las Sombras -->
+        <div style="grid-column:1/-1;background:linear-gradient(160deg,#0d001a,#2d0a4e,#4a235a);padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <div style="font-size:1.4rem;">🌑 ✨ 🌑</div>
+          <div style="font-size:0.85rem;color:#d7bde2;font-weight:bold;margin-top:4px;">Dimensión de las Sombras</div>
+          <div style="font-size:0.65rem;color:#9b59b6;margin-top:3px;">↑ acceso por la Puerta del Bosque Mágico ↑</div>
+        </div>
+
+      </div>
+      <p style="font-size:0.72rem;color:#aaa;text-align:center;margin-top:10px;font-family:'Nunito',sans-serif;">🧭 Norte: Nieves de Sofi — Sur: Dimensión de las Sombras</p>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('intro')">← Introducción</button>
+      <button class="btn-nav-esp" onclick="irA('cap0')">Cap. 0 →</button>
+    </div>
+  </div>
 </div>
 
 <div class="pagina" id="cap0" style="display:none">
@@ -429,7 +509,7 @@
 
     </div>
     <div class="lib-footer">
-      <button class="btn-nav" onclick="irA('intro')">← Introducción</button>
+      <button class="btn-nav" onclick="irA('mapa')">← Mapa</button>
       <span class="lib-pagnum">0 / 10</span>
       <button class="btn-nav" onclick="irA('cap1')">Cap. 1 →</button>
     </div>
