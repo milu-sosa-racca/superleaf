@@ -35,6 +35,7 @@ function irA(id) {
   document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('activo'));
   const btn = document.querySelector(`.sidebar-btn[data-page="${id}"]`);
   if (btn) btn.classList.add('activo');
+  if (id === 'test' && typeof quizIniciar === 'function') quizIniciar();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

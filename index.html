@@ -58,6 +58,7 @@
   <button class="sidebar-btn" data-page="glosario" onclick="irA('glosario')">💫 Glosario</button>
   <button class="sidebar-btn" data-page="curiosidades" onclick="irA('curiosidades')">🌟 Curiosidades</button>
   <button class="sidebar-btn" data-page="historias" onclick="irA('historias')">📖 Historias</button>
+  <button class="sidebar-btn" data-page="test" onclick="irA('test')">🌟 ¿Qué superheroína sos?</button>
   <button class="sidebar-btn" data-page="creditos" onclick="irA('creditos')">✍️ Créditos</button>
 </div>
 
@@ -266,6 +267,7 @@
     <div class="indice-item" onclick="irA('glosario')"><span class="indice-texto" style="color:#2d7a3a;">💫 Glosario de poderes y Pokémon</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('curiosidades')"><span class="indice-texto" style="color:#e65100;">🌟 Curiosidades de la historia</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('historias')"><span class="indice-texto" style="color:#1a237e;">📖 Historias antes de ser superheroínas</span><div class="indice-right"><span>→</span></div></div>
+    <div class="indice-item" onclick="irA('test')"><span class="indice-texto" style="color:#6a1b9a;">🌟 ¿Qué superheroína sos?</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('creditos')"><span class="indice-texto" style="color:#555;">✍️ Créditos</span><div class="indice-right"><span>→</span></div></div>
     </div>
   </div>
@@ -1604,11 +1606,144 @@
   </div>
   <div class="pag-footer">
     <button class="btn-nav-esp" onclick="irA('curiosidades')">← Curiosidades</button>
-    <button class="btn-nav-esp" onclick="irA('creditos')">Créditos →</button>
+    <button class="btn-nav-esp" onclick="irA('test')">¿Qué superheroína sos? →</button>
   </div>
 </div>
 
 </div>
+
+<div class="pagina" id="test" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#4a0072,#7b1fa2,#9c27b0);">
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:0.9rem;opacity:0.8;">🌟</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:2rem;color:#ffe066;">¿Qué superheroína sos?</div>
+      <div style="font-size:2rem;margin-top:8px;">🌿⭐❄️🔥🧚🔮💧</div>
+    </div>
+    <div class="pag-body" style="padding:20px 24px;">
+      <div id="quiz-container"></div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('historias')">← Historias</button>
+      <button class="btn-nav-esp" onclick="irA('creditos')">Créditos →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var PREGUNTAS = [
+    {
+      texto: "¿Cómo preferís pasar la tarde libre?",
+      opciones: [
+        { texto: "En la naturaleza con mis mascotas", key: "mimi" },
+        { texto: "Estudiando algo nuevo para ser la mejor", key: "cata_star" },
+        { texto: "Nadando o corriendo — siempre en movimiento", key: "calu" },
+        { texto: "Dibujando, pintando o inventando historias", key: "lara" }
+      ]
+    },
+    {
+      texto: "¿Cómo sos con personas que no conocés?",
+      opciones: [
+        { texto: "Tranquila y reservada, tardo en abrirme", key: "sofi" },
+        { texto: "Seria y pensativa, las observo primero", key: "cata_psy" },
+        { texto: "Enseguida bromeo y las hago reír", key: "juana" },
+        { texto: "Amistosa y brillante, me destaco de una", key: "cata_star" }
+      ]
+    },
+    {
+      texto: "Hay un problema grande. ¿Qué hacés?",
+      opciones: [
+        { texto: "Me tiro de cabeza a resolverlo con energía", key: "juana" },
+        { texto: "Analizo cada detalle antes de moverme", key: "cata_psy" },
+        { texto: "Intento calmar la situación y ayudar a todos", key: "mimi" },
+        { texto: "Me quedo seria y espero el momento exacto", key: "sofi" }
+      ]
+    },
+    {
+      texto: "¿Cuál de estos poderes elegirías?",
+      opciones: [
+        { texto: "Hablar con animales y hacer crecer plantas", key: "mimi" },
+        { texto: "Lanzar fuego y volar a toda velocidad", key: "juana" },
+        { texto: "Controlar el hielo y el frío", key: "sofi" },
+        { texto: "Saltar a cualquier lugar y controlar el agua", key: "calu" }
+      ]
+    },
+    {
+      texto: "¿Cuál de estas frases te representa más?",
+      opciones: [
+        { texto: "\"Sabía que algo así iba a pasar\"", key: "cata_psy" },
+        { texto: "\"¡Quiero aprenderlo todo y ser la mejor!\"", key: "cata_star" },
+        { texto: "\"Correr descalza por la orilla del mar es lo mejor\"", key: "calu" },
+        { texto: "\"Los colores y las flores me inspiran\"", key: "lara" }
+      ]
+    },
+    {
+      texto: "Un Pokémon perdido aparece frente a vos. ¿Qué hacés?",
+      opciones: [
+        { texto: "Lo cuido con amor y busco su hogar", key: "mimi" },
+        { texto: "Lo analizo para saber qué le pasa", key: "cata_psy" },
+        { texto: "Le armo una bienvenida divertida", key: "juana" },
+        { texto: "Le dibujo un retrato y lo decoro con flores", key: "lara" }
+      ]
+    }
+  ];
+
+  var RESULTADOS = {
+    mimi:     { nombre: "Mimi",  hero: "Super Leaf",  emoji: "🌿", color: "#1a5c2a", bg: "#e8f5e9", pokemon: "Leafeon",    desc: "Sos empática, conectás con la naturaleza y siempre pensás en los demás antes que en vos misma. Tenés un corazón enorme y los animales te adoran." },
+    cata_star:{ nombre: "Cata",  hero: "Superstar",   emoji: "⭐", color: "#b8860b", bg: "#fff9e6", pokemon: "Eevee",      desc: "Brillante, curiosa y siempre querés destacarte. Sos de las que estudian todo para ser la mejor, y casi siempre tienen razón. ¡Imparable!" },
+    sofi:     { nombre: "Sofi",  hero: "Super Ice",   emoji: "❄️", color: "#1565c0", bg: "#e3f2fd", pokemon: "Spheal",     desc: "Seria, tranquila y muy reflexiva. Pensás dos veces antes de hablar, y cuando actuás, lo hacés con precisión. Tu calma es tu mayor poder." },
+    juana:    { nombre: "Juana", hero: "Super Fire",  emoji: "🔥", color: "#bf360c", bg: "#fff3f0", pokemon: "Charmander", desc: "Alegre, impulsiva y llena de energía. Siempre tenés una broma lista y actuás antes de pensar. ¡Con vos en el equipo nunca hay un momento aburrido!" },
+    lara:     { nombre: "Lara",  hero: "Super Fairy", emoji: "🧚", color: "#6a1b9a", bg: "#f9f0ff", pokemon: "Cleffa",     desc: "Soñadora, creativa y con una imaginación enorme. Siempre estás dibujando, inventando o decorando algo. El mundo es más lindo con vos en él." },
+    cata_psy: { nombre: "Cata",  hero: "Super Psy",   emoji: "🔮", color: "#4a148c", bg: "#ede7f6", pokemon: "Psyduck",    desc: "Observadora, seria y muy inteligente. Siempre sabés más de lo que decís. Analizás todo antes de actuar y casi nunca te equivocás." },
+    calu:     { nombre: "Calu",  hero: "Super Aqua",  emoji: "💧", color: "#01579b", bg: "#e1f5fe", pokemon: "Marill",     desc: "Alegre como las olas y siempre en movimiento. Sos energética, espontánea y te lanzás a la aventura sin dudar. ¡Nadie te para!" }
+  };
+
+  var scores = {};
+  var preguntaActual = 0;
+
+  function quizIniciar() {
+    scores = { mimi: 0, cata_star: 0, sofi: 0, juana: 0, lara: 0, cata_psy: 0, calu: 0 };
+    preguntaActual = 0;
+    quizMostrarPregunta();
+  }
+
+  function quizMostrarPregunta() {
+    var container = document.getElementById('quiz-container');
+    if (!container) return;
+    if (preguntaActual >= PREGUNTAS.length) { quizMostrarResultado(); return; }
+
+    var p = PREGUNTAS[preguntaActual];
+    var progreso = Math.round((preguntaActual / PREGUNTAS.length) * 100);
+    var html = '<div style="font-family:\'Bubblegum Sans\',cursive;font-size:0.85rem;color:#9b59b6;margin-bottom:8px;">Pregunta ' + (preguntaActual + 1) + ' de ' + PREGUNTAS.length + '</div>';
+    html += '<div style="background:#f0e0ff;border-radius:4px;height:6px;margin-bottom:18px;overflow:hidden;"><div style="background:#9b59b6;height:100%;width:' + progreso + '%;"></div></div>';
+    html += '<p style="font-family:\'Bubblegum Sans\',cursive;font-size:1.1rem;color:#222;margin-bottom:16px;">' + p.texto + '</p>';
+    p.opciones.forEach(function(op) {
+      html += '<button class="quiz-opcion" onclick="quizResponder(\'' + op.key + '\')">' + op.texto + '</button>';
+    });
+    container.innerHTML = html;
+  }
+
+  function quizMostrarResultado() {
+    var winner = Object.keys(scores).reduce(function(a, b) { return scores[a] >= scores[b] ? a : b; });
+    var r = RESULTADOS[winner];
+    var container = document.getElementById('quiz-container');
+    container.innerHTML = '<div style="text-align:center;padding:10px 0;">' +
+      '<div style="font-size:4rem;margin-bottom:12px;">' + r.emoji + '</div>' +
+      '<p style="font-family:\'Bubblegum Sans\',cursive;font-size:1rem;color:#888;margin-bottom:6px;">¡Sos...</p>' +
+      '<p style="font-family:\'Bubblegum Sans\',cursive;font-size:2.2rem;color:' + r.color + ';margin-bottom:2px;">' + r.nombre + '</p>' +
+      '<p style="font-family:\'Bubblegum Sans\',cursive;font-size:1.1rem;color:' + r.color + ';opacity:0.8;margin-bottom:18px;">' + r.hero + '</p>' +
+      '<div style="background:' + r.bg + ';border-radius:12px;padding:16px;margin-bottom:18px;text-align:left;">' +
+        '<p style="font-size:0.95rem;color:#333;line-height:1.75;margin-bottom:10px;">' + r.desc + '</p>' +
+        '<p style="font-size:0.85rem;color:#666;">🐾 Tu Pokémon: <strong>' + r.pokemon + '</strong></p>' +
+      '</div>' +
+      '<button onclick="quizIniciar()" style="background:#9b59b6;color:white;border:none;border-radius:20px;padding:10px 28px;font-family:\'Bubblegum Sans\',cursive;font-size:1rem;cursor:pointer;">🔄 Hacerlo de nuevo</button>' +
+    '</div>';
+  }
+
+  window.quizIniciar = quizIniciar;
+  window.quizResponder = function(key) { scores[key]++; preguntaActual++; quizMostrarPregunta(); };
+})();
+</script>
 
 <div class="pagina" id="creditos" style="display:none">
 <div class="pag-especial">
@@ -1632,7 +1767,7 @@
     <div style="font-size:2rem;letter-spacing:5px;">🌿⭐❄️🔥🧚🔮💧✨</div>
   </div>
   <div class="pag-footer">
-    <button class="btn-nav-esp" onclick="irA('historias')">← Historias</button>
+    <button class="btn-nav-esp" onclick="irA('test')">← ¿Qué superheroína sos?</button>
     <button class="btn-nav-esp" onclick="irAPortada()">🏠 Portada</button>
   </div>
 </div>
