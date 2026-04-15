@@ -57,6 +57,7 @@
   <div class="sidebar-grupo">Extras</div>
   <button class="sidebar-btn" data-page="glosario" onclick="irA('glosario')">💫 Glosario</button>
   <button class="sidebar-btn" data-page="curiosidades" onclick="irA('curiosidades')">🌟 Curiosidades</button>
+  <button class="sidebar-btn" data-page="records" onclick="irA('records')">🏆 Récords del Equipo</button>
   <button class="sidebar-btn" data-page="historias" onclick="irA('historias')">📖 Historias</button>
   <button class="sidebar-btn" data-page="test" onclick="irA('test')">🌟 ¿Qué superheroína sos?</button>
   <button class="sidebar-btn" data-page="creditos" onclick="irA('creditos')">✍️ Créditos</button>
@@ -266,6 +267,7 @@
     <p style="font-family:'Bubblegum Sans',cursive;font-size:0.85rem;color:#aaa;margin:12px 0 8px;text-align:center;">— Al final —</p>
     <div class="indice-item" onclick="irA('glosario')"><span class="indice-texto" style="color:#2d7a3a;">💫 Glosario de poderes y Pokémon</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('curiosidades')"><span class="indice-texto" style="color:#e65100;">🌟 Curiosidades de la historia</span><div class="indice-right"><span>→</span></div></div>
+    <div class="indice-item" onclick="irA('records')"><span class="indice-texto" style="color:#b8860b;">🏆 Récords del Equipo Leaf</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('historias')"><span class="indice-texto" style="color:#1a237e;">📖 Historias antes de ser superheroínas</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('test')"><span class="indice-texto" style="color:#6a1b9a;">🌟 ¿Qué superheroína sos?</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('creditos')"><span class="indice-texto" style="color:#555;">✍️ Créditos</span><div class="indice-right"><span>→</span></div></div>
@@ -1544,10 +1546,112 @@
   </div>
   <div class="pag-footer">
     <button class="btn-nav-esp" onclick="irA('glosario')">← Glosario</button>
-    <button class="btn-nav-esp" onclick="irA('historias')">Historias →</button>
+    <button class="btn-nav-esp" onclick="irA('records')">Récords →</button>
   </div>
 </div>
 
+</div>
+
+<div class="pagina" id="records" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#7b5e00,#b8860b,#d4a017);">
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:0.9rem;opacity:0.8;">🏆</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:2rem;color:#ffe066;">Récords del Equipo Leaf</div>
+      <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-top:6px;">¿Quién es la mejor en cada cosa?</div>
+    </div>
+    <div class="pag-body" style="padding:16px 24px;">
+      <table style="width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:0.9rem;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#1a3a1f,#2d7a3a);">
+            <th style="padding:10px 14px;text-align:left;color:#ffe066;font-family:'Bubblegum Sans',cursive;font-size:0.95rem;border-radius:8px 0 0 0;">Categoría</th>
+            <th style="padding:10px 14px;text-align:left;color:#ffe066;font-family:'Bubblegum Sans',cursive;font-size:0.95rem;">Ganadora</th>
+            <th style="padding:10px 14px;text-align:left;color:#ffe066;font-family:'Bubblegum Sans',cursive;font-size:0.95rem;border-radius:0 8px 0 0;">Por qué ganó</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">😂 La más graciosa</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#bf360c;">Juana</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Siempre tiene una broma lista. Convierte cualquier momento difícil en algo para reír.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🎨 La más creativa</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#6a1b9a;">Lara</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Dibuja, inventa historias y decora todo lo que toca. Su imaginación no tiene límites.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🧠 La más inteligente</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#b8860b;">Cata (Superstar)</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Brillante en el colegio, el deporte y todo lo que hace. Casi siempre tiene razón.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🌀 La más misteriosa</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#4a148c;">Cata (Super Psy)</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Observa todo en silencio sin decir mucho. Siempre sabe más de lo que cuenta.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">💖 La más dulce</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#1a5c2a;">Mimi</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Piensa en los demás antes que en ella misma. Los animales del bosque la adoran.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🏃 La más rápida</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#01579b;">Calu</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Siempre en movimiento. Puede nadar horas sin cansarse y llega primera a todas partes.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">❄️ La más tranquila</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#1565c0;">Sofi</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Nunca pierde la calma. Piensa dos veces antes de hablar y actúa en el momento exacto.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🌿 La más poderosa</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#1a5c2a;">Mimi</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">El Árbol de la Memoria le dio su regalo más grande: hablar con todo el bosque al mismo tiempo.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🤫 La más callada</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#1565c0;">Sofi</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Capaz de quedarse en silencio horas enteras. Cuando habla, siempre vale la pena escucharla.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🌪️ La más caótica</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#bf360c;">Juana</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Ella y su Charmander juntas arman un caos adorable donde quieran que vayan.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🔍 La más observadora</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#4a148c;">Cata (Super Psy)</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Lee mentes y registra cada detalle. Nada escapa a su mirada.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">💫 La más soñadora</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#6a1b9a;">Lara</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Vive entre flores y colores. Siempre está inventando mundos nuevos en su cabeza.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">⚡ La más energética</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#01579b;">Calu</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">Energía de ola: nunca para. Trepó árboles en el Bosque Mágico solo porque podía.</td>
+          </tr>
+          <tr style="background:#f9fdf9;">
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:800;color:#222;">🏆 La más competitiva</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;font-weight:700;color:#b8860b;">Cata (Superstar)</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #e8e0cc;color:#555;">No puede evitar querer ser la mejor en todo. Y generalmente lo logra.</td>
+          </tr>
+          <tr style="background:#fffdf6;">
+            <td style="padding:10px 14px;font-weight:800;color:#222;">🤗 La más compañera</td>
+            <td style="padding:10px 14px;font-weight:700;color:#1a5c2a;">Mimi</td>
+            <td style="padding:10px 14px;color:#555;">Siempre está para su equipo. Fue la primera en perdonar a Argenta cuando todas dudaban.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('curiosidades')">← Curiosidades</button>
+      <button class="btn-nav-esp" onclick="irA('historias')">Historias →</button>
+    </div>
+  </div>
 </div>
 
 <div class="pagina" id="historias" style="display:none">
@@ -1605,7 +1709,7 @@
 
   </div>
   <div class="pag-footer">
-    <button class="btn-nav-esp" onclick="irA('curiosidades')">← Curiosidades</button>
+    <button class="btn-nav-esp" onclick="irA('records')">← Récords</button>
     <button class="btn-nav-esp" onclick="irA('test')">¿Qué superheroína sos? →</button>
   </div>
 </div>
