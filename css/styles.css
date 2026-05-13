@@ -29,6 +29,7 @@
   }
   .port-emoji { font-size: 5rem; margin-bottom: 20px; }
   .port-titulo { font-family:'Bubblegum Sans',cursive; font-size: 2.5rem; color: var(--amarillo); margin-bottom: 10px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
+  .port-desc { font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 320px; margin: 16px auto 0; line-height: 1.7; text-align: center; }
   .port-autor { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 20px; }
   .port-btn {
     margin-top: 30px;
@@ -279,7 +280,13 @@
   transition: background 0.15s;
 }
 .sidebar-btn:hover { background: rgba(255,255,255,0.08); }
-.sidebar-btn.activo { background: #2d7a3a; color: white; }
+.sidebar-btn.activo {
+  background: #3d9e4f;
+  color: white;
+  border-left: 4px solid #a8e6b5;
+  padding-left: 12px;
+  font-weight: bold;
+}
 
 /* TOPBAR (reemplaza nav) */
 .topbar {
