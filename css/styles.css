@@ -21,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #0d2a0d, #1a4a1a, #2d7a3a);
+    background: radial-gradient(ellipse at center, #1a3a1f 0%, #0a1a0a 100%);
     color: white;
     text-align: center;
     padding: 40px 20px;
@@ -29,6 +29,29 @@
   }
   .port-emoji { font-size: 5rem; margin-bottom: 20px; }
   .port-titulo { font-family:'Bubblegum Sans',cursive; font-size: 2.5rem; color: var(--amarillo); margin-bottom: 10px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
+  .port-libro {
+    display: flex;
+    max-width: 480px;
+    width: 92%;
+    border-radius: 6px 20px 20px 6px;
+    box-shadow: -10px 10px 0px #071a07, -5px 5px 32px rgba(0,0,0,0.65);
+    overflow: hidden;
+    background: linear-gradient(160deg, #1e5c22, #2d7a3a, #1a4a1a);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .port-lomo {
+    width: 36px;
+    min-width: 36px;
+    background: linear-gradient(to right, #071a07, #0d2a0d);
+    border-right: 2px solid rgba(255,255,255,0.07);
+  }
+  .port-contenido {
+    flex: 1;
+    padding: 44px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .port-desc { font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 320px; margin: 16px auto 0; line-height: 1.7; text-align: center; }
   .port-autor { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 20px; }
   .port-btn {
@@ -440,6 +463,52 @@
   #mapa [style*="color:#d5d8dc"] { color: #222 !important; }
   #mapa [style*="color:#a9dfbf"] { color: #1a5c2a !important; }
   #mapa [style*="color:#9b59b6"] { color: #4a235a !important; }
+
+  /* TARJETITAS */
+  .tarjetita-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .tarjetita-card {
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    text-align: center;
+    color: #222;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    overflow: hidden;
+    border: 3px solid #ccc;
+  }
+  .tarjetita-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .tarjetita-info {
+    padding: 12px;
+  }
+  .tarjetita-nombre {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .tarjetita-tipo {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .tarjetita-poder {
+    font-size: 0.8rem;
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 3px 7px;
+    margin: 2px 0;
+    text-align: left;
+  }
 
   /* Reducir padding extra en páginas de créditos y dedicatoria */
   .pag-body[style*="padding-top:50px"],

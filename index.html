@@ -11,12 +11,17 @@
 
 <!-- PORTADA -->
 <div class="portada" id="portada-page" onclick="comenzar()">
-  <div class="port-emoji">🌿</div>
-  <div class="port-titulo">Super Leaf<br>y el Bosque Mágico</div>
-  <div style="font-size:2rem;margin:10px 0;">⭐❄️🔥🧚🔮💧</div>
-  <div class="port-desc">Siete amigas descubren que tienen poderes increíbles.<br>Una aventura de magia, amistad y Pokémon.</div>
-  <div class="port-autor">Escrito por Milagros Sosa Racca</div>
-  <button class="port-btn" onclick="event.stopPropagation();comenzar()">📖 ¡Leer el libro!</button>
+  <div class="port-libro">
+    <div class="port-lomo"></div>
+    <div class="port-contenido">
+      <div class="port-emoji">🌿</div>
+      <div class="port-titulo">Super Leaf<br>y el Bosque Mágico</div>
+      <div style="font-size:2rem;margin:10px 0;">⭐❄️🔥🧚🔮💧</div>
+      <div class="port-desc">Siete amigas descubren que tienen poderes increíbles.<br>Una aventura de magia, amistad y Pokémon.</div>
+      <div class="port-autor">Escrito por Milagros Sosa Racca</div>
+      <button class="port-btn" onclick="event.stopPropagation();comenzar()">📖 ¡Leer el libro!</button>
+    </div>
+  </div>
 </div>
 
 <!-- TOPBAR -->
@@ -59,9 +64,11 @@
   <button class="sidebar-btn" data-page="glosario" onclick="irA('glosario')">💫 Glosario</button>
   <button class="sidebar-btn" data-page="curiosidades" onclick="irA('curiosidades')">🌟 Curiosidades</button>
   <button class="sidebar-btn" data-page="records" onclick="irA('records')">🏆 Récords del Equipo</button>
+  <button class="sidebar-btn" data-page="tarjetitas" onclick="irA('tarjetitas')">🃏 Tarjetitas</button>
   <button class="sidebar-btn" data-page="historias" onclick="irA('historias')">📖 Historias</button>
   <button class="sidebar-btn" data-page="test" onclick="irA('test')">🌟 ¿Qué superheroína sos?</button>
   <button class="sidebar-btn" data-page="creditos" onclick="irA('creditos')">✍️ Créditos</button>
+  <button class="sidebar-btn" data-page="supernova-teaser" onclick="irA('supernova-teaser')">🌟 ¿Continuará...?</button>
 </div>
 
 <!-- TAPA DE IMPRESIÓN (solo visible al imprimir) -->
@@ -269,9 +276,11 @@
     <div class="indice-item" onclick="irA('glosario')"><span class="indice-texto" style="color:#2d7a3a;">💫 Glosario de poderes y Pokémon</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('curiosidades')"><span class="indice-texto" style="color:#e65100;">🌟 Curiosidades de la historia</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('records')"><span class="indice-texto" style="color:#b8860b;">🏆 Récords del Equipo Leaf</span><div class="indice-right"><span>→</span></div></div>
+    <div class="indice-item" onclick="irA('tarjetitas')"><span class="indice-texto" style="color:#2d7a3a;">🃏 Tarjetitas del Equipo</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('historias')"><span class="indice-texto" style="color:#1a237e;">📖 Historias antes de ser superheroínas</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('test')"><span class="indice-texto" style="color:#6a1b9a;">🌟 ¿Qué superheroína sos?</span><div class="indice-right"><span>→</span></div></div>
     <div class="indice-item" onclick="irA('creditos')"><span class="indice-texto" style="color:#555;">✍️ Créditos</span><div class="indice-right"><span>→</span></div></div>
+    <div class="indice-item" onclick="irA('supernova-teaser')"><span class="indice-texto" style="color:#7c4dff;">🌟 ¿Continuará...?</span><div class="indice-right"><span>→</span></div></div>
     </div>
   </div>
   <div class="pag-footer">
@@ -1650,6 +1659,102 @@
     </div>
     <div class="pag-footer">
       <button class="btn-nav-esp" onclick="irA('curiosidades')">← Curiosidades</button>
+      <button class="btn-nav-esp" onclick="irA('tarjetitas')">Tarjetitas →</button>
+    </div>
+  </div>
+</div>
+
+<div class="pagina" id="tarjetitas" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#1a3a1f,#4a7c59);">
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:0.9rem;opacity:0.8;">El Equipo</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:2rem;color:#ffe066;text-shadow:1px 1px 0 rgba(0,0,0,0.3);">🃏 Tarjetitas</div>
+      <div style="font-size:2.5rem;margin-top:8px;">⭐❄️🔥🧚🔮💧🌿</div>
+    </div>
+    <div class="pag-body">
+      <div class="tarjetita-grid">
+
+        <div class="tarjetita-card" style="border-color:#2d7a3a;">
+          <img class="tarjetita-img" src="img/personajes/mimi.png" alt="Super Leaf">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#2d7a3a;">Super Leaf 🌿</div>
+            <div class="tarjetita-tipo">Mimi · Tipo: Planta · Pokémon: Leafeon</div>
+            <div class="tarjetita-poder">🗣️ Hablar con los animales</div>
+            <div class="tarjetita-poder">🌿 Hacer crecer plantas gigantes</div>
+            <div class="tarjetita-poder">🌟 Curar animales y plantas</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#f0b400;">
+          <img class="tarjetita-img" src="img/personajes/superstar.png" alt="Superstar">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#b8860b;">Superstar ⭐</div>
+            <div class="tarjetita-tipo">Cata · Tipo: Multi · Pokémon: Astreon</div>
+            <div class="tarjetita-poder">⚡ Lanzar rayos de estrella</div>
+            <div class="tarjetita-poder">🌈 Crear arco iris</div>
+            <div class="tarjetita-poder">✨ Copiar poderes del equipo</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#4fc3f7;">
+          <img class="tarjetita-img" src="img/personajes/superice.png" alt="Super Ice">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#0288d1;">Super Ice ❄️</div>
+            <div class="tarjetita-tipo">Sofi · Tipo: Hielo · Pokémon: Spheal</div>
+            <div class="tarjetita-poder">🧊 Congelar cosas</div>
+            <div class="tarjetita-poder">🌨️ Crear tormentas de nieve</div>
+            <div class="tarjetita-poder">💙 Hielo curativo</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#ff6f00;">
+          <img class="tarjetita-img" src="img/personajes/superfire.png" alt="Super Fire">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#e65100;">Super Fire 🔥</div>
+            <div class="tarjetita-tipo">Juana · Tipo: Fuego · Pokémon: Charizard</div>
+            <div class="tarjetita-poder">🔥 Lanzar fuego</div>
+            <div class="tarjetita-poder">💥 Explosiones de llamas</div>
+            <div class="tarjetita-poder">🛡️ Escudo de fuego</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#7b1fa2;">
+          <img class="tarjetita-img" src="img/personajes/superpsy.png" alt="Super Psy">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#7b1fa2;">Super Psy 🔮</div>
+            <div class="tarjetita-tipo">Cata · Tipo: Psíquico · Pokémon: Psyduck</div>
+            <div class="tarjetita-poder">🧠 Leer mentes</div>
+            <div class="tarjetita-poder">🌀 Telekinesia</div>
+            <div class="tarjetita-poder">💜 Explosiones psíquicas</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#1565c0;">
+          <img class="tarjetita-img" src="img/personajes/superaqua.png" alt="Super Aqua">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#1565c0;">Super Aqua 💧</div>
+            <div class="tarjetita-tipo">Calu · Tipo: Agua · Pokémon: Marill</div>
+            <div class="tarjetita-poder">💦 Chorros de agua</div>
+            <div class="tarjetita-poder">🌊 Crear olas gigantes</div>
+            <div class="tarjetita-poder">🐟 Respirar bajo el agua</div>
+          </div>
+        </div>
+
+        <div class="tarjetita-card" style="border-color:#e91e8c;">
+          <img class="tarjetita-img" src="img/personajes/superfairy.png" alt="Super Fairy">
+          <div class="tarjetita-info">
+            <div class="tarjetita-nombre" style="color:#c2185b;">Super Fairy 🧚</div>
+            <div class="tarjetita-tipo">Lara · Tipo: Hada · Pokémon: Cleffa</div>
+            <div class="tarjetita-poder">✨ Magia brillante</div>
+            <div class="tarjetita-poder">💖 Curación mágica</div>
+            <div class="tarjetita-poder">🌟 Romper control oscuro</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('records')">← Récords</button>
       <button class="btn-nav-esp" onclick="irA('historias')">Historias →</button>
     </div>
   </div>
@@ -1710,7 +1815,7 @@
 
   </div>
   <div class="pag-footer">
-    <button class="btn-nav-esp" onclick="irA('records')">← Récords</button>
+    <button class="btn-nav-esp" onclick="irA('tarjetitas')">← Tarjetitas</button>
     <button class="btn-nav-esp" onclick="irA('test')">¿Qué superheroína sos? →</button>
   </div>
 </div>
@@ -1758,10 +1863,33 @@
   </div>
   <div class="pag-footer">
     <button class="btn-nav-esp" onclick="irA('test')">← ¿Qué superheroína sos?</button>
-    <button class="btn-nav-esp" onclick="irAPortada()">🏠 Portada</button>
+    <button class="btn-nav-esp" onclick="irA('supernova-teaser')">¿Continuará...? →</button>
   </div>
 </div>
 
+</div>
+
+<div class="pagina" id="supernova-teaser" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#0d1b4a,#1a237e,#4a0080,#006064);">
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:0.9rem;opacity:0.7;color:white;">📖 Super Leaf y el Bosque Mágico</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:2rem;color:#ffe066;text-shadow:1px 1px 0 rgba(0,0,0,0.4);">¿Continuará...?</div>
+      <div style="font-size:2.5rem;margin-top:8px;">🌟✨🌟</div>
+    </div>
+    <div class="pag-body" style="text-align:center;padding-top:30px;padding-bottom:40px;">
+      <p style="font-family:'Bubblegum Sans',cursive;font-size:1.1rem;color:#555;margin-bottom:20px;font-style:italic;">Alguien está a punto de despertar...</p>
+      <div style="max-width:280px;margin:0 auto 24px;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2);border:3px solid #7c4dff;">
+        <img src="img/personajes/supernova.png" alt="???" style="width:100%;display:block;filter:brightness(0.85);">
+      </div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:3rem;color:#7c4dff;margin-bottom:12px;letter-spacing:4px;">???</div>
+      <p style="font-size:1rem;color:#555;max-width:340px;margin:0 auto 20px;line-height:1.8;">En <strong>Super Leaf y el Bosque Mágico 2</strong>,<br>una nueva heroína despertará sus poderes.<br>¿Estás lista para conocerla? 🌟</p>
+      <div style="font-size:2rem;letter-spacing:6px;margin-top:20px;">🌈✨🌙⭐🌈</div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('creditos')">← Créditos</button>
+      <button class="btn-nav-esp" onclick="irAPortada()">🏠 Portada</button>
+    </div>
+  </div>
 </div>
 
 
