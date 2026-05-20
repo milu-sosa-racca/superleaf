@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Leaf y la Fairy Hero Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #1565c0;
+    --azul-claro: #1e88e5;
+    --azul-pastel: #e3f2fd;
+    --amarillo: #ffe066;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #e3f2fd 0%, #fffde7 50%, #e8f5e9 100%);
+    min-height: 100vh;
+    color: #222;
+  }
+
+  /* PORTADA */
+  .portada {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, #0d1f3a 0%, #050d1a 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    cursor: pointer;
+  }
+  .port-emoji { font-size: 5rem; margin-bottom: 20px; }
+  .port-titulo { font-family:'Bubblegum Sans',cursive; font-size: 2.5rem; color: var(--amarillo); margin-bottom: 10px; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
+  .port-libro {
+    display: flex;
+    max-width: 480px;
+    width: 92%;
+    border-radius: 6px 20px 20px 6px;
+    box-shadow: -10px 10px 0px #050d1a, -5px 5px 32px rgba(0,0,0,0.65);
+    overflow: hidden;
+    background: linear-gradient(160deg, #1a3a6e, #1565c0, #0d2a50);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .port-lomo {
+    width: 36px;
+    min-width: 36px;
+    background: linear-gradient(to right, #050d1a, #0d1f3a);
+    border-right: 2px solid rgba(255,255,255,0.07);
+  }
+  .port-contenido {
+    flex: 1;
+    padding: 44px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .port-desc { font-size: 1rem; color: rgba(255,255,255,0.85); max-width: 320px; margin: 16px auto 0; line-height: 1.7; text-align: center; }
+  .port-autor { font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 20px; }
+  .port-btn {
+    margin-top: 30px;
+    background: var(--amarillo);
+    color: #0d1f3a;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    font-family: 'Bubblegum Sans', cursive;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #b8860b;
+  }
+
+  /* PÁGINAS */
+  .pagina { display: block; padding: 70px 15px 40px; min-height: 100vh; }
+
+  /* LIBRO (capítulos) */
+  .libro-pagina {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fffdf6;
+    border-radius: 4px 12px 12px 4px;
+    box-shadow: -4px 0 0 #1565c0, 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .libro-header {
+    background: linear-gradient(135deg, #0d1f3a, #1565c0);
+    color: white;
+    padding: 24px 30px 20px;
+    border-bottom: 3px solid var(--amarillo);
+  }
+  .lib-num { font-family:'Bubblegum Sans',cursive; font-size:0.9rem; opacity:0.7; }
+  .lib-titulo { font-family:'Bubblegum Sans',cursive; font-size:1.8rem; color:var(--amarillo); margin-top:4px; text-shadow:1px 1px 0 rgba(0,0,0,0.3); }
+  .libro-body { padding: 30px; }
+  .parrafo { font-size:1.05rem; line-height:1.85; margin-bottom:18px; color:#333; }
+  .dialogo { font-size:1.05rem; line-height:1.85; margin-bottom:10px; color:#222; padding-left:12px; border-left:3px solid #bbdefb; }
+  .escena-sep { text-align:center; color:#90caf9; font-size:1.2rem; letter-spacing:8px; margin:28px 0; }
+  .lib-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 30px;
+    border-top: 1px solid #e3f2fd;
+    background: #f5f9ff;
+  }
+  .lib-pagnum { font-family:'Bubblegum Sans',cursive; font-size:0.9rem; color:#90caf9; }
+  .btn-nav {
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-nav:disabled { opacity: 0.3; cursor: default; }
+
+  /* TOPBAR */
+  .topbar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: #0d1f3a;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .topbar.visible { display: flex; }
+  .hamburger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; padding: 8px; }
+  .topbar-logo { font-family:'Bubblegum Sans',cursive; font-size:1.1rem; color:var(--amarillo); cursor:pointer; }
+  .topbar-print { background: none; border: none; color: white; font-size: 0.8rem; cursor: pointer; opacity: 0.7; }
+
+  /* SIDEBAR */
+  .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:150; }
+  .sidebar-overlay.visible { display:block; }
+  .sidebar {
+    position: fixed;
+    top: 0; left: -280px;
+    width: 260px;
+    height: 100vh;
+    background: #0d1f3a;
+    color: white;
+    z-index: 200;
+    transition: left 0.25s ease;
+    overflow-y: auto;
+    padding-bottom: 40px;
+  }
+  .sidebar.visible { left: 0; }
+  .sidebar-logo {
+    font-family:'Bubblegum Sans',cursive;
+    font-size:1.2rem;
+    color:var(--amarillo);
+    padding:16px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .sidebar-close { background:none; border:none; color:white; font-size:1.1rem; cursor:pointer; }
+  .sidebar-grupo { font-size:0.7rem; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,0.4); padding:14px 16px 6px; }
+  .sidebar-btn {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.85);
+    text-align: left;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.15s;
+  }
+  .sidebar-btn:hover { background: rgba(255,255,255,0.08); }
+  .sidebar-btn.activo {
+    background: #1565c0;
+    color: white;
+    border-left: 4px solid #90caf9;
+    padding-left: 12px;
+    font-weight: bold;
+  }
+
+  /* PÁGINAS ESPECIALES */
+  .pag-especial { max-width: 820px; margin: 0 auto; }
+  .pag-header {
+    background: linear-gradient(135deg, #0d1f3a, #1565c0);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 20px;
+  }
+  .pag-body { padding: 10px 16px 30px; }
+  .pag-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-top: 1px solid #e3f2fd;
+    margin-top: 20px;
+  }
+  .btn-nav-esp {
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .seccion-titulo { font-family:'Bubblegum Sans',cursive; font-size:1.2rem; color:var(--azul); margin:20px 0 12px; }
+
+  @media print {
+    .topbar, .sidebar, .sidebar-overlay { display: none !important; }
+    .pagina { display: block !important; padding: 20px 0 !important; }
+    .pagina { break-after: page; page-break-after: always; }
+    .pagina:last-child { break-after: auto !important; page-break-after: auto !important; }
+    body { background: white !important; }
+    .portada { display: none !important; }
+    .libro-header, .pag-header { background: #f0f0f0 !important; color: #222 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="portada" id="portada-page" onclick="comenzar()">
+  <div class="port-libro">
+    <div class="port-lomo"></div>
+    <div class="port-contenido">
+      <div class="port-emoji">🌟</div>
+      <div class="port-titulo">Super Leaf y la<br>Fairy Hero Academy</div>
+      <div style="font-size:2rem;margin:10px 0;">🌿⭐❄️🔥🧚🔮💧</div>
+      <div class="port-desc">El equipo tiene una nueva academia.<br>Y una nueva amenaza en las sombras.</div>
+      <div class="port-autor">Escrito por Milagros Sosa Racca</div>
+      <button class="port-btn" onclick="event.stopPropagation();comenzar()">📖 ¡Leer el libro!</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar" id="topbar">
+  <button class="hamburger" onclick="abrirSidebar()">☰</button>
+  <span class="topbar-logo" onclick="irAPortada()">🌟 Super Leaf 2</span>
+  <button class="topbar-print" onclick="window.print()">🖨️ Imprimir</button>
+</div>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="overlay" onclick="cerrarSidebar()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-logo" onclick="irAPortada()">
+    🌟 Super Leaf 2
+    <button class="sidebar-close" onclick="event.stopPropagation();cerrarSidebar()">✕</button>
+  </div>
+
+  <div class="sidebar-grupo">Capítulos</div>
+  <button class="sidebar-btn" data-page="cap0" onclick="irA('cap0')">🏫 Cap. 0 — La Fairy Hero Academy</button>
+  <button class="sidebar-btn" data-page="cap1" onclick="irA('cap1')">🔐 Cap. 1 — Los Secretos de la Directora Alma</button>
+  <button class="sidebar-btn" data-page="cap2" onclick="irA('cap2')">🌑 Cap. 2 — La Piedra de la Discordia</button>
+  <button class="sidebar-btn" data-page="cap3" onclick="irA('cap3')">⛈️ Cap. 3 — Mora</button>
+  <button class="sidebar-btn" data-page="cap4" onclick="irA('cap4')">🌑 Cap. 4 — El Error del Árbol</button>
+  <button class="sidebar-btn" data-page="cap5" onclick="irA('cap5')">🕳️ Cap. 5 — La Dimensión Oscura</button>
+  <button class="sidebar-btn" data-page="cap6" onclick="irA('cap6')">🔍 Cap. 6 — Sospechas</button>
+  <button class="sidebar-btn" data-page="cap7" onclick="irA('cap7')">💥 Cap. 7 — La Caída</button>
+  <button class="sidebar-btn" data-page="cap8" onclick="irA('cap8')">🌅 Cap. 8 — Lo que Dijo Mora</button>
+  <button class="sidebar-btn" data-page="cap9" onclick="irA('cap9')">🌄 Cap. 9 — El Regreso</button>
+  <button class="sidebar-btn" data-page="cap10" onclick="irA('cap10')">💬 Cap. 10 — La Verdad de Mati</button>
+  <button class="sidebar-btn" data-page="cap11" onclick="irA('cap11')">🗳️ Cap. 11 — La Votación</button>
+  <button class="sidebar-btn" data-page="cap12" onclick="irA('cap12')">🌑 Cap. 12 — La Oscuridad Aliada</button>
+
+</div>
+
+<!-- PÁGINAS -->
+
+<!-- CAP. 0 -->
+<div class="pagina" id="cap0" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 0</div>
+      <div class="lib-titulo">La Fairy Hero Academy</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">El verano había terminado.</p>
+      <p class="parrafo">Y con él, la época en que las siete podían reunirse en el Bosque Mágico sin que nadie preguntara nada. Ahora había colegio. Ahora había horarios. Ahora había papás que querían saber dónde estaban sus hijas todo el tiempo.</p>
+      <p class="parrafo">El problema era que salvar el mundo Pokémon no entraba muy bien en ningún horario.</p>
+      <p class="parrafo">Fue Mimi la que tuvo la idea.</p>
+
+      <p class="dialogo">— ¿Y si les decimos que somos amigas del colegio? — dijo una tarde, sentada en el claro del Árbol de la Memoria con las demás — ¿Y si encontramos un lugar al que podamos ir todas juntas sin que nadie sospeche?</p>
+      <p class="dialogo">— ¿Un lugar como cuál? — preguntó Juana masticando una hoja de hierba.</p>
+      <p class="parrafo">Fue Cata la seria quien encontró la respuesta tres días después, con los ojos clavados en una pantalla.</p>
+      <p class="dialogo">— La Fairy Hero Academy — dijo despacio — . Internado. Acepta alumnas de todo el mundo. Los papás piensan que es una academia normal de estudio y deporte.</p>
+      <p class="dialogo">— ¿Y no lo es? — preguntó Lara.</p>
+      <p class="dialogo">— El nombre tiene "Hero" en el medio — dijo Cata la seria — . Nada que tenga "Hero" en el nombre es completamente normal.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Convencer a los papás llevó exactamente dos semanas, cuatro presentaciones en PowerPoint hechas por Cata la de los anteojos, tres llamadas telefónicas de Super Psy haciéndose pasar por la secretaria de la academia, y una carta oficial que Superstar imprimió con un membrete dorado que ella misma diseñó.</p>
+      <p class="parrafo">Funcionó.</p>
+      <p class="parrafo">El primer día de septiembre, siete nenas llegaron a la Fairy Hero Academy con sus mochilas, sus Pokémon escondidos adentro y sus papás convencidos de que las estaban mandando al mejor internado educativo del hemisferio sur.</p>
+      <p class="parrafo">Mimi abrazó a su mamá en la puerta. Y cuando se giró para entrar, por un segundo pensó en Vicky. Su hermana menor. Que estaba en casa. Que no sabía nada de poderes ni de bosques mágicos ni de equipos de superheroínas.</p>
+      <p class="parrafo">O al menos eso creía Mimi.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La academia parecía completamente normal desde afuera. Un edificio grande de piedra gris con ventanas altas y un jardín prolijo. Nada raro. Nada misterioso.</p>
+      <p class="parrafo">Nada que explicara por qué, cuando Mimi cruzó la puerta principal, sus poderes se despertaron de golpe como si alguien hubiera apretado un interruptor.</p>
+      <p class="dialogo">— ¿Sintieron eso? — susurró agarrando el brazo de Sofi.</p>
+      <p class="dialogo">— Sí — dijo Sofi muy tranquila — . Como electricidad.</p>
+      <p class="dialogo">— Como cuando el Árbol nos dio los poderes — dijo Lara con los ojos brillantes.</p>
+      <p class="parrafo">Las siete se miraron. Y sin decir nada más, entraron.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El salón principal era enorme y lleno de luz. Había otras alumnas llegando de todos lados, con valijas y uniformes nuevos y Pokémon que asomaban curiosos por las mochilas. Todo parecía perfectamente normal.</p>
+      <p class="parrafo">Hasta que apareció la Directora.</p>
+      <p class="parrafo">Era una mujer de mediana edad con el pelo oscuro recogido en un rodete prolijo y unos ojos que miraban demasiado fijo, como si pudiera ver cosas que los demás no veían. Caminó hasta el frente del salón sin hacer ruido y esperó a que todas se callaran solas. Tardó exactamente cuatro segundos.</p>
+      <p class="dialogo">— Bienvenidas a la Fairy Hero Academy — dijo con una voz tranquila que llenó todo el salón sin esfuerzo — . Esta academia tiene una historia muy larga. Y algunas de ustedes — hizo una pausa muy breve — ya lo saben.</p>
+      <p class="parrafo">Mimi sintió que el estómago se le apretaba. La directora no la estaba mirando a ella específicamente. Pero tampoco la estaba dejando de mirar.</p>
+      <p class="dialogo">— Mi nombre es Directora Alma — continuó — . Las reglas son simples. Estudien. Entrenen. Y nunca, bajo ninguna circunstancia, usen sus habilidades especiales dentro del edificio sin permiso.</p>
+      <p class="parrafo">Silencio total en el salón.</p>
+      <p class="dialogo">— Sus habilidades deportivas, quiero decir — agregó la Directora con una sonrisa muy pequeña y muy tranquila — . Buenas tardes.</p>
+      <p class="parrafo">Y se fue.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="dialogo">— ¿Escucharon eso? — susurró Calu en cuanto la Directora desapareció por una puerta lateral.</p>
+      <p class="dialogo">— Lo escuchamos — dijo Cata la seria.</p>
+      <p class="dialogo">— Habilidades especiales — repitió Superstar ajustando sus anteojos — . No dijo deportivas primero. Lo corrigió después.</p>
+      <p class="dialogo">— Sabe — dijo Mimi en voz muy baja — . La Directora sabe quiénes somos.</p>
+      <p class="dialogo">— Bueno — dijo Juana — . Bienvenidas a la academia más rara en la que estuvimos. Y eso que estuvimos dentro de una dimensión de sombras.</p>
+      <p class="parrafo">Nadie pudo contradecirla.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Lo que ninguna de las siete sabía era que, en ese mismo momento, una nena las estaba observando desde el otro lado del salón.</p>
+      <p class="parrafo">Tenía el pelo largo y negro, los ojos entrecerrados y una expresión que no era exactamente odio pero se le parecía bastante. A su lado, escondido en su mochila, un Pokémon oscuro con una luna en la frente miraba en la misma dirección.</p>
+      <p class="parrafo">Mati las había reconocido en cuanto entraron. Conocía sus caras. Conocía sus nombres. Había pasado meses investigándolas después de que el Árbol de la Memoria la rechazó a ella. Después de que esa luz dorada la envolvió, le mostró todo lo que podría haber sido, y luego se apagó.</p>
+      <p class="parrafo"><em>No sos la elegida</em>, le había dicho el árbol sin palabras.</p>
+      <p class="parrafo">Mati todavía sentía ese frío en el pecho cuando lo recordaba.</p>
+      <p class="dialogo">— Ahí están — murmuró muy bajito.</p>
+      <p class="parrafo">El Absol en su mochila gruñó suave.</p>
+      <p class="dialogo">— Tranquilo — dijo Mati sin dejar de mirarlas — . Todavía no. Primero quiero ver exactamente qué pueden hacer. — Sus ojos se detuvieron en Mimi un segundo más que en las demás. — Y después les voy a demostrar que el Árbol se equivocó.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ El Equipo Leaf llegó a la academia.<br>
+        ✅ La Directora Alma sabe su secreto.<br>
+        ⚠️ Mati está entre ellas desde el primer día.<br>
+        🌟 Vicky está en casa... sin que Mimi sepa lo que el Árbol le hizo en secreto.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" disabled>← Anterior</button>
+      <span class="lib-pagnum">1 / 13</span>
+      <button class="btn-nav" onclick="irA('cap1')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 1 -->
+<div class="pagina" id="cap1" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 1</div>
+      <div class="lib-titulo">Los Secretos de la Directora Alma</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">La primera noche en la Fairy Hero Academy, nadie durmió bien.</p>
+      <p class="parrafo">No era por las camas, que eran cómodas. No era por el ruido, porque la academia de noche estaba en silencio total. Era por esa sensación que ninguna podía sacarse de encima desde que habían cruzado la puerta principal. Como si las paredes supieran quiénes eran. Como si el edificio entero estuviera prestando atención.</p>
+      <p class="parrafo">Mimi se quedó mirando el techo durante horas con Leafeon acurrucado a su lado.</p>
+      <p class="parrafo"><em>La Directora sabe</em>, seguía pensando. <em>¿Pero cuánto sabe? ¿Y por qué no dijo nada más?</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">A la mañana siguiente, antes del desayuno, apareció un sobre debajo de la puerta de la habitación que compartían las siete.</p>
+      <p class="parrafo">Cata la seria lo levantó. Lo abrió. Leyó.</p>
+      <p class="dialogo">— Es de la Directora Alma — dijo — . Quiere vernos. Ahora.</p>
+      <p class="dialogo">— ¿A todas? — preguntó Calu todavía con el pelo revuelto.</p>
+      <p class="dialogo">— A todas — confirmó Cata.</p>
+      <p class="parrafo">Juana miró su Charmander que dormía feliz en su almohada.</p>
+      <p class="dialogo">— Bien — dijo — . Primer día y ya nos llaman a la dirección. Récord personal.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La oficina de la Directora Alma estaba en el último piso, al final de un pasillo largo con ventanas que daban al jardín. La puerta era de madera oscura con una hoja tallada en el centro.</p>
+      <p class="parrafo">Mimi la tocó sin querer al entrar. Y sintió exactamente lo mismo que cuando tocaba el Árbol de la Memoria.</p>
+      <p class="parrafo">Adentro, la Directora las estaba esperando de pie frente a una ventana enorme. No se giró cuando entraron. Esperó a que la puerta se cerrara sola.</p>
+      <p class="dialogo">— Siéntense — dijo.</p>
+      <p class="parrafo">Se sentaron.</p>
+      <p class="parrafo">La Directora se giró. Las miró a las siete una por una, despacio, como tomando nota de cada cara.</p>
+      <p class="dialogo">— Bien — dijo finalmente — . Ahora que estamos solas les voy a decir la verdad. Las tres verdades, en realidad.</p>
+      <p class="parrafo">Superstar ajustó sus anteojos. Cata la seria ya estaba memorizando todo.</p>
+      <p class="dialogo">— La primera — dijo la Directora — . Esta academia no es normal. Fue construida hace cien años específicamente para proteger a jóvenes con poderes especiales. Cada piedra de este edificio tiene magia del Árbol de la Memoria adentro.</p>
+      <p class="parrafo">Silencio.</p>
+      <p class="dialogo">— La segunda — continuó sin pausar — . Yo sé quiénes son. Sé lo que pueden hacer. Y sé lo que enfrentaron en el Bosque Mágico el año pasado. El Árbol me lo contó.</p>
+      <p class="dialogo">— ¿El Árbol... habla con usted? — preguntó Mimi.</p>
+      <p class="dialogo">— Me habló una sola vez. La noche que ustedes sellaron la dimensión de las sombras. — La Directora las miró con algo que no era exactamente orgullo pero se le parecía. — Me dijo que iban a venir. Y que iban a necesitar un lugar seguro para entrenar.</p>
+      <p class="dialogo">— ¿Y la tercera verdad? — preguntó Super Psy en voz baja.</p>
+      <p class="parrafo">La Directora tardó un segundo más en responder esta vez.</p>
+      <p class="dialogo">— La tercera — dijo — . No están solas en esta academia. Hay alguien más entre las alumnas que también fue tocada por el Árbol de la Memoria. Pero no de la misma manera que ustedes.</p>
+      <p class="parrafo">Mimi sintió un frío que no tenía nada que ver con el tipo Hielo de Sofi.</p>
+      <p class="dialogo">— ¿Quién? — preguntó.</p>
+      <p class="dialogo">— Eso — dijo la Directora — todavía no se los puedo decir. Porque todavía no lo sé con certeza. Solo sé que está acá. Y que tiene mucho dolor adentro.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Salieron de la oficina con la cabeza llena de preguntas y bajaron al comedor en silencio. Se sentaron en una mesa al fondo, lejos de las demás alumnas.</p>
+      <p class="dialogo">— Un salón secreto debajo de la academia — dijo Cata la seria en voz muy baja — . La historia del Árbol y la academia. Quién es la Directora realmente. Por qué fue construida para nosotras. Todo.</p>
+      <p class="dialogo">— Todo en cinco minutos — dijo Juana — . Eficiente.</p>
+      <p class="dialogo">— Lo que me preocupa — dijo Superstar — es lo de la otra alumna. La que fue tocada por el Árbol pero diferente.</p>
+      <p class="dialogo">— Diferente cómo — dijo Lara.</p>
+      <p class="dialogo">— Con mucho dolor adentro — repitió Mimi despacio — . Eso dijo.</p>
+      <p class="parrafo">Las siete se miraron. Y cada una pensó lo mismo sin decirlo.</p>
+      <p class="parrafo"><em>¿Quién entre todas las alumnas de esta academia?</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La respuesta llegó más rápido de lo que esperaban. Y de la peor manera posible.</p>
+      <p class="parrafo">Esa tarde, durante el primer entrenamiento en el gimnasio secreto que la Directora les había mostrado debajo de la academia — un salón enorme con paredes que brillaban igual que el Árbol de la Memoria — algo salió mal.</p>
+      <p class="parrafo">Mimi intentó usar su poder de hacer crecer plantas. Las enredaderas crecieron pero en vez de ir hacia arriba fueron hacia abajo, enroscándose alrededor de sus propios pies.</p>
+      <p class="parrafo">Super Psy intentó leer la mente de Leafeon. En vez de los pensamientos de Leafeon escuchó una voz extraña y distorsionada que no reconoció.</p>
+      <p class="parrafo">Super Ice intentó congelar un charco de práctica. El hielo creció pero en la dirección equivocada, hacia ella en vez de hacia afuera.</p>
+      <p class="dialogo">— Algo está mal — dijo Super Psy apretando la cabeza — . Alguien está interfiriendo con nuestros poderes.</p>
+      <p class="dialogo">— ¿Cómo? — preguntó Super Fire.</p>
+      <p class="dialogo">— No sé. Pero es intencional. Lo siento.</p>
+      <p class="parrafo">Superstar ajustó sus anteojos y miró alrededor del salón. Las paredes brillaban normal. El techo brillaba normal. Pero en el rincón más alejado, casi invisible contra la pared oscura, había algo.</p>
+      <p class="parrafo">Una grieta pequeña en la piedra. Y adentro de la grieta, un cristal negro que parpadeaba muy suave.</p>
+      <p class="dialogo">— Ahí — dijo Superstar señalando.</p>
+      <p class="parrafo">Super Aqua saltó hasta el rincón en un segundo. Sacó el cristal con cuidado. Era pequeño, del tamaño de una moneda, perfectamente liso, con algo grabado adentro que parecía una luna.</p>
+      <p class="parrafo">Una luna.</p>
+      <p class="parrafo">Mimi miró el cristal. Miró a sus amigas. Y supo.</p>
+      <p class="dialogo">— No fue un accidente — dijo — . Alguien puso esto acá antes de que llegáramos. Alguien que sabía exactamente dónde íbamos a entrenar.</p>
+      <p class="dialogo">— Alguien que conoce este lugar — dijo Cata la seria — . Alguien que estuvo acá antes que nosotras.</p>
+      <p class="parrafo">Silencio en el salón.</p>
+      <p class="dialogo">— La persona con mucho dolor adentro — dijo Lara muy bajito.</p>
+      <p class="parrafo">Nadie lo contradijo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa noche, tres pisos más arriba, Mati miraba sus manos con una sonrisa pequeña y fría.</p>
+      <p class="parrafo">El cristal había funcionado exactamente como esperaba. No era suficiente para detenerlas, lo sabía. Pero era suficiente para mandarles un mensaje.</p>
+      <p class="parrafo"><em>Las estoy viendo. Sé dónde están. Y sé lo que pueden hacer.</em></p>
+      <p class="parrafo">El Absol a su lado puso la cabeza en su rodilla.</p>
+      <p class="dialogo">— Tranquilo — dijo Mati en voz muy baja — . Esto recién empieza.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ La Directora reveló los tres secretos de la academia.<br>
+        ✅ El equipo descubrió el salón secreto de entrenamiento.<br>
+        ✅ Mati les tendió su primera trampa.<br>
+        ⚠️ El cristal con la luna era solo el comienzo.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap0')">← Cap. 0</button>
+      <span class="lib-pagnum">2 / 13</span>
+      <button class="btn-nav" onclick="irA('cap2')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 2 -->
+<div class="pagina" id="cap2" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 2</div>
+      <div class="lib-titulo">La Piedra de la Discordia</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">A la mañana siguiente del entrenamiento, el cristal negro estaba sobre la mesa de la habitación, dentro de un vaso de vidrio. Nadie quería tocarlo con las manos.</p>
+      <p class="parrafo">Super Psy lo miraba fijo desde hacía diez minutos.</p>
+      <p class="dialogo">— Tiene magia oscura adentro — dijo finalmente — . No es del Árbol de la Memoria. Es lo contrario. Como si alguien hubiera tomado la energía del Árbol y la hubiera dado vuelta.</p>
+      <p class="dialogo">— ¿Dado vuelta cómo? — preguntó Lara.</p>
+      <p class="dialogo">— El Árbol conecta. Esto separa — dijo Super Psy — . Hace que los poderes vayan en la dirección equivocada. Y si hubiera más de uno de estos cristales...</p>
+      <p class="dialogo">— Los poderes de todo el equipo estarían invertidos — terminó Superstar ajustando sus anteojos.</p>
+      <p class="parrafo">Silencio.</p>
+      <p class="dialogo">— Tenemos que encontrar quién lo puso — dijo Mimi — . Y si hay más.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Se dividieron en grupos. Mimi y Super Aqua revisaron el salón de entrenamiento. Super Fire y Super Fairy revisaron los pasillos del sótano. Superstar y Super Psy fueron a buscar información en la biblioteca de la academia. Y Super Ice, sola y en silencio como siempre, subió al último piso a revisar las aulas.</p>
+      <p class="parrafo">No encontraron más cristales.</p>
+      <p class="parrafo">Pero encontraron algo peor.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Era la hora del almuerzo cuando empezó.</p>
+      <p class="parrafo">Primero fue un comentario de una alumna de tercer año a otra sobre quién había ganado el entrenamiento de esa mañana. Nada grave. Un intercambio de palabras un poco más fuerte de lo necesario.</p>
+      <p class="parrafo">Pero dos minutos después las dos estaban gritándose. Y cinco minutos después la mitad del comedor estaba discutiendo con la otra mitad sin saber muy bien por qué.</p>
+      <p class="parrafo">Mimi miraba la escena desde su mesa sin entender qué estaba pasando.</p>
+      <p class="dialogo">— Esto no es normal — dijo.</p>
+      <p class="dialogo">— No — confirmó Super Psy apretando los ojos — . Hay algo en el aire. Como una vibración. No la puedo agarrar bien pero está en todas partes.</p>
+      <p class="dialogo">— ¿Otro cristal? — preguntó Super Fire.</p>
+      <p class="dialogo">— No. Esto es diferente. Es más sutil. Como si... — Super Psy abrió los ojos de golpe — . Como si estuviera en la comida.</p>
+      <p class="parrafo">Las ocho miraron sus platos al mismo tiempo.</p>
+      <p class="dialogo">— Yo no comí nada todavía — dijo Calu.</p>
+      <p class="dialogo">— Yo sí — dijo Juana — . Y estoy bien.</p>
+      <p class="dialogo">— Yo también — dijo Lara — . Aunque... — frunció el ceño — . Me siento un poco rara. Como con ganas de discutir.</p>
+      <p class="dialogo">— No discutiste con nadie — observó Sofi.</p>
+      <p class="dialogo">— Porque me di cuenta — dijo Lara — . Pero las ganas estaban.</p>
+      <p class="parrafo">Super Psy cerró los ojos otra vez y extendió su poder por todo el comedor. Buscó la vibración. La siguió. Y la encontró.</p>
+      <p class="parrafo">No estaba en la comida. Estaba debajo de la mesa larga del centro del comedor, pegado con algo oscuro a la madera. Un cristal nuevo. Más grande que el del sótano. Con la misma luna grabada.</p>
+      <p class="dialogo">— Ahí — dijo Super Psy señalando sin abrir los ojos.</p>
+      <p class="parrafo">Super Aqua se deslizó por debajo de la mesa sin que nadie la viera. Lo despegó. Y en el momento en que el cristal se separó de la madera, el ruido del comedor bajó diez decibeles de golpe. Las alumnas que estaban gritándose se miraron confundidas, como si no recordaran muy bien por qué habían empezado.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa tarde, con los dos cristales dentro del vaso de vidrio, el equipo se reunió en su habitación.</p>
+      <p class="dialogo">— Alguien que conoce la academia — dijo Mimi — . Alguien que sabe dónde está el salón secreto. Alguien que pudo entrar al comedor antes que todas nosotras esta mañana.</p>
+      <p class="dialogo">— Una alumna — dijo Cata la seria — . Tiene que ser una alumna. O alguien que vive acá.</p>
+      <p class="dialogo">— O las dos cosas — dijo Superstar.</p>
+      <p class="dialogo">— ¿Le decimos a la Directora? — preguntó Lara.</p>
+      <p class="dialogo">— Todavía no — dijo Mimi — . Primero quiero entender quién es. Y por qué.</p>
+      <p class="parrafo">Super Psy miró los cristales en silencio.</p>
+      <p class="dialogo">— La energía de estos cristales es muy específica — dijo despacio — . Quien los hizo no aprendió esto en ningún libro. Lo siente. Lo lleva adentro. — Hizo una pausa — . Esta persona tiene poderes reales. No como los nuestros, pero reales.</p>
+      <p class="dialogo">— ¿Cuántas personas con poderes reales conocemos? — preguntó Juana.</p>
+      <p class="parrafo">Todas se miraron.</p>
+      <p class="dialogo">— Nosotras — dijo Calu.</p>
+      <p class="dialogo">— Y la persona con mucho dolor adentro — dijo Lara muy bajito.</p>
+      <p class="parrafo">El cuarto quedó en silencio.</p>
+      <p class="parrafo">Afuera, en el pasillo, unos pasos se alejaron despacio. Nadie los escuchó.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Mati llegó a su habitación, cerró la puerta con cuidado y se sentó en el suelo con la espalda contra la cama. El Absol vino y se recostó a su lado.</p>
+      <p class="parrafo">Sabían que los cristales habían sido encontrados. Lo había calculado. Era demasiado pronto para que no los encontraran.</p>
+      <p class="parrafo">Pero el segundo cristal había funcionado. Las había visto desde el pasillo, saliendo del comedor con las caras tensas y confundidas. Había visto cómo Lara se pellizcaba el brazo para no decir algo que quería decir. Había visto cómo Super Psy apretaba los dientes.</p>
+      <p class="parrafo">Incluso el Equipo Leaf podía tambalearse.</p>
+      <p class="parrafo">Solo necesitaba más tiempo. Y más cristales.</p>
+      <p class="dialogo">— Todavía no sospechan de mí — murmuró acariciando al Absol — . Para ellas soy invisible. Una alumna más.</p>
+      <p class="parrafo">El Absol cerró los ojos.</p>
+      <p class="dialogo">— Bien — dijo Mati — . Así me gusta.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ El equipo encontró el segundo cristal a tiempo.<br>
+        ✅ Super Psy confirmó que quien los hace tiene poderes reales.<br>
+        ⚠️ La trampa funcionó a medias — Lara casi pierde el control.<br>
+        ⚠️ Nadie sospecha de Mati todavía.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap1')">← Cap. 1</button>
+      <span class="lib-pagnum">3 / 13</span>
+      <button class="btn-nav" onclick="irA('cap3')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 3 -->
+<div class="pagina" id="cap3" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 3</div>
+      <div class="lib-titulo">Mora</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Era martes por la mañana y todo parecía normal.</p>
+      <p class="parrafo">Las alumnas de la Fairy Hero Academy desayunaban, reían, discutían sobre cuál era el mejor Pokémon para el entrenamiento de la tarde. El sol entraba por las ventanas del comedor. Los Pokémon correteaban por el jardín.</p>
+      <p class="parrafo">Y entonces el cielo se puso negro.</p>
+      <p class="parrafo">No de a poco. No con nubes que se iban juntando despacio. De golpe. Como si alguien hubiera apagado el sol de un manotazo.</p>
+      <p class="parrafo">Mimi levantó la vista de su taza y sintió que algo se le apretaba en el pecho. No era miedo exactamente. Era algo más viejo. Más profundo. Como cuando el Bosque Mágico estaba en peligro y los animales se callaban todos al mismo tiempo.</p>
+      <p class="dialogo">— ¿Vieron eso? — dijo.</p>
+      <p class="parrafo">Nadie tuvo tiempo de responder.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El primer rayo cayó en el jardín y arrancó un árbol de raíz.</p>
+      <p class="parrafo">El segundo cayó en el techo del ala este de la academia con un estruendo que hizo temblar las ventanas.</p>
+      <p class="parrafo">El tercero no cayó sobre la academia. Cayó más lejos. Mucho más lejos.</p>
+      <p class="parrafo">Las luces de emergencia del salón secreto se encendieron solas con un zumbido grave y urgente.</p>
+      <p class="parrafo">La Directora Alma apareció en la puerta del comedor. Por primera vez desde que habían llegado, su expresión no era tranquila.</p>
+      <p class="dialogo">— Todas al sótano — dijo con una voz que no admitía discusión — . Ahora.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El caos fue inmediato.</p>
+      <p class="parrafo">Doscientas alumnas tratando de moverse al mismo tiempo por pasillos que de repente estaban oscuros. Pokémon asustados que chillaban y saltaban. Ventanas que se rompían con el viento. El sonido de la tormenta afuera que no era normal, que no sonaba como lluvia sino como algo vivo y furioso que golpeaba el edificio con intención.</p>
+      <p class="parrafo">El equipo se juntó en medio del pasillo principal.</p>
+      <p class="dialogo">— Esto no es una tormenta normal — dijo Super Psy apretando la cabeza con las dos manos — . Hay magia oscura adentro. Muchísima. Más de lo que vimos nunca.</p>
+      <p class="dialogo">— ¿Más que la hermana de Argenta? — preguntó Super Fire.</p>
+      <p class="dialogo">— Diferente — dijo Super Psy — . Esa magia venía de adentro de una persona. Esta... está en todas partes al mismo tiempo. Como si alguien la hubiera soltado y ya no la pudiera controlar nadie.</p>
+      <p class="dialogo">— ¿O como si no quisiera que nadie la controlara? — dijo Superstar ajustando sus anteojos.</p>
+      <p class="parrafo">Silencio.</p>
+      <p class="parrafo">La Directora Alma llegó hasta ellas abriéndose paso entre las alumnas asustadas.</p>
+      <p class="dialogo">— La tormenta no es solo acá — dijo sin preámbulos — . Está en todas partes. El Bosque Mágico. Las ciudades Pokémon. Todo el mundo está siendo atacado al mismo tiempo.</p>
+      <p class="dialogo">— ¿Al mismo tiempo? — dijo Calu — . ¿Cómo?</p>
+      <p class="dialogo">— No lo sé — admitió la Directora. Y esas tres palabras sonaron más aterradoras que cualquier cosa que hubiera dicho antes, porque la Directora Alma siempre sabía todo — . Nunca vi algo así. Ni en cien años de historia de esta academia.</p>
+      <p class="dialogo">— ¿Podemos pararla? — preguntó Mimi.</p>
+      <p class="parrafo">La Directora la miró fijo.</p>
+      <p class="dialogo">— No lo sé — repitió.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Bajaron al salón secreto con el resto de las alumnas. Las paredes que normalmente brillaban con luz dorada ahora parpadeaban nerviosamente, como si la magia del Árbol de la Memoria dentro de las piedras estuviera asustada.</p>
+      <p class="parrafo">Super Psy cerró los ojos y extendió su poder tan lejos como pudo.</p>
+      <p class="dialogo">— Hay algo — dijo despacio — . Una presencia. No la puedo ver bien. Es como si estuviera escondida detrás de algo. Como una ilusión.</p>
+      <p class="dialogo">— ¿Una ilusión? — preguntó Lara.</p>
+      <p class="dialogo">— Como si alguien estuviera usando magia oscura para parecer invisible — dijo Super Psy — . Para estar en algún lugar sin que nadie la vea.</p>
+      <p class="dialogo">— ¿Está acá? — preguntó Mimi mirando alrededor del salón lleno de alumnas asustadas.</p>
+      <p class="parrafo">Super Psy tardó un segundo.</p>
+      <p class="dialogo">— No lo sé — dijo — . Puede estar en cualquier parte. O en todas partes al mismo tiempo.</p>
+      <p class="dialogo">— ¿Podés identificarla? — preguntó Cata la seria.</p>
+      <p class="dialogo">— No — dijo Super Psy abriendo los ojos — . Está demasiado escondida. Solo sé que existe. Y que está muy cerca.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En el rincón más alejado del salón secreto, sentada en el suelo entre dos alumnas de segundo año que lloraban asustadas, Mati acariciaba al Absol escondido en su mochila con una mano completamente tranquila.</p>
+      <p class="parrafo">La ilusión estaba funcionando perfectamente. Para todos en ese salón ella era exactamente lo que parecía: una alumna más, asustada como las demás, esperando que pasara la tormenta. Nadie la miraba. Nadie sospechaba.</p>
+      <p class="parrafo">Afuera, la tormenta seguía rugiendo.</p>
+      <p class="parrafo">Mati sonrió muy suave, sin que nadie la viera.</p>
+      <p class="parrafo"><em>Todavía no</em>, se dijo. <em>Todavía no es el momento.</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue entonces que todas las luces del salón parpadearon y se apagaron.</p>
+      <p class="parrafo">Un segundo de oscuridad total.</p>
+      <p class="parrafo">Y en ese segundo, desde la entrada del salón, entró algo.</p>
+      <p class="parrafo">Una luz. No oscura. No dorada como el Árbol de la Memoria. Algo completamente diferente. Cambiante. Como una aurora. Como todos los colores del cielo de noche juntos en un solo lugar.</p>
+      <p class="parrafo">Doscientas alumnas giraron al mismo tiempo.</p>
+      <p class="parrafo">La Directora Alma dio un paso hacia atrás.</p>
+      <p class="parrafo">Y Mimi, desde el otro lado del salón, vio la figura que venía detrás de esa luz.</p>
+      <p class="parrafo">Una nena con el pelo oscuro cortito y los ojos más curiosos y más asustados que había visto en mucho tiempo. Con un Pokémon plateado y cambiante flotando a su lado que iluminaba todo el salón con esa luz de aurora que no era de este mundo.</p>
+      <p class="parrafo">La nena miró alrededor del salón lleno de gente. Miró las paredes que parpadeaban. Miró la tormenta afuera. Y finalmente encontró la cara de Mimi entre todas las demás.</p>
+      <p class="dialogo">— Hola — dijo con la voz un poco temblorosa — . El Árbol me mandó. Creo. No estoy muy segura de cómo llegué acá exactamente.</p>
+      <p class="parrafo">Mimi sintió que algo dentro de ella se rompía y se arreglaba al mismo tiempo.</p>
+      <p class="dialogo">— Vicky — susurró.</p>
+      <p class="parrafo">Su hermana menor. Que estaba en casa. Que no sabía nada de poderes ni de bosques mágicos ni de equipos de superheroínas.</p>
+      <p class="parrafo">O al menos eso había creído Mimi hasta ese momento.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En el rincón del salón, Mati dejó de acariciar al Absol.</p>
+      <p class="parrafo">Miraba a la recién llegada. A esa luz de aurora que no había visto nunca. A ese Pokémon plateado que parpadeaba suave y cambiante.</p>
+      <p class="parrafo">Por primera vez en toda la noche, algo dentro de su plan perfectamente calculado tembló muy levemente.</p>
+      <p class="parrafo">No lo mostró. Nadie la estaba mirando de todas formas.</p>
+      <p class="parrafo">Pero lo sintió.</p>
+      <p class="parrafo"><em>¿Quién es esa?</em></p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ La tormenta atacó todo el mundo Pokémon de golpe.<br>
+        ✅ La academia entera entró en caos.<br>
+        ✅ La Directora Alma no supo cómo pararla.<br>
+        ✅ Super Psy encontró una firma oscura misteriosa pero no pudo identificarla.<br>
+        🌑 Mati estaba entre todas usando su ilusión. Nadie la vio.<br>
+        🌟 Vicky llegó con Sylveon y cambió todo.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap2')">← Cap. 2</button>
+      <span class="lib-pagnum">4 / 13</span>
+      <button class="btn-nav" onclick="irA('cap4')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 4 -->
+<div class="pagina" id="cap4" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 4</div>
+      <div class="lib-titulo">El Error del Árbol</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">La tormenta no paró en toda la noche.</p>
+      <p class="parrafo">El equipo se quedó en el salón secreto con Vicky mientras la Directora Alma coordinaba a las demás alumnas. Nadie dormía. Nadie podía. El sonido de los rayos afuera era constante y cada tanto las paredes temblaban.</p>
+      <p class="parrafo">Mimi no se separó de Vicky en ningún momento.</p>
+      <p class="dialogo">— ¿Cuándo? — le preguntó en voz muy baja mientras las demás hablaban entre ellas — . ¿Cuándo te dio los poderes el Árbol?</p>
+      <p class="parrafo">Vicky miró a Silvion que flotaba a su lado parpadeando suave.</p>
+      <p class="dialogo">— Hace tres meses — dijo — . Una noche soñé con él. Con el Árbol. Me dijo que no le dijera nada a nadie todavía. Que esperara. Que iba a saber cuándo era el momento.</p>
+      <p class="dialogo">— ¿Y esta noche fue el momento?</p>
+      <p class="dialogo">— Silvion me despertó — dijo Vicky — . Y señaló la ventana. Y el cielo estaba negro. — Hizo una pausa — . Supe que tenía que venir.</p>
+      <p class="parrafo">Mimi la miró un segundo largo.</p>
+      <p class="dialogo">— Tendría que haberlo sabido — dijo finalmente.</p>
+      <p class="dialogo">— No — dijo Vicky — . El Árbol no quería que lo supieras todavía. A veces los secretos tienen su momento.</p>
+      <p class="parrafo">Superstar, que estaba escuchando desde el lado, ajustó sus anteojos.</p>
+      <p class="dialogo">— Me gusta esta nena — dijo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">A la mañana siguiente, cuando la tormenta aflojó lo suficiente para que pudieran moverse, la Directora Alma reunió al equipo en su oficina.</p>
+      <p class="dialogo">— La magia oscura de anoche dejó una marca — dijo — . En las paredes de la academia. En el suelo del jardín. Y en el salón secreto. — Hizo una pausa — . Quien hizo esto quiere que sepamos que estuvo acá. Es un mensaje.</p>
+      <p class="dialogo">— ¿Qué dice el mensaje? — preguntó Cata la seria.</p>
+      <p class="dialogo">— Que va a volver — dijo la Directora — . Y que la próxima vez va a ser peor.</p>
+      <p class="parrafo">Silencio en la oficina.</p>
+      <p class="dialogo">— ¿Tienen alguna idea de quién es? — preguntó la Directora mirándolas una por una.</p>
+      <p class="dialogo">— Una firma oscura — dijo Super Psy — . Eso es todo lo que encontré anoche. No pude identificarla.</p>
+      <p class="parrafo">La Directora asintió despacio.</p>
+      <p class="dialogo">— Entonces tenemos que estar preparadas — dijo — . Porque va a volver. Y cuando vuelva va a querer que la vean.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Tenía razón.</p>
+      <p class="parrafo">Volvió esa tarde.</p>
+      <p class="parrafo">El equipo estaba entrenando en el salón secreto — esta vez con Vicky, que miraba todo con los ojos muy abiertos y Silvion pegado a su lado — cuando las paredes dejaron de brillar dorado y se pusieron negras de golpe.</p>
+      <p class="parrafo">Y en el centro del salón apareció una figura.</p>
+      <p class="parrafo">No era una persona exactamente. Era una silueta hecha de magia oscura, con el contorno de una nena pero completamente negra y sin cara visible. A su lado, la sombra de un Pokémon con algo que parecía una luna en la frente.</p>
+      <p class="parrafo">La figura las miró. O al menos eso pareció, aunque no tuviera ojos.</p>
+      <p class="parrafo">Y atacó.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue rápido y brutal.</p>
+      <p class="parrafo">Una ola de magia oscura que golpeó al equipo desde todas las direcciones al mismo tiempo. Super Ice levantó una pared de hielo que se rompió en segundos. Super Fire lanzó llamas que la oscuridad apagó sin esfuerzo. Super Psy intentó leer a la figura y retrocedió con un grito tapándose los ojos.</p>
+      <p class="dialogo">— ¡No puedo entrar! — gritó — . ¡Está completamente bloqueada!</p>
+      <p class="parrafo">Superstar copió los poderes de todas y los lanzó juntos. La figura los absorbió sin moverse.</p>
+      <p class="parrafo">Mimi hizo crecer enredaderas gigantes que la oscuridad cortó una por una.</p>
+      <p class="parrafo">Nada funcionaba.</p>
+      <p class="parrafo">La figura se detuvo en el centro del salón. Y habló. Su voz era distorsionada, oscura, irreconocible.</p>
+      <p class="dialogo">— Me llamo Mora — dijo — . Y vine a decirles algo.</p>
+      <p class="parrafo">Nadie respondió.</p>
+      <p class="dialogo">— El Árbol de la Memoria cometió un error — continuó — . Y voy a demostrarlo. No importa cuánto entrenen. No importa cuánto tiempo tengan. Lo que el Árbol les dio a ustedes me pertenecía a mí.</p>
+      <p class="dialogo">— ¿Quién sos? — dijo Mimi.</p>
+      <p class="dialogo">— Mora — repitió la figura — . Eso es todo lo que necesitan saber por ahora.</p>
+      <p class="parrafo">Y lanzó el ataque más grande hasta ese momento. Una ola oscura enorme que derribó a todo el equipo al mismo tiempo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En ese momento Vicky dio un paso al frente.</p>
+      <p class="parrafo">No lo pensó. No lo planeó. Silvion brilló de golpe con una luz tan intensa que llenó todo el salón. Y Vicky extendió las manos y esa luz de aurora — cambiante, de todos los colores a la vez — salió disparada hacia la ola oscura.</p>
+      <p class="parrafo">Las dos fuerzas chocaron en el centro del salón.</p>
+      <p class="parrafo">Por un segundo todo quedó en blanco.</p>
+      <p class="parrafo">Y cuando la luz se apagó, la figura de Mora había desaparecido.</p>
+      <p class="parrafo">El salón volvió a brillar dorado despacio, como recuperándose de algo.</p>
+      <p class="parrafo">Vicky bajó los brazos. Tenía las manos temblando. Silvion vino y apoyó la cabeza en su hombro.</p>
+      <p class="parrafo">Todas la miraban en silencio.</p>
+      <p class="dialogo">— No sé cómo hice eso — dijo Vicky en voz muy baja.</p>
+      <p class="dialogo">— Yo sí — dijo Mimi sonriendo — . Sos tipo Aurora. La única cosa que puede cortar la oscuridad pura es la luz que cambia de color.</p>
+      <p class="parrafo">Vicky miró sus manos todavía temblando.</p>
+      <p class="dialogo">— ¿Siempre va a dar tanto miedo? — preguntó.</p>
+      <p class="dialogo">— Sí — dijo Juana — . Pero te acostumbrás.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En el pasillo de afuera del salón secreto, entre un grupo de alumnas que habían corrido a ver qué pasaba, Mati miraba la puerta cerrada con la misma expresión de susto que todas las demás.</p>
+      <p class="parrafo">Por adentro, sin embargo, sus pensamientos eran completamente diferentes.</p>
+      <p class="parrafo">La aurora. Esa luz que había cortado su magia como si fuera papel.</p>
+      <p class="parrafo">No lo había calculado. No sabía que existía algo así. Y eso era un problema.</p>
+      <p class="parrafo"><em>¿Qué sos exactamente?</em></p>
+      <p class="parrafo">Pero no lo dijo en voz alta. Sonrió suave cuando una alumna a su lado la miró asustada.</p>
+      <p class="dialogo">— Qué miedo, ¿no? — dijo Mati con la voz perfectamente tranquila.</p>
+      <p class="parrafo">La alumna asintió.</p>
+      <p class="parrafo">Y Mati siguió sonriendo mientras por adentro reorganizaba todo su plan desde el principio.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ Mora atacó al equipo y se presentó por su nombre.<br>
+        ✅ El equipo no pudo pararla solo.<br>
+        ✅ Vicky usó sus poderes por primera vez y paró el ataque.<br>
+        ✅ Mora desapareció dejando su mensaje: el Árbol cometió un error.<br>
+        🌑 Mati fingió estar asustada. Nadie sospechó nada.<br>
+        ⚠️ La aurora de Vicky rompió el plan de Mati. Algo cambió.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap3')">← Cap. 3</button>
+      <span class="lib-pagnum">5 / 13</span>
+      <button class="btn-nav" onclick="irA('cap5')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 5 -->
+<div class="pagina" id="cap5" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 5</div>
+      <div class="lib-titulo">La Dimensión Oscura</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Después del ataque de Mora, la academia quedó en un silencio raro.</p>
+      <p class="parrafo">No era el silencio tranquilo de antes. Era el silencio de cuando todos saben que algo malo pasó y algo peor está por venir.</p>
+      <p class="parrafo">Las alumnas hablaban en voz baja en los pasillos. Los profesores cancelaron las clases de la tarde. Y la Directora Alma pasó todo el día encerrada en su oficina con mapas del mundo Pokémon extendidos sobre el escritorio, buscando algún patrón en los ataques de la tormenta.</p>
+      <p class="parrafo">El equipo entrenó en el salón secreto hasta que les dolieron los brazos.</p>
+      <p class="parrafo">Vicky entrenó con ellas. Era la primera vez que practicaba sus poderes de verdad, con otras personas, en un lugar que no era su cuarto a las tres de la mañana. Silvion flotaba a su lado guiándola.</p>
+      <p class="dialogo">— Así — decía Mimi mostrándole — . No lo fuerces. Dejalo salir solo.</p>
+      <p class="dialogo">— Es que cuando lo fuerzo se va en la dirección equivocada — dijo Vicky.</p>
+      <p class="dialogo">— Exactamente lo mismo me pasaba a mí al principio — dijo Lara.</p>
+      <p class="dialogo">— Y a mí — dijo Sofi.</p>
+      <p class="dialogo">— Y a todas — dijo Juana — . Menos a Cata la seria que desde el primer día lo hacía perfecto y nos hacía quedar mal a todas.</p>
+      <p class="parrafo">Cata la seria no dijo nada pero algo en su expresión indicaba que era completamente verdad.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Lo que ninguna vio fue que desde la puerta entreabierta del salón, alguien las miraba.</p>
+      <p class="parrafo">Mati observó el entrenamiento durante diez minutos completos. Miraba a Vicky específicamente. La forma en que usaba sus poderes. La forma en que se cansaba. La forma en que Silvion la sostenía cuando ella aflojaba.</p>
+      <p class="parrafo">Y entonces lo vio.</p>
+      <p class="parrafo">Cada vez que Vicky usaba demasiada aurora de golpe, Silvion brillaba más fuerte para compensar. Como si le estuviera prestando energía. Como si sin Silvion cerca, la aurora de Vicky fuera mucho más débil.</p>
+      <p class="parrafo"><em>Ahí está</em>, pensó Mati.</p>
+      <p class="parrafo">Cerró la puerta del salón sin hacer ruido y se fue.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa noche en el comedor, Mati se sentó al lado de Vicky.</p>
+      <p class="parrafo">No era la primera vez que lo hacía. Desde que Vicky había llegado, Mati había estado cerca de ella en varias ocasiones. Siempre casual. Siempre natural. Nunca demasiado.</p>
+      <p class="dialogo">— ¿Cómo te fue entrenando? — le preguntó.</p>
+      <p class="parrafo">Vicky la miró. Mati tenía una sonrisa fácil y unos ojos que parecían genuinamente curiosos.</p>
+      <p class="dialogo">— Bien — dijo Vicky — . Cansador.</p>
+      <p class="dialogo">— ¿Silvion te ayuda mucho?</p>
+      <p class="parrafo">Vicky miró a su Pokémon que flotaba a su lado mordisqueando algo.</p>
+      <p class="dialogo">— Muchísimo — dijo — . La verdad es que sin él no sé si podría hacer nada. Es como que mis poderes y los suyos están conectados. Si él está lejos o cansado, yo también pierdo fuerza.</p>
+      <p class="dialogo">— Qué interesante — dijo Mati.</p>
+      <p class="dialogo">— Sí — dijo Vicky sin notar nada — . La Directora dice que es porque somos tipo Aurora las dos. Silvion y yo. Que nuestras energías se refuerzan mutuamente.</p>
+      <p class="dialogo">— ¿Y si se separan?</p>
+      <p class="dialogo">— No lo sé — dijo Vicky — . Nunca pasó. No me gusta ni pensarlo.</p>
+      <p class="parrafo">Mati asintió despacio con la misma sonrisa tranquila.</p>
+      <p class="dialogo">— Tiene sentido — dijo — . ¿Querés más pan?</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Tres días después, Vicky desapareció.</p>
+      <p class="parrafo">No hubo señales. No hubo pelea. No hubo grito.</p>
+      <p class="parrafo">Mimi fue a buscarla a su habitación por la mañana y la cama estaba vacía. La mochila seguía ahí. Los libros seguían ahí. Todo seguía exactamente donde Vicky lo había dejado la noche anterior.</p>
+      <p class="parrafo">Menos Vicky.</p>
+      <p class="parrafo">Y menos Silvion.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Vicky abrió los ojos y no vio nada.</p>
+      <p class="parrafo">No era oscuridad exactamente. Era la ausencia de todo. Sin luz. Sin sonido. Sin frío ni calor. Como si el mundo hubiera desaparecido y ella fuera lo único que quedaba.</p>
+      <p class="parrafo">Tardó un segundo en recordar dónde había estado antes de esto. Su habitación. La cama. El sonido de la academia de noche.</p>
+      <p class="parrafo">Y entonces algo la había envuelto y todo se había apagado.</p>
+      <p class="parrafo">Se puso de pie despacio. El suelo era firme pero no se veía. Extendió la mano y sintió que algo resistía, como si el aire fuera más denso que afuera.</p>
+      <p class="dialogo">— Silvion — llamó.</p>
+      <p class="parrafo">Nada.</p>
+      <p class="parrafo">El silencio era tan completo que su propia voz sonó extraña, como si rebotara contra algo que no existía.</p>
+      <p class="parrafo">Intentó usar sus poderes. La aurora que normalmente le salía sola, cambiante y de todos los colores, apareció en sus manos pero pequeña. Tenue. Como una vela en vez de un faro.</p>
+      <p class="parrafo"><em>Sin Silvion</em>, entendió. <em>Estoy sola.</em></p>
+      <p class="dialogo">— No tiene sentido luchar contra eso — dijo una voz.</p>
+      <p class="parrafo">Vicky giró. En la oscuridad apareció la figura de Mora. Sin cara. Sin contorno claro. Solo esa silueta oscura que había visto en el salón de entrenamiento.</p>
+      <p class="dialogo">— ¿Dónde estoy? — preguntó Vicky.</p>
+      <p class="dialogo">— En un lugar que hice para vos — dijo Mora — . Específicamente para vos.</p>
+      <p class="dialogo">— ¿Por qué?</p>
+      <p class="dialogo">— Porque sos la única que puede pararme — dijo Mora — . Y no puedo permitir eso todavía.</p>
+      <p class="parrafo">Vicky la miró fijo a pesar de que no había nada que mirar exactamente.</p>
+      <p class="dialogo">— ¿Todavía? — repitió — . ¿Qué significa todavía?</p>
+      <p class="parrafo">Mora no respondió enseguida. Y en ese silencio Vicky notó algo. La figura oscura, que siempre se movía con una seguridad perfecta, estaba quieta. Demasiado quieta. Como si estuviera pensando en algo que no había planeado decir.</p>
+      <p class="dialogo">— El Árbol cometió un error — dijo finalmente Mora — . Eligió mal. Y voy a demostrarlo.</p>
+      <p class="dialogo">— ¿Quién sos? — preguntó Vicky.</p>
+      <p class="dialogo">— Ya te dije. Mora.</p>
+      <p class="dialogo">— No — dijo Vicky — . Eso es lo que usás. ¿Quién sos de verdad?</p>
+      <p class="parrafo">Silencio largo.</p>
+      <p class="dialogo">— Alguien a quien el Árbol le dio la espalda — dijo Mora finalmente, y por primera vez su voz distorsionada sonó a algo más. A algo que dolía — . Igual que a vos te la habría dado si no hubiera necesitado tu aurora para algo.</p>
+      <p class="dialogo">— El Árbol no me dio la espalda — dijo Vicky.</p>
+      <p class="dialogo">— Todavía no — dijo Mora.</p>
+      <p class="parrafo">Y la oscuridad se cerró más alrededor de Vicky y la conversación terminó.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Silvion apareció en el pasillo de la academia a las seis de la mañana, cuando todavía no había nadie.</p>
+      <p class="parrafo">Flotaba de un lado al otro frenético, parpadeando con una luz de aurora desesperada que cambiaba de color cada segundo. Fue hasta la puerta de la habitación de Vicky. Golpeó con la cola. Nadie respondió.</p>
+      <p class="parrafo">Fue hasta la habitación de Mimi. Golpeó más fuerte.</p>
+      <p class="parrafo">Mimi abrió la puerta con los ojos entrecerrados y cuando vio a Silvion solo, sin Vicky, se le fue el sueño de golpe.</p>
+      <p class="dialogo">— ¿Dónde está? — preguntó.</p>
+      <p class="parrafo">Silvion parpadeó desesperado y señaló hacia ningún lado específico. Hacia todos lados. Como diciendo <em>no sé, no sé, no sé.</em></p>
+      <p class="parrafo">Mimi agarró a Silvion con cuidado. El Pokémon temblaba levemente. Su luz de aurora era más débil que de costumbre, como si ya estuviera sintiendo la separación de Vicky.</p>
+      <p class="dialogo">— Vamos — le dijo — . Vamos a encontrarla.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El equipo buscó por toda la academia durante horas.</p>
+      <p class="parrafo">Cada salón. Cada pasillo. Cada rincón del jardín. Cada escalera y cada puerta que normalmente estaba cerrada. La Directora Alma activó todos los sistemas de seguridad del edificio y revisó cada registro de movimiento de la noche anterior.</p>
+      <p class="parrafo">Nada.</p>
+      <p class="parrafo">Silvion iba con ellas, flotando al lado de Mimi, guiándolas con su luz hacia donde sentía algo. Pero cada vez que llegaban al lugar que señalaba, no había nada. Solo paredes. Solo aire.</p>
+      <p class="dialogo">— Está — dijo Super Psy con la voz tensa — . La siento. Pero está muy lejos. Y hay algo oscuro alrededor de ella. Como una pared. Como si estuviera adentro de algo cerrado. Como la dimensión oscura del Bosque Mágico pero construida diferente. Más nueva. Hecha específicamente para ella.</p>
+      <p class="dialogo">— Mora — dijo Superstar ajustando sus anteojos.</p>
+      <p class="dialogo">— Mora — confirmó Super Psy.</p>
+      <p class="parrafo">Mimi apretó los puños.</p>
+      <p class="dialogo">— ¿Por qué Vicky? — dijo Juana — . ¿Por qué no fue por alguna de nosotras?</p>
+      <p class="dialogo">— Porque Vicky es la única que puede pararla — dijo Mimi — . Sin la aurora, Mora sabe que puede ganar.</p>
+      <p class="dialogo">— ¿Y Silvion? — preguntó Lara mirando al Pokémon que flotaba al lado de Mimi cada vez más opaco.</p>
+      <p class="dialogo">— Silvion está acá — dijo Mimi — . Y si Silvion y Vicky están separados...</p>
+      <p class="dialogo">— Los poderes de Vicky van a ir debilitándose — terminó Cata la seria — . Tenemos que encontrarla antes de que eso pase.</p>
+      <p class="parrafo">Silvion parpadeó muy suave, como confirmando. Y Mimi lo abrazó un momento.</p>
+      <p class="dialogo">— La vamos a encontrar — le dijo — . Te lo prometo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue Super Psy quien notó algo raro.</p>
+      <p class="parrafo">Mientras el equipo se reunía en el pasillo principal para organizarse, miró alrededor de las alumnas que habían salido a ver qué pasaba con todo el movimiento de la mañana.</p>
+      <p class="parrafo">Y vio a Mati.</p>
+      <p class="parrafo">Estaba entre el grupo de alumnas curiosas, con la misma expresión de preocupación que todas las demás. Pero algo era diferente. Super Psy no supo exactamente qué. Solo que la expresión de Mati era un poco demasiado tranquila para alguien que acababa de enterarse de que una compañera había desaparecido.</p>
+      <p class="dialogo">— Oye — le dijo a Superstar en voz muy baja.</p>
+      <p class="dialogo">— ¿Qué?</p>
+      <p class="dialogo">— Mirá a esa nena. La del pelo largo.</p>
+      <p class="parrafo">Superstar la miró por un segundo discretamente.</p>
+      <p class="dialogo">— ¿Qué tiene?</p>
+      <p class="dialogo">— No sé — dijo Super Psy — . Algo. No puedo decir qué todavía.</p>
+      <p class="parrafo">Superstar ajustó sus anteojos y volvió a mirar a Mati que en ese momento se agachó a ayudar a una alumna más chica que había tropezado.</p>
+      <p class="dialogo">— Parece normal — dijo Superstar.</p>
+      <p class="dialogo">— Sí — dijo Super Psy — . Parece.</p>
+      <p class="parrafo">Y lo dejaron ahí. Había cosas más urgentes. Pero Super Psy no se olvidó.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa noche, con Silvion dormido exhausto en la cama de Vicky, Mimi se sentó sola en el pasillo oscuro con la espalda contra la pared.</p>
+      <p class="parrafo">Pensaba en su hermana. En lo que Vicky le había dicho aquella primera noche.</p>
+      <p class="parrafo"><em>A veces los secretos tienen su momento.</em></p>
+      <p class="dialogo">— El tuyo llegó demasiado rápido — susurró Mimi en la oscuridad — . Pero te vamos a encontrar. Te lo juro.</p>
+      <p class="parrafo">En algún lugar que no era este mundo, en una oscuridad sin luz ni sonido, Vicky seguía de pie. Sola. Con la aurora en las manos cada vez más pequeña.</p>
+      <p class="parrafo">Pero de pie.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ Mati descubrió la debilidad de Vicky haciéndose su amiga.<br>
+        ✅ Mora capturó a Vicky en una dimensión oscura construida para ella.<br>
+        ✅ Silvion quedó separado — los poderes de Vicky se debilitan.<br>
+        ✅ Vicky habló con Mora y notó algo: también tiene dolor adentro.<br>
+        ⚠️ Super Psy empezó a sospechar de Mati. Solo un poco. Por ahora.<br>
+        🌑 Mati sigue sin ser descubierta.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap4')">← Cap. 4</button>
+      <span class="lib-pagnum">6 / 13</span>
+      <button class="btn-nav" onclick="irA('cap6')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 6 -->
+<div class="pagina" id="cap6" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 6</div>
+      <div class="lib-titulo">Sospechas</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Super Psy no podía dejar de pensar en Mati.</p>
+      <p class="parrafo">Era así desde la mañana en que Vicky había desaparecido. Ese momento en el pasillo. Esa expresión demasiado tranquila. Ese algo que no podía nombrar pero que se había quedado pegado en algún lugar de su cabeza como una canción que no para.</p>
+      <p class="parrafo">Las demás estaban enfocadas en encontrar la entrada a la dimensión oscura. Buscaban con Silvion, revisaban los mapas de la Directora, entrenaban para estar listas cuando encontraran a Mora.</p>
+      <p class="parrafo">Super Psy hacía todo eso también.</p>
+      <p class="parrafo">Pero mientras lo hacía, una parte de su cabeza seguía tirando del hilo.</p>
+      <p class="parrafo"><em>Mati.</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Empezó de a poco. Sin que nadie lo notara.</p>
+      <p class="parrafo">El primer día observó a Mati en el comedor. Cómo comía. Con quién hablaba. A dónde miraba. Mati era social pero no demasiado. Simpática pero no efusiva. Siempre en el lugar correcto, siempre con la expresión correcta. Como alguien que había practicado mucho cómo parecer normal.</p>
+      <p class="parrafo">El segundo día Super Psy se sentó cerca de ella en la biblioteca. No habló. Solo estuvo cerca y dejó su poder abierto muy suave, como una antena, sin intentar entrar en nada. Solo escuchando el ambiente.</p>
+      <p class="parrafo">Y sintió algo.</p>
+      <p class="parrafo">Muy tenue. Muy escondido. Como el eco de algo que había estado ahí y ya no estaba. Como cuando entrás a un cuarto donde alguien acaba de apagar una vela y todavía queda el olor del humo.</p>
+      <p class="parrafo">La firma oscura de Mora.</p>
+      <p class="parrafo">Rapidísimo, Super Psy cerró su poder. Miró a Mati que estaba leyendo tranquila sin levantar la vista.</p>
+      <p class="parrafo"><em>Ahí está</em>, pensó. <em>La misma firma. La misma energía.</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El tercer día fue a ver los cristales.</p>
+      <p class="parrafo">Los dos cristales que habían encontrado al principio seguían en el vaso de vidrio en la habitación del equipo. Super Psy los sacó uno por uno y los sostuvo con cuidado, extendiendo su poder muy despacio.</p>
+      <p class="parrafo">La firma oscura estaba en los cristales también. Por supuesto. Mora los había hecho.</p>
+      <p class="parrafo">Pero ahora que sabía qué buscar, podía sentirla con más claridad. Y era exactamente igual a lo que había sentido en la biblioteca al lado de Mati.</p>
+      <p class="parrafo">No parecida. Igual.</p>
+      <p class="parrafo">Super Psy dejó los cristales en el vaso y se quedó mirando la pared durante un momento largo.</p>
+      <p class="parrafo"><em>Son la misma persona.</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa noche se quedó despierta cuando las demás se durmieron.</p>
+      <p class="parrafo">Esperó hasta la una de la mañana. Y entonces salió al pasillo en silencio.</p>
+      <p class="parrafo">Fue hasta el ala donde estaba la habitación de Mati. Se quedó afuera, en el pasillo oscuro, y extendió su poder hacia adentro. No para leer pensamientos. Solo para sentir la energía.</p>
+      <p class="parrafo">Y entonces Mati abrió los ojos en la oscuridad de su habitación.</p>
+      <p class="parrafo">Había sentido algo. Una presencia. Suave, cuidadosa, casi invisible. Pero ahí.</p>
+      <p class="parrafo">Se quedó completamente quieta. El Absol a su lado también se había despertado y miraba hacia la puerta sin moverse.</p>
+      <p class="parrafo"><em>Alguien me está mirando</em>, pensó Mati. <em>Alguien con poderes.</em></p>
+      <p class="parrafo">Extendió su propia magia oscura muy despacio, como un tentáculo invisible por debajo de la puerta.</p>
+      <p class="parrafo">Y la encontró.</p>
+      <p class="parrafo">Super Psy sintió la magia oscura tocarla y se alejó de golpe del pensamiento, cerrando todo. Pero era tarde.</p>
+      <p class="parrafo">Las dos se habían sentido mutuamente.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Al día siguiente en el desayuno, Super Psy y Mati se miraron por primera vez de verdad.</p>
+      <p class="parrafo">No fue un momento largo. Solo un segundo. Una mirada cruzada sobre las bandejas del comedor.</p>
+      <p class="parrafo">Pero en ese segundo las dos supieron exactamente lo mismo.</p>
+      <p class="parrafo"><em>Sé quién sos.</em></p>
+      <p class="parrafo">Mati sonrió muy suave y bajó la vista a su desayuno.</p>
+      <p class="parrafo">Super Psy no sonrió. Tomó su taza de té y se giró hacia Superstar.</p>
+      <p class="dialogo">— Necesito contarte algo — dijo en voz muy baja — . Pero no acá.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa tarde Super Psy le contó todo al equipo en el salón secreto. La firma oscura. Los cristales. La noche en el pasillo.</p>
+      <p class="parrafo">Silencio cuando terminó.</p>
+      <p class="dialogo">— ¿Estás segura? — preguntó Mimi.</p>
+      <p class="dialogo">— Completamente — dijo Super Psy — . Mati es Mora.</p>
+      <p class="dialogo">— ¿Y ella sabe que vos sabés? — preguntó Superstar.</p>
+      <p class="dialogo">— Sí — dijo Super Psy — . Y yo sé que ella sabe que yo sé.</p>
+      <p class="dialogo">— ¿Y ahora qué? — preguntó Juana.</p>
+      <p class="parrafo">Mimi miró al suelo un momento. Pensó en Vicky en esa dimensión oscura. En Silvion cada vez más apagado. En el tiempo que se acababa.</p>
+      <p class="dialogo">— Ahora sabemos quién es — dijo — . Y eso cambia todo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En su habitación, Mati miraba el techo con el Absol acurrucado a sus pies.</p>
+      <p class="parrafo">El plan había cambiado. Ya no era invisible. Ya no era una alumna más. La del Psyduck sabía. Y si ella sabía, en unas horas todas iban a saber.</p>
+      <p class="parrafo">Tenía que moverse más rápido.</p>
+      <p class="parrafo">Cerró los ojos y conectó con la dimensión oscura. Sintió a Vicky adentro. La aurora de la nena era más débil que antes. Mucho más débil.</p>
+      <p class="parrafo"><em>Bien.</em></p>
+      <p class="parrafo">Pero no era suficiente tiempo todavía. Necesitaba un poco más.</p>
+      <p class="dialogo">— Absol — dijo en voz baja.</p>
+      <p class="parrafo">El Pokémon levantó la cabeza.</p>
+      <p class="dialogo">— Mañana — dijo Mati — . Todo cambia mañana.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ Super Psy encontró la firma oscura de Mora en Mati, en los cristales y en su habitación.<br>
+        ✅ Las dos se descubrieron mutuamente en el pasillo.<br>
+        ✅ Super Psy le contó todo al equipo.<br>
+        ⚠️ Mati sabe que la saben. Y va a moverse más rápido.<br>
+        ⚠️ Los poderes de Vicky se siguen debilitando.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap5')">← Cap. 5</button>
+      <span class="lib-pagnum">7 / 13</span>
+      <button class="btn-nav" onclick="irA('cap7')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 7 -->
+<div class="pagina" id="cap7" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 7</div>
+      <div class="lib-titulo">La Caída</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Mati se despertó antes del amanecer.</p>
+      <p class="parrafo">No había dormido bien. Desde la noche anterior, desde esa mirada cruzada con Super Psy en el comedor, algo había cambiado. El plan perfecto que había construido durante meses tenía una grieta. Y las grietas, si no se atendían a tiempo, se convertían en fracturas.</p>
+      <p class="parrafo">Miró al Absol dormido a sus pies.</p>
+      <p class="dialogo">— Nos vamos hoy — dijo en voz muy baja.</p>
+      <p class="parrafo">El Absol abrió los ojos. No se sorprendió.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">A tres pisos de distancia, en el salón secreto, el equipo tampoco había dormido bien.</p>
+      <p class="parrafo">Silvion estaba en el centro del salón, quieto. Su luz de aurora, que siempre había sido cambiante y viva, ahora era apenas un parpadeo tenue. Como la última chispa de una vela que está por apagarse.</p>
+      <p class="parrafo">Mimi lo miraba con el corazón apretado.</p>
+      <p class="dialogo">— ¿Cuánto tiempo le queda? — preguntó en voz baja.</p>
+      <p class="dialogo">— No mucho — dijo Super Psy — . Unas horas. Quizás menos.</p>
+      <p class="dialogo">— ¿Y Vicky?</p>
+      <p class="parrafo">Super Psy cerró los ojos.</p>
+      <p class="dialogo">— La siento — dijo — . Pero muy débil. La aurora casi no está. Si Silvion se apaga completamente...</p>
+      <p class="parrafo">No terminó la frase. No hacía falta.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">A las siete de la mañana el comedor estaba lleno como siempre.</p>
+      <p class="parrafo">Mati se sentó en su lugar de siempre, con su bandeja de siempre, con la misma expresión de siempre. Nadie la miraba diferente. Nadie sabía nada todavía, excepto el equipo.</p>
+      <p class="parrafo">Comió despacio. Tranquila. Como si tuviera todo el tiempo del mundo.</p>
+      <p class="parrafo">Por adentro estaba calculando cada segundo.</p>
+      <p class="parrafo">La mochila ya estaba lista en su habitación. Solo lo esencial. El Absol cabía cómodo adentro cuando quería. Los cristales que le quedaban estaban guardados en un bolsillo interno.</p>
+      <p class="parrafo">Cuando terminó de desayunar, dejó la bandeja, saludó con la cabeza a una alumna que la miró al pasar, y caminó hacia el pasillo.</p>
+      <p class="parrafo">Nadie la siguió.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Super Psy la vio salir del comedor.</p>
+      <p class="dialogo">— Ahí va — dijo en voz baja.</p>
+      <p class="dialogo">— ¿La seguimos? — preguntó Calu.</p>
+      <p class="dialogo">— Todavía no — dijo Mimi — . Si la enfrentamos ahora, Mora va a reaccionar. Y Vicky está adentro.</p>
+      <p class="dialogo">— Entonces esperamos — dijo Superstar.</p>
+      <p class="dialogo">— Esperamos — confirmó Mimi.</p>
+      <p class="parrafo">Pero mientras decía eso, Silvion parpadeó. Una vez. Dos veces. Y su luz se hizo todavía más pequeña.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Mati caminó por el pasillo del ala norte sin apurarse. Saludó a un profesor que venía en dirección contraria. Esperó a que doblara la esquina. Y entonces, en el momento exacto en que el pasillo quedó vacío, se metió por una puerta lateral que daba a las escaleras de servicio.</p>
+      <p class="parrafo">Nadie la vio.</p>
+      <p class="parrafo">Ni las cámaras de la academia, que misteriosamente tenían un punto ciego exactamente ahí.</p>
+      <p class="parrafo">Ni la Directora Alma, que en ese momento estaba revisando los registros de energía oscura del salón secreto y no miraba los monitores.</p>
+      <p class="parrafo">Ni ninguna alumna.</p>
+      <p class="parrafo">Ni nadie.</p>
+      <p class="parrafo">Bajó las escaleras de servicio hasta el sótano. Cruzó el pasillo de mantenimiento. Subió por la escalera trasera que daba al jardín. Y salió por la puerta del fondo, la que daba al bosque que rodeaba la academia.</p>
+      <p class="parrafo">Caminó hacia los árboles sin mirar atrás.</p>
+      <p class="parrafo">Y desapareció.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En el mismo momento en que Mati cruzó la línea del bosque y se alejó de la academia, algo cambió.</p>
+      <p class="parrafo">Silvion lo sintió primero.</p>
+      <p class="parrafo">El Pokémon, que había estado quieto y casi apagado, de repente levantó la cabeza. Su luz parpadeó. No más fuerte. Al contrario. Como si algo que lo estuviera sosteniendo hubiera desaparecido de golpe.</p>
+      <p class="parrafo">Y entonces se apagó completamente.</p>
+      <p class="dialogo">— ¡Silvion! — gritó Mimi agarrándolo.</p>
+      <p class="parrafo">El Pokémon estaba consciente, respiraba, pero su luz era cero. Nada. Como si la aurora hubiera desaparecido del todo.</p>
+      <p class="parrafo">Y entonces Super Psy abrió los ojos de golpe.</p>
+      <p class="dialogo">— La dimensión — dijo — . La siento. Está... cayendo.</p>
+      <p class="dialogo">— ¿Qué significa eso? — preguntó Lara.</p>
+      <p class="dialogo">— Significa que quien la sostenía se fue — dijo Super Psy — . Mora se fue. Y sin Mora la dimensión no puede mantenerse.</p>
+      <p class="dialogo">— ¿Y Vicky? — preguntó Mimi.</p>
+      <p class="dialogo">— Si la dimensión cae, Vicky queda libre — dijo Super Psy — . Pero sin la dimensión que la contenía, va a aparecer en algún lugar de la academia. Y sin poderes.</p>
+      <p class="dialogo">— ¿Sin poderes? — repitió Mimi.</p>
+      <p class="dialogo">— Cuando la dimensión cae, absorbe todo lo que había adentro — dijo Super Psy — . Incluyendo lo que le quedaba de aurora a Vicky.</p>
+      <p class="parrafo">Silencio.</p>
+      <p class="dialogo">— ¿Dónde va a aparecer? — preguntó Calu.</p>
+      <p class="parrafo">Super Psy cerró los ojos. Buscó. Siguió el rastro de lo que quedaba de la dimensión mientras se desmoronaba.</p>
+      <p class="dialogo">— El salón secreto — dijo — . La dimensión estaba anclada ahí. Es donde va a caer.</p>
+      <p class="dialogo">— Vamos — dijo Mimi.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Llegaron al salón secreto en treinta segundos.</p>
+      <p class="parrafo">La puerta estaba cerrada pero las paredes de adentro parpadeaban con una luz oscura errática, como un televisor a punto de apagarse. Super Ice la abrió de un golpe de hielo en la cerradura.</p>
+      <p class="parrafo">Adentro, en el centro del salón, el aire temblaba.</p>
+      <p class="parrafo">Y entonces, con un sonido que no era exactamente un sonido sino más bien la ausencia de todo sonido por un segundo, la dimensión colapsó.</p>
+      <p class="parrafo">Una onda de energía oscura sacudió el salón. Las paredes doradas parpadearon fuerte y se apagaron un momento.</p>
+      <p class="parrafo">Y en el suelo, donde antes no había nada, apareció Vicky.</p>
+      <p class="parrafo">Estaba de rodillas, con las manos apoyadas en el suelo, respirando fuerte. Tenía el pelo revuelto y los ojos abiertos muy grandes mirando el suelo sin ver nada todavía.</p>
+      <p class="parrafo">Mimi cruzó el salón corriendo y se tiró al suelo a su lado.</p>
+      <p class="dialogo">— Vicky — dijo agarrándola de los hombros — . Vicky, estoy acá.</p>
+      <p class="parrafo">Vicky levantó la vista despacio. Tardó un segundo en enfocar.</p>
+      <p class="dialogo">— Mimi — dijo con la voz ronca — . Estaba tan oscuro.</p>
+      <p class="dialogo">— Ya sé — dijo Mimi — . Ya pasó. Estás acá.</p>
+      <p class="parrafo">Silvion apareció flotando al lado de Vicky y apoyó la cabeza en su hombro. Pero su luz seguía apagada. Y Vicky miró sus propias manos y las extendió, esperando sentir la aurora.</p>
+      <p class="parrafo">Nada.</p>
+      <p class="dialogo">— No tengo poderes — dijo en voz muy baja.</p>
+      <p class="dialogo">— Los va a recuperar — dijo la Directora Alma desde la puerta — . La dimensión los absorbió pero no los destruyó. Van a volver. Solo necesita tiempo.</p>
+      <p class="parrafo">Vicky miró a la Directora. Miró a Mimi. Miró al equipo entero alrededor de ella.</p>
+      <p class="parrafo">Y por primera vez desde que había desaparecido, exhaló larga y despacio.</p>
+      <p class="dialogo">— ¿Y Mora? — preguntó.</p>
+      <p class="parrafo">Mimi y Super Psy se miraron.</p>
+      <p class="dialogo">— Se fue — dijo Mimi — . Y todavía no sabemos a dónde.</p>
+      <p class="parrafo">Vicky asintió despacio. Y en sus ojos había algo que el equipo no esperaba ver.</p>
+      <p class="parrafo">No miedo. No alivio.</p>
+      <p class="parrafo">Algo que se parecía mucho a entender.</p>
+      <p class="dialogo">— Hay algo que tengo que contarles — dijo Vicky — . Sobre Mora. Sobre quién es realmente. Porque hablé con ella adentro. Y creo que... creo que todavía hay algo que se puede hacer.</p>
+      <p class="parrafo">Las paredes del salón secreto volvieron a brillar dorado, despacio, como recuperándose.</p>
+      <p class="parrafo">Y el equipo escuchó.</p>
+
+      <div style="background:#e3f2fd;border-radius:12px;padding:16px 20px;margin-top:30px;font-size:0.95rem;line-height:2;">
+        ✅ Mati se escapó de la academia sin que nadie la viera.<br>
+        ✅ Con Mora desaparecida, la dimensión colapsó.<br>
+        ✅ Vicky quedó libre pero sin poderes.<br>
+        ✅ Silvion también perdió su luz.<br>
+        ⚠️ Mati está en algún lugar. Libre. Y con tiempo para planear.<br>
+        🌟 Vicky tiene algo importante que contarle al equipo sobre Mora.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap6')">← Cap. 6</button>
+      <span class="lib-pagnum">8 / 13</span>
+      <button class="btn-nav" onclick="irA('cap8')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 8 -->
+<div class="pagina" id="cap8" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 8</div>
+      <div class="lib-titulo">Lo que Dijo Mora</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Vicky habló durante una hora sin parar.</p>
+      <p class="parrafo">El equipo escuchó en silencio sentado en círculo en el salón secreto. La Directora Alma también escuchó, de pie junto a la puerta, con los brazos cruzados y la expresión de alguien que está procesando información muy rápido.</p>
+      <p class="parrafo">Vicky les contó todo. Desde el principio.</p>
+
+      <p class="dialogo">— Al principio no había nada — dijo — . No oscuridad como cuando apagás la luz. Oscuridad de verdad. Como si el concepto de luz no existiera. No podía ver mis manos. No podía escuchar nada. Ni siquiera el sonido de mi propia respiración llegaba bien.</p>
+      <p class="dialogo">— ¿Sentiste miedo? — preguntó Lara.</p>
+      <p class="dialogo">— Sí — dijo Vicky sin dudar — . Pero después del primer segundo decidí que no me iba a quedar sentada en el suelo esperando. Así que me puse de pie y empecé a caminar.</p>
+      <p class="dialogo">— ¿A dónde? — preguntó Juana.</p>
+      <p class="dialogo">— A ningún lado — dijo Vicky — . No había ningún lado. Pero caminar me hizo sentir que hacía algo. Y entonces llamé a Silvion.</p>
+
+      <p class="parrafo">Hizo una pausa.</p>
+
+      <p class="dialogo">— Cuando no respondió fue el peor momento — dijo en voz más baja — . Peor que la oscuridad. Peor que no saber dónde estaba. Saber que Silvion no estaba.</p>
+
+      <p class="parrafo">Mimi le apretó la mano sin decir nada.</p>
+
+      <p class="dialogo">— Intenté usar mis poderes — continuó Vicky — . La aurora salió pero chiquita. Como una vela. Y cada vez que la usaba se achicaba más. Como si algo la fuera absorbiendo.</p>
+      <p class="dialogo">— La dimensión — dijo Super Psy — . Estaba construida para eso.</p>
+      <p class="dialogo">— Sí — dijo Vicky — . Lo entendí después. Cuando apareció Mora.</p>
+
+      <p class="parrafo">Se quedó callada un segundo, como ordenando los recuerdos.</p>
+
+      <p class="dialogo">— No apareció de golpe — dijo — . Fue gradual. Primero sentí que había algo en la oscuridad. Una presencia. Después escuché su respiración. Y después la vi. O lo que se podía ver de ella. Esa silueta sin cara.</p>
+      <p class="dialogo">— ¿Qué dijo la primera vez? — preguntó Cata la seria.</p>
+      <p class="dialogo">— Nada — dijo Vicky — . La primera vez solo estuvo ahí. Mirándome. Durante mucho tiempo. Como si me estuviera estudiando.</p>
+      <p class="dialogo">— ¿Y vos qué hiciste?</p>
+      <p class="dialogo">— La miré de vuelta — dijo Vicky simplemente — . Si quería asustarme con el silencio, no iba a funcionar. Ya el silencio de la dimensión era bastante peor que ella.</p>
+
+      <p class="parrafo">Juana soltó una carcajada corta.</p>
+
+      <p class="dialogo">— Me gusta esta nena — dijo.</p>
+      <p class="dialogo">— La segunda vez que apareció — continuó Vicky — habló. Me dijo que no tenía sentido luchar contra la dimensión. Que la aurora iba a seguir achicándose. Que era cuestión de tiempo.</p>
+      <p class="dialogo">— ¿Y le creíste? — preguntó Mimi.</p>
+      <p class="dialogo">— Un poco — admitió Vicky — . Porque era verdad. La aurora seguía achicándose. Pero le dije que no me importaba. Que el equipo iba a venir. — Sonrió un poco — . No sabía si era verdad. Pero lo dije igual.</p>
+      <p class="dialogo">— Era verdad — dijo Mimi.</p>
+      <p class="dialogo">— Ya sé — dijo Vicky — . Pero en ese momento lo dije por instinto.</p>
+
+      <p class="parrafo">Hizo otra pausa.</p>
+
+      <p class="dialogo">— La tercera vez fue diferente — dijo — . Se quedó más tiempo. Y habló más. Me contó sobre el Árbol. Sobre cuánto tiempo había pasado esperando que la eligiera. Años. Me dijo que había estudiado todo sobre el Árbol de la Memoria. Su historia. Su magia. Cómo funcionaban los poderes que daba.</p>
+      <p class="dialogo">— Para poder imitarlos — dijo Super Psy.</p>
+      <p class="dialogo">— Sí — dijo Vicky — . Pero no lo decía con orgullo. Lo decía como... como cuando alguien te cuenta que estudió muchísimo para un examen y después lo reprobó. Con esa mezcla de esfuerzo y fracaso.</p>
+
+      <p class="parrafo">Silencio en el salón.</p>
+
+      <p class="dialogo">— ¿Y lo último que te dijo? — preguntó Superstar ajustando sus anteojos.</p>
+
+      <p class="parrafo">Vicky tomó aire.</p>
+
+      <p class="dialogo">— Justo antes de que la dimensión se cayera — dijo — . La sentí diferente. Nerviosa. Como si algo hubiera cambiado afuera. Y en ese momento me dijo: "No todo lo que parece oscuro lo es. Y no todo lo que parece perdido lo está."</p>
+
+      <p class="parrafo">Silencio largo.</p>
+
+      <p class="dialogo">— ¿Lo dijo para vos? — preguntó Lara.</p>
+      <p class="dialogo">— No — dijo Vicky — . Lo dijo para ella misma. Yo simplemente estaba ahí.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La Directora Alma habló por primera vez desde que Vicky había empezado.</p>
+
+      <p class="dialogo">— Hay algo que tienen que saber — dijo — . Sobre Mora. Sobre Mati. No sé nada de ella. Absolutamente nada. No está en ningún registro de la academia. No hay historial. No hay familia registrada. Es como si hubiera aparecido de la nada el primer día. — Su expresión era de algo inusual en ella: confusión genuina — . Alguien con ese nivel de magia oscura no debería ser invisible para mí. Y sin embargo lo es.</p>
+      <p class="dialogo">— ¿Por qué? — preguntó Lara.</p>
+
+      <p class="parrafo">La Directora las miró una por una.</p>
+
+      <p class="dialogo">— No lo sé — dijo — . Y eso, en cincuenta años de historia con el Árbol, nunca me había pasado.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">En el bosque que rodeaba la academia, entre los árboles oscuros, Mati estaba sentada sobre una raíz con la espalda apoyada en el tronco más grueso que había encontrado.</p>
+      <p class="parrafo">El Absol estaba a su lado. Ambos miraban las luces de la academia a través de los árboles.</p>
+      <p class="parrafo">Mati tenía los ojos cerrados. No dormía. Pensaba.</p>
+      <p class="parrafo">El plan había fallado en una cosa. Solo una. Pero esa cosa lo había cambiado todo.</p>
+      <p class="parrafo">La aurora.</p>
+      <p class="parrafo">No había calculado que existiera algo así. Había estudiado todos los poderes que el Árbol daba. Los tenía memorizados. Tipo Planta, Hielo, Fuego, Hada, Psíquico, Agua, Multi. Los conocía a todos. Sabía cómo funcionaban. Sabía sus debilidades.</p>
+      <p class="parrafo">Pero Aurora no estaba en ningún libro. En ningún registro. En ninguna historia del Árbol de la Memoria que ella hubiera encontrado.</p>
+      <p class="parrafo">¿Por qué?</p>
+      <p class="parrafo">Abrió los ojos y miró al Absol.</p>
+
+      <p class="dialogo">— ¿Por qué el Árbol escondió ese tipo? — murmuró — . ¿Por qué no hay ningún registro?</p>
+
+      <p class="parrafo">El Absol no respondió. Nunca respondía. Pero Mati igual pensaba en voz alta cuando estaba con él. Era el único con quien podía hacerlo.</p>
+
+      <p class="dialogo">— A menos que — dijo despacio — . A menos que Aurora no sea un tipo que el Árbol da normalmente. A menos que sea algo especial. Algo que reserva para situaciones específicas.</p>
+
+      <p class="parrafo">Cerró los ojos otra vez.</p>
+      <p class="parrafo">¿Cuándo habría necesitado el Árbol crear algo específicamente para contrarrestar la oscuridad pura?</p>
+      <p class="parrafo">La respuesta llegó sola, fría y clara como el agua.</p>
+      <p class="parrafo"><em>Cuando sabía que yo iba a aparecer.</em></p>
+      <p class="parrafo">Mati abrió los ojos de golpe.</p>
+      <p class="parrafo">El Árbol la había visto venir. El Árbol sabía lo que iba a pasar. Y había preparado una respuesta. No solo el Equipo Leaf. Había creado algo específicamente para ella.</p>
+      <p class="parrafo">Aurora.</p>
+      <p class="parrafo">Se quedó completamente quieta durante un momento largo.</p>
+      <p class="parrafo">Y entonces, despacio, una sonrisa pequeña y complicada apareció en su cara.</p>
+
+      <p class="dialogo">— Entonces sí importo — murmuró — . Si el Árbol tuvo que crear algo especial para frenarme, es porque sí importo. — Miró las luces de la academia — . Solo que no de la forma que esperaba.</p>
+
+      <p class="parrafo">El Absol puso la cabeza en su rodilla. Mati lo miró. Y algo en su expresión, por un segundo muy breve, se suavizó.</p>
+
+      <p class="dialogo">— Ya sé — dijo — . Ya sé.</p>
+
+      <p class="parrafo">Se puso de pie. Sacó uno de los cristales oscuros que le quedaban. Lo sostuvo en la palma de la mano y lo miró.</p>
+      <p class="parrafo">No podía vencer a la aurora de frente. Eso había quedado claro. Pero podía evitar que volviera. Necesitaba tiempo. Solo un poco más.</p>
+      <p class="parrafo">Y sabía exactamente cómo conseguirlo.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa tarde, mientras el equipo descansaba, Vicky se sentó sola con Silvion en el jardín.</p>
+      <p class="parrafo">El Pokémon seguía sin luz. Flotaba a su lado pero opaco, gris, como una versión descolorida de sí mismo. Vicky extendió la mano y Silvion apoyó la cabeza en ella.</p>
+
+      <p class="dialogo">— Ya van a volver — le dijo — . Los dos.</p>
+
+      <p class="parrafo">Silvion parpadeó muy suave. Un destello mínimo.</p>
+      <p class="parrafo">Los poderes empezaron a volver esa misma tarde. Primero fue Silvion. Un destello pequeño. Luego otro. Luego una cadena de colores que duró tres segundos y se apagó. Como un motor que intenta arrancar.</p>
+      <p class="parrafo">Vicky extendió sus propias manos. Y ahí, tenue pero real, un hilo de aurora apareció entre sus dedos. Chiquito. Apenas nada. Pero suyo.</p>
+
+      <p class="dialogo">— Ahí está — susurró Mimi.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue Super Psy la primera en sentirlo.</p>
+      <p class="parrafo">Estaban todavía en el salón secreto cuando algo cambió. Un tirón en el aire. Una vibración oscura que venía de afuera. Del jardín.</p>
+      <p class="parrafo">Se puso de pie de golpe.</p>
+
+      <p class="dialogo">— Vicky — dijo.</p>
+
+      <p class="parrafo">Corrieron.</p>
+      <p class="parrafo">En el jardín, Vicky estaba de rodillas con las manos en el suelo. Silvion flotaba a su lado temblando, su luz parpadeando errática y desesperada. Alrededor de los dos, el pasto estaba negro. Quemado por algo oscuro que había caído desde afuera de los muros de la academia.</p>
+      <p class="parrafo">No un ataque grande. No una tormenta. Algo mucho más quirúrgico.</p>
+      <p class="parrafo">Un solo cristal oscuro, perfectamente apuntado, que había caído exactamente donde estaban Vicky y Silvion.</p>
+      <p class="parrafo">Mimi agarró el cristal del suelo. Era diferente a los anteriores. Más oscuro. Más concentrado. Hecho específicamente para interrumpir la energía de aurora.</p>
+
+      <p class="dialogo">— Está apuntando a Silvion — dijo Super Psy — . No quiere matarlo. Quiere que no pueda recuperarse.</p>
+      <p class="dialogo">— Sin Silvion, Vicky no recupera sus poderes — dijo Superstar.</p>
+      <p class="dialogo">— Sin los poderes de Vicky, no podemos enfrentar a Mora — terminó Mimi.</p>
+
+      <p class="parrafo">Miró hacia el bosque oscuro más allá de los muros de la academia.</p>
+      <p class="parrafo">Vicky levantó la vista desde el suelo. Tenía los ojos brillantes pero la mandíbula apretada.</p>
+
+      <p class="dialogo">— No — dijo en voz muy baja pero muy clara — . No me va a parar.</p>
+
+      <p class="parrafo">Y extendió las manos hacia Silvion. La aurora salió. Pequeña, temblorosa, apenas visible. Pero salió. Y envolvió a Silvion en una luz suave que el cristal oscuro no había podido apagar del todo.</p>
+      <p class="parrafo">Silvion brilló. Un segundo. Dos. Y no se apagó.</p>
+
+      <p class="dialogo">— Bien — dijo Mimi mirando al bosque — . Que sepa que no funcionó.</p>
+
+      <div style="background:#e3f2fd; border-radius:12px; padding:18px 22px; margin-top:28px; font-size:0.97rem; line-height:1.9;">
+        ✅ Vicky le contó al equipo todo lo que vivió y habló con Mora adentro de la dimensión.<br>
+        ✅ La Directora admitió que no sabe nada sobre Mati ni Mora.<br>
+        ✅ Mati en el bosque descubrió que el Árbol la había calculado desde el principio.<br>
+        ✅ Los poderes de Vicky y Silvion empezaron a volver.<br>
+        ⚠️ Mati atacó a Silvion con un cristal específico para frenarlo.<br>
+        🌟 Vicky usó su aurora para proteger a Silvion. No funcionó el plan de Mati.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap7')">← Cap. 7</button>
+      <span class="lib-pagnum">9 / 13</span>
+      <button class="btn-nav" onclick="irA('cap9')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 9 -->
+<div class="pagina" id="cap9" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 9</div>
+      <div class="lib-titulo">El Regreso</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Pasaron tres días.</p>
+      <p class="parrafo">Tres días en los que la academia funcionó casi con normalidad. Las clases volvieron. Las alumnas desayunaban y entrenaban y estudiaban. La Directora Alma mantuvo los sistemas de seguridad al máximo y no dijo nada sobre Mati a nadie excepto al equipo.</p>
+      <p class="parrafo">Pero todos sentían que algo estaba por pasar.</p>
+      <p class="parrafo">Los Pokémon de la academia lo sabían primero, como siempre. Los más chiquitos se quedaban cerca de sus dueñas en vez de salir al jardín. Los más grandes miraban hacia el bosque cada tanto con las orejas paradas.</p>
+      <p class="parrafo">El equipo entrenaba en el salón secreto cada tarde. Sin excepciones. Sin descansos largos.</p>
+      <p class="parrafo">Y Vicky entrenaba más que todas.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El primer día después del ataque a Silvion, la aurora de Vicky era un hilo.</p>
+      <p class="parrafo">El segundo día era una llama.</p>
+      <p class="parrafo">El tercer día, en el salón secreto, Vicky extendió las manos y la aurora salió entera. Todos los colores al mismo tiempo, cambiante y viva, llenando el salón con una luz que hacía que las paredes doradas brillaran el doble.</p>
+      <p class="parrafo">Silvion dio un giro completo en el aire y parpadeó con todos sus colores también. Como si él también hubiera estado esperando ese momento.</p>
+      <p class="parrafo">El equipo la miraba en silencio.</p>
+
+      <p class="dialogo">— Ahí está — dijo Mimi.</p>
+      <p class="dialogo">— Completamente — confirmó Super Psy — . Es igual que antes. Igual o más fuerte.</p>
+
+      <p class="parrafo">Vicky cerró las manos y la aurora desapareció. Miró al equipo.</p>
+
+      <p class="dialogo">— Estoy lista — dijo simplemente.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue esa misma tarde que la Directora Alma las convocó a su oficina.</p>
+
+      <p class="dialogo">— Mati sigue en el bosque — dijo — . La siento desde acá. No se fue lejos. Está esperando algo.</p>
+      <p class="dialogo">— ¿Qué? — preguntó Mimi.</p>
+      <p class="dialogo">— No lo sé — dijo la Directora — . Pero lleva tres días ahí. Y eso me dice que no tiene apuro. Que cuando actúe va a ser porque está lista.</p>
+      <p class="dialogo">— Entonces nosotras también tenemos que estar listas — dijo Mimi.</p>
+      <p class="dialogo">— Ya lo están — dijo la Directora mirando a Vicky — . La pregunta es si van a esperarla acá o van a ir a buscarla.</p>
+
+      <p class="parrafo">Silencio en la oficina.</p>
+
+      <p class="dialogo">— Si vamos al bosque — dijo Cata la seria — . Peleamos en su terreno. En la oscuridad. Donde sus poderes son más fuertes.</p>
+      <p class="dialogo">— Si la esperamos acá — dijo Superstar ajustando sus anteojos — . Peleamos en el terreno de la academia. Donde las paredes tienen magia del Árbol de la Memoria.</p>
+      <p class="dialogo">— La academia nos da ventaja — dijo Super Ice.</p>
+      <p class="dialogo">— Pero si viene a la academia — dijo Super Fire — . Las demás alumnas están en peligro.</p>
+
+      <p class="parrafo">Mimi las miró una por una.</p>
+
+      <p class="dialogo">— Vamos al bosque — dijo.</p>
+
+      <p class="parrafo">Todas asintieron.</p>
+
+      <p class="dialogo">— Mañana — dijo Mimi — . Al amanecer.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Esa noche, mientras las demás dormían, Mati estaba sentada en el mismo lugar de siempre. La misma raíz. El mismo árbol. Las mismas luces de la academia entre los árboles.</p>
+      <p class="parrafo">Pero algo había cambiado.</p>
+      <p class="parrafo">Podía sentirlo. La aurora de Vicky estaba de vuelta. Completamente. Lo había sentido esa tarde como un destello en el pecho, como cuando el sol sale de golpe detrás de una nube y te encandila.</p>
+      <p class="parrafo">Cerró los ojos.</p>
+      <p class="parrafo">Tenía que tomar una decisión.</p>
+      <p class="parrafo">El plan original era simple: demostrar que el Árbol se había equivocado. Ganar. Pero cada vez que intentaba ganar, algo se interponía. Los cristales habían fallado. La dimensión había fallado. El ataque a Silvion había fallado.</p>
+      <p class="parrafo">Y sin embargo ahí seguía. En el bosque. Sin irse.</p>
+      <p class="parrafo">¿Por qué?</p>
+      <p class="parrafo">El Absol la miraba.</p>
+
+      <p class="dialogo">— No sé — dijo Mati en voz baja — . No sé por qué sigo acá.</p>
+
+      <p class="parrafo">El Absol se acercó y apoyó la cabeza en su rodilla.</p>
+      <p class="parrafo">Mati lo miró durante un momento largo.</p>
+
+      <p class="dialogo">— Lo que le dije a Vicky antes de que la dimensión se cayera — murmuró — . "No todo lo que parece oscuro lo es. Y no todo lo que parece perdido lo está."</p>
+
+      <p class="parrafo">Se quedó callada.</p>
+      <p class="parrafo">Y entonces tomó su decisión.</p>
+      <p class="parrafo">No esperar al amanecer. Ir ella primero.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Al amanecer, las ocho salieron juntas por la puerta del fondo de la academia. El jardín estaba cubierto de rocío y el bosque se veía oscuro y quieto adelante.</p>
+      <p class="parrafo">Caminaron en silencio hacia los árboles.</p>
+      <p class="parrafo">Faltaban diez pasos para llegar al borde del bosque cuando el cielo se oscureció de golpe.</p>
+      <p class="parrafo">No de a poco. De golpe. Exactamente igual que el día de la tormenta.</p>
+      <p class="parrafo">Y del bosque salió una ola de magia oscura enorme que golpeó el jardín de la academia con una fuerza que hizo temblar el suelo.</p>
+
+      <p class="dialogo">— ¡Escudo! — gritó Mimi.</p>
+
+      <p class="parrafo">Super Ice levantó una pared de hielo. Super Fire creó un escudo de llamas. La ola oscura chocó contra los dos y los empujó hacia atrás pero no los rompió.</p>
+      <p class="parrafo">Cuando el humo se disipó, en el borde del bosque había una figura.</p>
+      <p class="parrafo">Mati. Sin ilusión. Sin silueta oscura. Ella misma, con el Absol a su lado, mirándolas de frente por primera vez.</p>
+
+      <p class="dialogo">— Pensé que iban a venir a buscarme — dijo — . Vine a ahorrarles el viaje.</p>
+
+      <div style="background:#e3f2fd; border-radius:12px; padding:18px 22px; margin-top:28px; font-size:0.97rem; line-height:1.9;">
+        ✅ Vicky recuperó todos sus poderes completamente.<br>
+        ✅ El equipo decidió ir al bosque al amanecer.<br>
+        ✅ Mati decidió ir ella primero antes del amanecer.<br>
+        ⚠️ Mati atacó al equipo en el jardín sin ilusión. Por primera vez cara a cara.<br>
+        🌟 El enfrentamiento final está por comenzar.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap8')">← Cap. 8</button>
+      <span class="lib-pagnum">10 / 13</span>
+      <button class="btn-nav" onclick="irA('cap10')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 10 -->
+<div class="pagina" id="cap10" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 10</div>
+      <div class="lib-titulo">La Verdad de Mati</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">La pelea empezó sin palabras.</p>
+      <p class="parrafo">Mati lanzó la segunda ola oscura antes de que el eco de la primera terminara. El equipo se dispersó. Super Aqua saltó hacia la derecha. Super Fire rodó hacia la izquierda creando un escudo de llamas. Super Ice levantó otra pared.</p>
+      <p class="parrafo">Mimi hizo crecer enredaderas gigantes desde el suelo del jardín que rodearon a Mati por todos lados.</p>
+      <p class="parrafo">Mati las cortó con la mano sin mirarlas.</p>
+
+      <p class="dialogo">— Ya intentaron eso — dijo.</p>
+      <p class="dialogo">— Lo sé — dijo Mimi — . Pero esta vez somos ocho.</p>
+
+      <p class="parrafo">Y Vicky dio un paso al frente.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La aurora salió entera de golpe. Todos los colores. Cambiante y viva y enorme. Llenó el jardín entero con una luz que hizo que el cielo oscuro parpadeara.</p>
+      <p class="parrafo">Mati retrocedió un paso. Solo uno. Pero lo retrocedió.</p>
+      <p class="parrafo">El Absol rugió y lanzó un ataque de sombras que Silvion bloqueó con su cuerpo brillando con aurora plateada.</p>
+
+      <p class="dialogo">— Juntas — dijo Mimi.</p>
+
+      <p class="parrafo">El equipo atacó al mismo tiempo. Super Ice congeló el suelo alrededor de Mati. Super Fire creó un círculo de llamas. Super Psy intentó entrar en su mente. Superstar copió todos los poderes y los lanzó juntos. Super Fairy lanzó su polvo mágico. Super Aqua saltó altísimo y cayó con un chorro de agua que partió el suelo. Mimi hizo crecer las raíces más grandes que había hecho en su vida.</p>
+      <p class="parrafo">Y Vicky lanzó la aurora entera hacia el centro.</p>
+      <p class="parrafo">El jardín explotó en luz y oscuridad mezcladas.</p>
+      <p class="parrafo">Cuando todo se asentó, Mati estaba de rodillas en el centro del círculo. El Absol a su lado, también agotado. La magia oscura alrededor de ella parpadeaba y se apagaba como una llama en el viento.</p>
+      <p class="parrafo">Pero no se había rendido.</p>
+      <p class="parrafo">Levantó la vista. Sus ojos miraban al equipo con la misma intensidad de siempre. Cansada. Pero entera.</p>
+
+      <p class="dialogo">— Sigan — dijo.</p>
+      <p class="dialogo">— No — dijo Vicky.</p>
+
+      <p class="parrafo">Todas la miraron.</p>
+      <p class="parrafo">Vicky caminó hacia Mati despacio. Sola. Sin aurora en las manos. Y se agachó frente a ella hasta quedar a su misma altura.</p>
+
+      <p class="dialogo">— Ya fue suficiente — dijo Vicky en voz baja — . Las dos sabemos que podría terminar esto ahora. Y las dos sabemos que no quiero hacerlo.</p>
+
+      <p class="parrafo">Mati la miró fijo.</p>
+
+      <p class="dialogo">— ¿Por qué? — dijo.</p>
+      <p class="dialogo">— Porque te escuché adentro de la dimensión — dijo Vicky — . Y lo que escuché no era una villana. Era alguien con mucho dolor.</p>
+
+      <p class="parrafo">Silencio en el jardín.</p>
+      <p class="parrafo">El Absol se recostó en el suelo exhausto. Y algo en eso, en verlo tan cansado, hizo que la expresión de Mati cambiara por primera vez.</p>
+      <p class="parrafo">No se suavizó completamente. Pero algo cedió.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="dialogo">— Tenía ocho años cuando encontré el Árbol de la Memoria por primera vez — dijo Mati.</p>
+
+      <p class="parrafo">Nadie se movió. Nadie habló.</p>
+
+      <p class="dialogo">— No sé cómo llegué ahí. Me perdí en el bosque cerca de mi casa y de repente estaba en el claro. Y el árbol pulsaba y brillaba y yo sentí que me llamaba. — Hizo una pausa — . Volví todos los días durante un año. Estudiaba todo lo que podía sobre él. Sobre los poderes que daba. Sobre los tipos. Sobre la historia de las superheroínas que había elegido antes.</p>
+      <p class="dialogo">— ¿Antes? — dijo Cata la seria.</p>
+      <p class="dialogo">— El Equipo Leaf no es el primero — dijo Mati — . Hubo otros equipos. Hace mucho tiempo. Lo encontré en libros viejos que nadie lee. El Árbol elige cada generación. Y yo quería ser elegida.</p>
+      <p class="dialogo">— ¿Y qué pasó? — preguntó Lara.</p>
+
+      <p class="parrafo">Mati miró sus manos.</p>
+
+      <p class="dialogo">— Me eligió — dijo — . O al menos eso creí. Una noche la luz dorada me envolvió. Sentí los poderes. Sentí el tipo. Sentí todo. — Su voz se endureció levemente — . Y después se apagó. En un segundo. Y cuando se apagó, lo entendí. No me había elegido a mí. Me había usado para practicar. Para ver si el canal funcionaba antes de elegir a las de verdad.</p>
+
+      <p class="parrafo">Silencio.</p>
+
+      <p class="dialogo">— No sabés eso — dijo Mimi despacio.</p>
+      <p class="dialogo">— Lo sé — dijo Mati — . Porque tres días después, el Árbol eligió a Mimi. Y yo lo sentí desde mi casa. Sentí la luz. Sentí los siete tipos. Sentí todo lo que me habían quitado a mí.</p>
+
+      <p class="parrafo">Su voz no temblaba. Pero sus manos sí, apenas.</p>
+
+      <p class="dialogo">— Pasé dos años construyendo los cristales — continuó — . Aprendiendo a usar lo poco de magia oscura que me quedó de cuando el Árbol me tocó. Y buscando una manera de demostrar que se había equivocado.</p>
+      <p class="dialogo">— Mati — dijo Mimi.</p>
+      <p class="dialogo">— No me digas que lo entendés — dijo Mati con una dureza repentina — . No podés entenderlo. Ninguna puede. Porque ninguna de ustedes sabe lo que es querer algo con todo y que te lo quiten antes de tenerlo del todo.</p>
+
+      <p class="parrafo">Nadie respondió.</p>
+      <p class="parrafo">Porque ninguna supo qué decir.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El jardín quedó en silencio durante un momento largo.</p>
+      <p class="parrafo">El sol estaba saliendo. La luz dorada del amanecer tocaba los árboles del bosque y las paredes de la academia.</p>
+      <p class="parrafo">Mati seguía de rodillas. El Absol a su lado. El equipo alrededor. Y Vicky frente a ella.</p>
+
+      <p class="dialogo">— ¿Qué querés que pase ahora? — preguntó Vicky.</p>
+
+      <p class="parrafo">Mati la miró.</p>
+
+      <p class="dialogo">— No lo sé — dijo. Y por primera vez desde que había aparecido en el jardín, sonó completamente honesta — . No tengo un plan para este momento.</p>
+      <p class="dialogo">— Bien — dijo Vicky — . Porque nosotras sí.</p>
+
+      <div style="background:#e3f2fd; border-radius:12px; padding:18px 22px; margin-top:28px; font-size:0.97rem; line-height:1.9;">
+        ✅ El equipo peleó junto con Vicky y Mati no pudo ganar.<br>
+        ✅ Vicky paró la pelea antes de que terminara.<br>
+        ✅ Mati contó su historia: el Árbol la tocó y la soltó antes de elegir al Equipo Leaf.<br>
+        ⚠️ Mati sigue enojada. Pero está escuchando.<br>
+        🌟 Vicky dijo que tienen un plan. Mati no sabe cuál es todavía.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap9')">← Cap. 9</button>
+      <span class="lib-pagnum">11 / 13</span>
+      <button class="btn-nav" onclick="irA('cap11')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 11 -->
+<div class="pagina" id="cap11" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 11</div>
+      <div class="lib-titulo">La Votación</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="dialogo">— El plan — dijo Vicky — es ir al Árbol de la Memoria.</p>
+
+      <p class="parrafo">Mati la miró.</p>
+
+      <p class="dialogo">— No — dijo.</p>
+      <p class="dialogo">— No te estoy pidiendo que lo perdones — dijo Vicky — . Te estoy pidiendo que vayas. Que lo escuches. Que le digas todo lo que me dijiste a mí. Todo lo que sentiste. Todo lo que te hizo.</p>
+      <p class="dialogo">— ¿Para qué? — dijo Mati — . ¿Para que me dé una explicación que no me va a cambiar nada?</p>
+      <p class="dialogo">— No sé si te va a cambiar algo — dijo Vicky — . Pero sé que nunca se lo dijiste de frente. Y creo que necesitás hacerlo.</p>
+
+      <p class="parrafo">Mati la miró durante un momento largo. Luego miró al Absol. Luego miró al equipo alrededor de ella.</p>
+
+      <p class="dialogo">— ¿Todas van? — preguntó.</p>
+      <p class="dialogo">— Todas — dijo Mimi.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Fue un viaje raro.</p>
+      <p class="parrafo">Nueve nenas, un Absol, un Silvion y varios Pokémon caminando juntos por el bosque en silencio. Mati caminaba en el centro, no exactamente con ellas pero tampoco separada. El Absol iba pegado a su lado como siempre.</p>
+      <p class="parrafo">Nadie habló mucho.</p>
+      <p class="parrafo">Juana intentó hacer una broma a mitad del camino y Super Ice la miró de una manera que la hizo callar.</p>
+      <p class="parrafo">Superstar caminaba al lado de Vicky.</p>
+
+      <p class="dialogo">— Bienvenida oficialmente al equipo, por cierto — le dijo en voz baja ajustando sus anteojos.</p>
+
+      <p class="parrafo">Vicky la miró sorprendida.</p>
+
+      <p class="dialogo">— ¿No se vota o algo así?</p>
+      <p class="dialogo">— Ya votamos — dijo Superstar — . Fue unánime.</p>
+
+      <p class="parrafo">Vicky miró a Mimi que caminaba adelante.</p>
+
+      <p class="dialogo">— ¿Lo sabías? — le preguntó.</p>
+      <p class="dialogo">— Desde el primer día que te vi en el pasillo — dijo Mimi sin girarse — . Solo faltaba que el Árbol estuviera de acuerdo.</p>
+      <p class="dialogo">— ¿Y estuvo?</p>
+      <p class="dialogo">— Te mandó acá, ¿no?</p>
+
+      <p class="parrafo">Vicky no respondió. Pero Silvion parpadeó con todos sus colores.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El claro del Árbol de la Memoria apareció entre los árboles como siempre. Grande. Tranquilo. Con esa luz dorada suave que pulsaba lenta y constante.</p>
+      <p class="parrafo">Mati se detuvo en el borde del claro.</p>
+      <p class="parrafo">Las demás se detuvieron atrás de ella.</p>
+      <p class="parrafo">El Árbol pulsó una vez. Como saludando.</p>
+      <p class="parrafo">Mati apretó los dientes.</p>
+
+      <p class="dialogo">— No me saludes — dijo en voz baja.</p>
+
+      <p class="parrafo">El Árbol pulsó de nuevo. Más suave esta vez. Como diciendo <em>lo sé</em>.</p>
+      <p class="parrafo">Mati dio un paso hacia el claro. Luego otro. Y otro. Hasta que estuvo parada frente al tronco enorme mirándolo de frente.</p>
+      <p class="parrafo">El equipo esperó en el borde sin entrar.</p>
+      <p class="parrafo">Mati puso una mano en el tronco.</p>
+      <p class="parrafo">Y la voz del Árbol llegó. Antigua y cálida como siempre. Pero esta vez había algo más. Algo que sonaba a lo que Mati no esperaba escuchar.</p>
+      <p class="parrafo"><em>Lo siento</em>, dijo el Árbol.</p>
+      <p class="parrafo">Mati sacó la mano de golpe como si la hubiera quemado.</p>
+      <p class="parrafo">Se quedó parada frente al árbol durante un momento largo. Sin hablar. Sin moverse.</p>
+      <p class="parrafo">Y entonces dijo todo lo que había guardado durante años. En voz baja, sin gritar, que era peor que si hubiera gritado. Todo lo que sintió la noche que la luz se apagó. Todo lo que estudió. Todo lo que construyó. Todo lo que perdió.</p>
+      <p class="parrafo">El Árbol escuchó.</p>
+      <p class="parrafo">No respondió más. Solo escuchó.</p>
+      <p class="parrafo">Cuando Mati terminó, se giró hacia el equipo. Tenía los ojos secos. La mandíbula apretada. La misma expresión dura de siempre.</p>
+
+      <p class="dialogo">— Sigue sin parecerme justo — dijo.</p>
+      <p class="dialogo">— No lo es — dijo Mimi — . Nadie dijo que lo fuera.</p>
+
+      <p class="parrafo">Mati la miró.</p>
+
+      <p class="dialogo">— ¿Entonces?</p>
+      <p class="dialogo">— Entonces — dijo Mimi — . Tenemos que hablar de algo. Las diez.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Se sentaron en círculo en el claro. El Árbol pulsaba suave detrás de ellas. El Absol se recostó en el pasto y cerró los ojos.</p>
+
+      <p class="dialogo">— Vicky ya es parte del equipo — dijo Mimi — . Eso ya está decidido. Pero hay algo más que queremos decidir juntas.</p>
+
+      <p class="parrafo">Mati la miraba sin decir nada.</p>
+
+      <p class="dialogo">— Sobre vos — dijo Mimi.</p>
+
+      <p class="parrafo">Silencio.</p>
+
+      <p class="dialogo">— Queremos votar — dijo Mimi — . Si te unís al equipo o no. Pero antes de votar, cada una va a decir lo que piensa. Sin filtros. Vos también podés decir lo que pensás.</p>
+
+      <p class="parrafo">Mati miró alrededor del círculo.</p>
+
+      <p class="dialogo">— Empiezo yo — dijo Juana levantando la mano — . Hiciste cosas muy feas. Los cristales, la dimensión, atacar a Silvion. Y todavía estás enojada. Pero también escuché lo que le dijiste al Árbol. Y entiendo por qué. Mi voto es sí, pero con condiciones claras.</p>
+      <p class="dialogo">— Las condiciones las ponemos todas — dijo Sofi — . No solo una. Mi voto es sí también.</p>
+      <p class="dialogo">— Yo también — dijo Lara — . Pero quiero que sepas que si volvés a hacer algo así, no voy a votar igual la próxima vez.</p>
+      <p class="dialogo">— No hay próxima vez — dijo Cata la seria — . O hay confianza o no hay equipo. Mi voto es sí, pero sin más secretos. De ninguna.</p>
+      <p class="dialogo">— Yo sí — dijo Calu — . Porque me parece que si el Árbol te tocó aunque sea un segundo, algo vio en vos.</p>
+      <p class="dialogo">— Sí — dijo Superstar ajustando sus anteojos — . Y porque me parece que Absol se merece estar en un equipo que no lo tenga escondido en una mochila todo el tiempo.</p>
+
+      <p class="parrafo">El Absol abrió un ojo y volvió a cerrarlo.</p>
+
+      <p class="dialogo">— Yo sí — dijo Vicky — . Creo que ya lo sabés.</p>
+      <p class="dialogo">— Yo sí — dijo Cata la de los anteojos — . Porque ninguna de nosotras llegó acá siendo perfecta tampoco.</p>
+
+      <p class="parrafo">Todas miraron a Mimi.</p>
+
+      <p class="dialogo">— Yo sí — dijo Mimi — . Pero quiero escucharte a vos primero.</p>
+
+      <p class="parrafo">Todas miraron a Mati.</p>
+      <p class="parrafo">Mati miró el suelo. Miró al Absol. Miró el Árbol detrás de ellas pulsando suave y dorado.</p>
+
+      <p class="dialogo">— Sigo enojada — dijo — . Con el Árbol. Con la situación. Con todo.</p>
+      <p class="dialogo">— Está bien — dijo Mimi.</p>
+      <p class="dialogo">— No sé si voy a dejar de estarlo — dijo Mati.</p>
+      <p class="dialogo">— También está bien — dijo Mimi.</p>
+
+      <p class="parrafo">Mati las miró una por una.</p>
+
+      <p class="dialogo">— ¿Y aun así me quieren en el equipo?</p>
+      <p class="dialogo">— Aun así — dijo Mimi.</p>
+
+      <p class="parrafo">Silencio largo.</p>
+      <p class="parrafo">El Árbol pulsó una vez suave.</p>
+      <p class="parrafo">Mati no lo miró. Pero algo en su cara, muy levemente, cambió.</p>
+
+      <p class="dialogo">— Bien — dijo finalmente — . Está bien.</p>
+
+      <div style="background:#e3f2fd; border-radius:12px; padding:18px 22px; margin-top:28px; font-size:0.97rem; line-height:1.9;">
+        ✅ Vicky fue oficialmente bienvenida al equipo.<br>
+        ✅ Mati fue al Árbol de la Memoria y le dijo todo lo que sentía.<br>
+        ✅ El Árbol le pidió disculpas.<br>
+        ✅ El equipo votó — todas dijeron sí.<br>
+        🌟 Mati sigue enojada. Pero dijo que está bien.
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap10')">← Cap. 10</button>
+      <span class="lib-pagnum">12 / 13</span>
+      <button class="btn-nav" onclick="irA('cap12')">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAP. 12 -->
+<div class="pagina" id="cap12" style="display:none">
+  <div class="libro-pagina">
+    <div class="libro-header">
+      <div class="lib-num">Capítulo 12</div>
+      <div class="lib-titulo">La Oscuridad Aliada</div>
+    </div>
+    <div class="libro-body">
+
+      <p class="parrafo">Todavía estaban sentadas en el claro cuando el Árbol pulsó diferente.</p>
+      <p class="parrafo">No era el pulso tranquilo de siempre. Era algo más largo. Más deliberado. Como cuando alguien toma aire antes de decir algo importante.</p>
+      <p class="parrafo">Todas lo miraron.</p>
+      <p class="parrafo">El Árbol habló. Y esta vez no habló solo con Mati. Habló con todas.</p>
+      <p class="parrafo"><em>Hay algo que les debo. A todas. Pero especialmente a una.</em></p>
+      <p class="parrafo">Mati no se movió.</p>
+      <p class="parrafo"><em>Lo que pasó no fue un error</em>, dijo el Árbol. <em>Fue una decisión que tuve que tomar aunque no quería tomarla.</em></p>
+
+      <p class="dialogo">— Explicate — dijo Mati en voz baja.</p>
+
+      <p class="parrafo"><em>Puedo ver el futuro</em>, dijo el Árbol. <em>No todo. No siempre con claridad. Pero lo suficiente. Y lo que vi, cuando te toqué por primera vez, me obligó a soltarte.</em></p>
+
+      <p class="dialogo">— ¿Qué viste? — preguntó Mimi.</p>
+
+      <p class="parrafo"><em>Vi lo que iba a pasar si le daba los poderes verdaderos a Mati antes de que estuviera lista. Vi la oscuridad usada para destruir en vez de proteger. Vi un camino que no podía permitir.</em></p>
+
+      <p class="parrafo">Mati apretó los dientes.</p>
+
+      <p class="dialogo">— Entonces me usaste — dijo — . Me dejaste sentir todo para después quitármelo porque decidiste que no estaba lista.</p>
+
+      <p class="parrafo"><em>Sí</em>, dijo el Árbol. <em>Y lo siento. Porque no fue justo. Pero era lo único que podía hacer.</em></p>
+
+      <p class="parrafo">Silencio largo en el claro.</p>
+
+      <p class="dialogo">— ¿Y ahora? — dijo Mati.</p>
+
+      <p class="parrafo"><em>Ahora</em>, dijo el Árbol, <em>estás lista. Y el futuro que veo es diferente.</em></p>
+
+      <p class="parrafo">La luz dorada del Árbol se intensificó. Y entonces, en vez de ir hacia todas como siempre, fue directamente hacia Mati.</p>
+      <p class="parrafo">Mati dio un paso atrás por instinto.</p>
+
+      <p class="dialogo">— ¿Qué estás haciendo? — dijo.</p>
+
+      <p class="parrafo"><em>Dándote lo que siempre fue tuyo.</em></p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">La luz oscura que envolvió a Mati no era como la magia que había estado usando todos esos meses. Era completamente diferente. No fría. No pesada. Más liviana. Como si algo que había estado apretado adentro de ella de repente tuviera espacio para respirar.</p>
+      <p class="parrafo">Cuando la luz se apagó, Mati miró sus manos.</p>
+      <p class="parrafo">Sus sombras se movían. No de manera amenazante. De manera suave, como respondiendo a ella.</p>
+
+      <p class="dialogo">— ¿Qué puedo hacer? — preguntó en voz baja.</p>
+
+      <p class="parrafo"><em>Mucho</em>, dijo el Árbol. <em>Y hay algo más. Cada una que elijo recibe un nombre. El tuyo es el que ya encontraste sola. Solo que ahora es tuyo de verdad.</em></p>
+
+      <p class="parrafo">Mati lo miró.</p>
+
+      <p class="dialogo">— ¿Mora? — dijo.</p>
+
+      <p class="parrafo"><em>Super Mora</em>, dijo el Árbol. <em>La oscuridad que protege. La sombra que revela. La que cura lo que no se puede ver. Y la que junto con la aurora hace lo que ninguna puede hacer sola.</em></p>
+
+      <p class="parrafo">Mati repitió el nombre en silencio. Sin decirlo en voz alta todavía.</p>
+      <p class="parrafo">Pero algo en su cara cambió. Muy levemente. Como cuando algo que estuvo torcido durante mucho tiempo finalmente encaja.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El Árbol respondió. Y mientras hablaba, Mati fue descubriendo cada poder uno por uno.</p>
+      <p class="parrafo">Extendió una mano y absorbió una ola de energía oscura que el Árbol creó como prueba. La neutralizó completamente. Como si nunca hubiera existido.</p>
+      <p class="parrafo">Cerró los ojos y vio. No el presente. El pasado de Lara, que estaba parada a su lado. Un jardín lleno de flores. Una nena más chica dibujando con un palito en la tierra. Y un destello del futuro también, borroso pero ahí.</p>
+      <p class="parrafo">Abrió los ojos rápido.</p>
+
+      <p class="dialogo">— Eso da un poco de vértigo — dijo.</p>
+      <p class="dialogo">— Bienvenida al club — dijo Super Psy.</p>
+
+      <p class="parrafo">Después puso las dos manos en el suelo y dejó que las sombras se extendieran suaves por el pasto. El Absol se relajó todavía más. Y dos Pokémon que habían estado nerviosos durante todo el viaje al bosque se acercaron solos y se recostaron cerca de Mati como si fuera el lugar más seguro del mundo.</p>
+
+      <p class="dialogo">— Increíble — susurró Lara.</p>
+
+      <p class="parrafo">Y entonces Mati miró a Vicky.</p>
+      <p class="parrafo">Las dos se miraron un segundo. Y sin hablar, las dos extendieron sus manos al mismo tiempo.</p>
+      <p class="parrafo">La aurora de Vicky salió. Cambiante. De todos los colores.</p>
+      <p class="parrafo">Las sombras de Mati salieron también. Suaves. Profundas.</p>
+      <p class="parrafo">Y cuando se encontraron en el centro del claro, no se cancelaron. No pelearon. Se entrelazaron. Luz y sombra juntas formando algo que ninguna de las dos podría haber hecho sola. Una espiral de colores y oscuridad que subió hacia el cielo y llenó el claro entero.</p>
+      <p class="parrafo">Todos los Pokémon miraron hacia arriba.</p>
+      <p class="parrafo">El Árbol de la Memoria pulsó más fuerte que nunca.</p>
+      <p class="parrafo">Mati y Vicky bajaron las manos al mismo tiempo. Y las dos se miraron de nuevo.</p>
+
+      <p class="dialogo">— Bien — dijo Mati. Y aunque su voz sonó igual de seria que siempre, había algo diferente en sus ojos — . Eso sí me gusta.</p>
+
+      <p class="parrafo">Vicky sonrió.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Pasaron el resto del día en el claro.</p>
+      <p class="parrafo">No entrenando. No planeando. Solo estando.</p>
+      <p class="parrafo">Juana encontró frutos silvestres cerca del borde del bosque y los compartió con todos. Super Aqua saltó a un árbol alto para ver el horizonte y describió lo que veía. Lara hizo dibujos de todas en la tierra con un palito. Superstar ajustó sus anteojos y les tomó el tiempo a los Pokémon en una carrera improvisada que ganó el Absol por lejos y que a Mati le generó una satisfacción evidente aunque no lo dijera.</p>
+      <p class="parrafo">Super Psy y Mati se sentaron un rato separadas de las demás y hablaron en voz baja. Nadie escuchó qué dijeron. Pero cuando volvieron al grupo, algo entre las dos era diferente.</p>
+      <p class="parrafo">El Árbol pulsaba suave y constante detrás de todas.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">El año en la academia terminó tres semanas después.</p>
+      <p class="parrafo">Las alumnas hicieron sus valijas. Los pasillos que habían estado llenos de energía oscura y cristales y misterio volvieron a ser pasillos normales con chicas cargando mochilas y despidiéndose.</p>
+      <p class="parrafo">La Directora Alma las despidió en la puerta principal una por una. Cuando llegó a Mati se detuvo un segundo.</p>
+
+      <p class="dialogo">— El año que viene — dijo — tu lugar en la academia está reservado. Si querés volver.</p>
+
+      <p class="parrafo">Mati la miró.</p>
+
+      <p class="dialogo">— Veo lo que hace el Árbol — dijo la Directora en voz muy baja — . No siempre entiendo por qué. Pero confío en él.</p>
+
+      <p class="parrafo">Mati no respondió. Pero tampoco dijo que no.</p>
+
+      <div class="escena-sep">— — —</div>
+
+      <p class="parrafo">Afuera de la academia, en el camino que llevaba a la parada donde los venían a buscar, las nueve caminaron juntas por última vez ese año.</p>
+      <p class="parrafo">El sol de fin de año calentaba diferente. Más suave. Más tranquilo.</p>
+      <p class="parrafo">Mati caminaba en el grupo. No exactamente en el centro. No exactamente al costado. En algún lugar intermedio que era completamente suyo.</p>
+      <p class="parrafo">El Absol caminaba a su lado con la cabeza en alto.</p>
+
+      <p class="dialogo">— El año que viene — dijo Juana — ¿van a atacarnos de nuevo?</p>
+      <p class="dialogo">— Probablemente — dijo Cata la seria.</p>
+      <p class="dialogo">— Bien — dijo Juana — . Porque ya somos nueve y me aburro cuando no pasa nada.</p>
+      <p class="dialogo">— Diez contando al Absol — dijo Calu.</p>
+      <p class="dialogo">— Once contando a Silvion — dijo Vicky.</p>
+      <p class="dialogo">— Doce contando a Leafeon — dijo Mimi.</p>
+      <p class="dialogo">— Esto va a seguir creciendo — dijo Superstar.</p>
+
+      <p class="parrafo">Mati escuchaba. Y en algún momento, sin que nadie lo notara o tal vez notándolo todas, se acomodó un poco más hacia el centro del grupo.</p>
+      <p class="parrafo">Solo un poco.</p>
+      <p class="parrafo">Pero suficiente.</p>
+      <p class="parrafo">Y el Bosque Mágico, a miles de kilómetros de ahí, pulsó suave y dorado una última vez.</p>
+      <p class="parrafo">Como diciendo adiós.</p>
+      <p class="parrafo">Como diciendo hasta el año que viene.</p>
+
+      <div style="background:#e3f2fd; border-radius:12px; padding:18px 22px; margin-top:28px; font-size:0.97rem; line-height:1.9;">
+        ✅ El Árbol explicó por qué no le dio los poderes antes a Mati.<br>
+        ✅ Mati recibió sus cuatro poderes verdaderos y su nombre: Super Mora.<br>
+        ✅ Mati y Vicky unieron sus poderes por primera vez.<br>
+        ✅ El año en la academia terminó.<br>
+        🌟 Las nueve volvieron a sus casas. Juntas hasta la parada.<br><br>
+        <strong>El Equipo Leaf ahora son nueve.</strong><br>
+        Y el año que viene... todo puede pasar. 🌿⭐❄️🔥🧚🔮💧🌟🌑
+      </div>
+
+    </div>
+    <div class="lib-footer">
+      <button class="btn-nav" onclick="irA('cap11')">← Cap. 11</button>
+      <span class="lib-pagnum">13 / 13</span>
+      <button class="btn-nav" disabled style="opacity:0.3">Fin ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let paginaActual = null;
+
+  function irA(id) {
+    cerrarSidebar();
+    if (paginaActual) {
+      document.getElementById(paginaActual).style.display = 'none';
+    }
+    document.getElementById(id).style.display = 'block';
+    paginaActual = id;
+    document.getElementById('topbar').classList.add('visible');
+    document.getElementById('sidebar').classList.add('visible');
+    document.getElementById('portada-page').style.display = 'none';
+    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('activo'));
+    const btn = document.querySelector(`.sidebar-btn[data-page="${id}"]`);
+    if (btn) btn.classList.add('activo');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function comenzar() {
+    irA('cap0');
+  }
+
+  function irAPortada() {
+    cerrarSidebar();
+    if (paginaActual) {
+      document.getElementById(paginaActual).style.display = 'none';
+      paginaActual = null;
+    }
+    document.getElementById('portada-page').style.display = 'flex';
+    document.getElementById('topbar').classList.remove('visible');
+    document.getElementById('sidebar').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function abrirSidebar() {
+    document.getElementById('sidebar').classList.add('visible');
+    document.getElementById('overlay').classList.add('visible');
+  }
+
+  function cerrarSidebar() {
+    document.getElementById('sidebar').classList.remove('visible');
+    document.getElementById('overlay').classList.remove('visible');
+  }
+</script>
+</body>
+</html>
