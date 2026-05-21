@@ -222,6 +222,41 @@
   }
   .seccion-titulo { font-family:'Bubblegum Sans',cursive; font-size:1.2rem; color:var(--azul); margin:20px 0 12px; }
 
+  /* PERSONAJES */
+  .personaje-card { display:flex; gap:14px; align-items:flex-start; background:#f5f9ff; border-radius:12px; padding:14px; margin-bottom:14px; border-left:4px solid var(--azul); }
+  .personaje-img { width:72px; height:72px; border-radius:50%; object-fit:cover; border:3px solid var(--azul); flex-shrink:0; }
+  .personaje-emoji-ph { width:72px; height:72px; border-radius:50%; background:#e3f2fd; display:flex; align-items:center; justify-content:center; font-size:2.2rem; border:3px solid var(--azul); flex-shrink:0; }
+  .personaje-nombre { font-family:'Bubblegum Sans',cursive; font-size:1.05rem; color:var(--azul); }
+  .personaje-alias { font-size:0.82rem; color:#777; margin:2px 0 6px; }
+  .personaje-poder { font-size:0.9rem; color:#444; line-height:1.7; }
+  .equipo-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+  /* TARJETITAS */
+  .tarjeta-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-top:12px; }
+  .tarjeta { background:linear-gradient(160deg,#0d2a50,#1565c0); color:white; border-radius:14px; padding:18px 12px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.18); }
+  .tarjeta img { width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.4); margin-bottom:8px; display:block; margin-left:auto; margin-right:auto; }
+  .tarjeta-ph { width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 8px; border:2px solid rgba(255,255,255,0.3); }
+  .tarjeta-nombre { font-family:'Bubblegum Sans',cursive; font-size:0.95rem; line-height:1.3; }
+  .tarjeta-tipo { font-size:0.75rem; opacity:0.75; margin-top:3px; }
+  .tarjeta-pokemon { font-size:0.72rem; opacity:0.6; margin-top:4px; border-top:1px solid rgba(255,255,255,0.15); padding-top:5px; }
+
+  /* ÍNDICE */
+  .indice-item { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid #e3f2fd; }
+  .indice-item:last-child { border-bottom:none; }
+  .indice-link { background:none; border:none; color:var(--azul); font-family:'Nunito',sans-serif; font-size:0.9rem; cursor:pointer; text-align:left; font-weight:700; }
+  .indice-link:hover { text-decoration:underline; }
+  .indice-tag { font-size:0.78rem; color:#90caf9; }
+
+  /* TEST */
+  .test-pregunta { background:#f5f9ff; border-radius:10px; padding:14px 16px; margin-bottom:14px; border-left:3px solid var(--azul); }
+  .test-pregunta p { font-weight:700; margin-bottom:10px; color:var(--azul); font-size:0.95rem; }
+  .test-opcion { display:block; width:100%; text-align:left; background:#fff; border:2px solid #bbdefb; border-radius:8px; padding:9px 14px; margin-bottom:7px; font-family:'Nunito',sans-serif; font-size:0.88rem; cursor:pointer; transition:background 0.15s; }
+  .test-opcion:hover { background:#e3f2fd; }
+  .test-opcion.elegida { background:var(--azul); color:#fff; border-color:var(--azul); }
+  .test-resultado { background:linear-gradient(135deg,#0d1f3a,#1565c0); color:white; border-radius:14px; padding:24px; text-align:center; margin-top:20px; display:none; }
+  .test-resultado.visible { display:block; }
+  .test-resultado h3 { font-family:'Bubblegum Sans',cursive; font-size:1.4rem; color:var(--amarillo); margin-bottom:8px; }
+
   @media print {
     .topbar, .sidebar, .sidebar-overlay { display: none !important; }
     .pagina { display: block !important; padding: 20px 0 !important; }
@@ -281,6 +316,19 @@
   <button class="sidebar-btn" data-page="cap10" onclick="irA('cap10')">💬 Cap. 10 — La Verdad de Mati</button>
   <button class="sidebar-btn" data-page="cap11" onclick="irA('cap11')">🗳️ Cap. 11 — La Votación</button>
   <button class="sidebar-btn" data-page="cap12" onclick="irA('cap12')">🌑 Cap. 12 — La Oscuridad Aliada</button>
+
+  <div class="sidebar-grupo">Extras</div>
+  <button class="sidebar-btn" data-page="personajes" onclick="irA('personajes')">👥 Personajes</button>
+  <button class="sidebar-btn" data-page="dedicatoria" onclick="irA('dedicatoria')">💖 Dedicatoria</button>
+  <button class="sidebar-btn" data-page="indice" onclick="irA('indice')">📋 Índice</button>
+  <button class="sidebar-btn" data-page="mapa" onclick="irA('mapa')">🗺️ Mapa del Mundo</button>
+  <button class="sidebar-btn" data-page="glosario" onclick="irA('glosario')">💫 Glosario</button>
+  <button class="sidebar-btn" data-page="curiosidades" onclick="irA('curiosidades')">🌟 Curiosidades</button>
+  <button class="sidebar-btn" data-page="records" onclick="irA('records')">🏆 Récords del Equipo</button>
+  <button class="sidebar-btn" data-page="tarjetitas" onclick="irA('tarjetitas')">🃏 Tarjetitas</button>
+  <button class="sidebar-btn" data-page="historias" onclick="irA('historias')">📖 Historias</button>
+  <button class="sidebar-btn" data-page="test" onclick="irA('test')">🌟 ¿Qué superheroína sos?</button>
+  <button class="sidebar-btn" data-page="creditos" onclick="irA('creditos')">✍️ Créditos</button>
 
 </div>
 
@@ -1859,13 +1907,660 @@
     <div class="lib-footer">
       <button class="btn-nav" onclick="irA('cap11')">← Cap. 11</button>
       <span class="lib-pagnum">13 / 13</span>
-      <button class="btn-nav" disabled style="opacity:0.3">Fin ✓</button>
+      <button class="btn-nav" onclick="irA('personajes')">Extras →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= EXTRAS ======= -->
+
+<!-- PERSONAJES -->
+<div class="pagina" id="personajes" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">👥</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Personajes</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">El Equipo Leaf — Libro 2</div>
+    </div>
+    <div class="pag-body">
+
+      <h3 class="seccion-titulo">🌿🌟 Las protagonistas</h3>
+      <div class="personaje-card" style="border-color:#1a5c2a;">
+        <img class="personaje-img" src="img/personajes/mimi.png" alt="Super Leaf" style="border-color:#1a5c2a;">
+        <div>
+          <div class="personaje-nombre" style="color:#1a5c2a;">Super Leaf — Mimi</div>
+          <div class="personaje-alias">Tipo: Planta 🌿 · Pokémon: Leafeon</div>
+          <div class="personaje-poder">🗣️ Hablar con animales · 🌿 Plantas gigantes · 🌟 Curar · 🌳 Hablar con todo el bosque</div>
+        </div>
+      </div>
+      <div class="personaje-card" style="border-color:#7c4dff;">
+        <img class="personaje-img" src="img/personajes/supernova.png" alt="Super Nova" style="border-color:#7c4dff;">
+        <div>
+          <div class="personaje-nombre" style="color:#7c4dff;">Super Nova — Vicky</div>
+          <div class="personaje-alias">Victoria Sosa Racca · Tipo: Aurora 🌈 · Pokémon: Silvion</div>
+          <div class="personaje-poder">🌈 Aurora de todos los colores · 🛡️ Aurora escudo · 💥 Explosión Nova · 🔮 Ver el futuro</div>
+        </div>
+      </div>
+
+      <h3 class="seccion-titulo">⭐❄️🔥🧚🔮💧 El equipo</h3>
+      <div class="equipo-grid">
+        <div class="personaje-card" style="border-color:#b8860b;">
+          <img class="personaje-img" src="img/personajes/superstar.png" alt="Superstar" style="border-color:#b8860b;">
+          <div>
+            <div class="personaje-nombre" style="color:#b8860b;">Superstar — Cata</div>
+            <div class="personaje-alias">Tipo: Multi ⭐</div>
+            <div class="personaje-poder">Rayos de luz · Copiar poderes · Unir fuerzas</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#0288d1;">
+          <img class="personaje-img" src="img/personajes/superice.png" alt="Super Ice" style="border-color:#0288d1;">
+          <div>
+            <div class="personaje-nombre" style="color:#0288d1;">Super Ice — Sofi</div>
+            <div class="personaje-alias">Tipo: Hielo ❄️</div>
+            <div class="personaje-poder">Congelar · Tormentas de nieve · Hielo curativo</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#e65100;">
+          <img class="personaje-img" src="img/personajes/superfire.png" alt="Super Fire" style="border-color:#e65100;">
+          <div>
+            <div class="personaje-nombre" style="color:#e65100;">Super Fire — Juana</div>
+            <div class="personaje-alias">Tipo: Fuego 🔥</div>
+            <div class="personaje-poder">Bolas de fuego · Escudo de llamas · Explosiones</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#c2185b;">
+          <img class="personaje-img" src="img/personajes/superfairy.png" alt="Super Fairy" style="border-color:#c2185b;">
+          <div>
+            <div class="personaje-nombre" style="color:#c2185b;">Super Fairy — Lara</div>
+            <div class="personaje-alias">Tipo: Hada 🧚</div>
+            <div class="personaje-poder">Polvo mágico · Curación · Romper control oscuro</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#6a1b9a;">
+          <img class="personaje-img" src="img/personajes/superpsy.png" alt="Super Psy" style="border-color:#6a1b9a;">
+          <div>
+            <div class="personaje-nombre" style="color:#6a1b9a;">Super Psy — Cata</div>
+            <div class="personaje-alias">Tipo: Psíquico 🔮</div>
+            <div class="personaje-poder">Leer mentes · Telekinesia · Explosiones psíquicas</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#1565c0;">
+          <img class="personaje-img" src="img/personajes/superaqua.png" alt="Super Aqua" style="border-color:#1565c0;">
+          <div>
+            <div class="personaje-nombre" style="color:#1565c0;">Super Aqua — Calu</div>
+            <div class="personaje-alias">Tipo: Agua 💧</div>
+            <div class="personaje-poder">Chorros de agua · Olas gigantes · Saltar alto</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="seccion-titulo">🌑 La nueva integrante</h3>
+      <div class="personaje-card" style="border-color:#37474f; background:#f5f5f5;">
+        <div class="personaje-emoji-ph" style="border-color:#37474f; background:#eceff1;">🌑</div>
+        <div>
+          <div class="personaje-nombre" style="color:#37474f;">Super Mora — Mati</div>
+          <div class="personaje-alias">Tipo: Oscuridad 🌑 · Pokémon: Absol</div>
+          <div class="personaje-poder">🌑 Neutralizar oscuridad · 👁️ Ver pasado y futuro · 🐾 Calmar Pokémon · 🌈🌑 Fusión con Aurora (con Vicky)</div>
+          <div style="font-size:0.8rem;color:#888;font-style:italic;margin-top:6px;">Antes conocida como Mora. Se unió al equipo al final del Libro 2.</div>
+        </div>
+      </div>
+
+      <h3 class="seccion-titulo">🏫 Aliados</h3>
+      <div class="equipo-grid">
+        <div class="personaje-card" style="border-color:#455a64;">
+          <div class="personaje-emoji-ph" style="font-size:1.8rem; border-color:#455a64;">🏫</div>
+          <div>
+            <div class="personaje-nombre" style="color:#455a64;">Directora Alma</div>
+            <div class="personaje-alias">Directora de la Fairy Hero Academy</div>
+            <div class="personaje-poder">Conoce los secretos del Árbol. Protege a las alumnas. Confía en el plan del Árbol incluso cuando no lo entiende.</div>
+          </div>
+        </div>
+        <div class="personaje-card" style="border-color:#b8860b;">
+          <div class="personaje-emoji-ph" style="font-size:1.8rem; border-color:#b8860b;">🌳</div>
+          <div>
+            <div class="personaje-nombre" style="color:#b8860b;">El Árbol de la Memoria</div>
+            <div class="personaje-alias">Árbol antiguo del Bosque Mágico</div>
+            <div class="personaje-poder">Puede ver el futuro. Da los poderes a cada generación de heroínas. Espera siempre el momento justo.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="seccion-titulo">😈 Enemigos</h3>
+      <div class="personaje-card" style="border-color:#b71c1c; background:#fff5f5;">
+        <div class="personaje-emoji-ph" style="border-color:#b71c1c; background:#ffebee;">🌑</div>
+        <div>
+          <div class="personaje-nombre" style="color:#b71c1c;">Mora</div>
+          <div class="personaje-alias">La forma villana de Mati — Libro 2</div>
+          <div class="personaje-poder">Usó cristales oscuros para atacar la academia y creó una dimensión para atrapar a Vicky. Al final del libro se convirtió en Super Mora y se unió al equipo.</div>
+          <div style="font-size:0.8rem;color:#e57373;font-style:italic;margin-top:6px;">Ahora es aliada. ✨</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('cap12')">← Cap. 12</button>
+      <button class="btn-nav-esp" onclick="irA('dedicatoria')">Dedicatoria →</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEDICATORIA -->
+<div class="pagina" id="dedicatoria" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#1a0a2e,#4a148c,#7b1fa2);">
+      <div style="font-size:2.5rem">💖</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Dedicatoria</div>
+    </div>
+    <div class="pag-body" style="text-align:center;padding-top:50px;padding-bottom:40px;">
+      <div style="max-width:480px; margin:0 auto; background:#fff; border-radius:16px; padding:50px 36px; box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+        <div style="font-size:3.5rem;margin-bottom:30px;">🌑✨</div>
+        <p style="font-family:'Bubblegum Sans',cursive;font-size:1.2rem;color:#7b1fa2;margin-bottom:16px;">Para</p>
+        <p style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:#1a0a2e;margin-bottom:24px;line-height:1.4;">toda la gente que alguna vez se sintió como Mati.</p>
+        <div style="border-top:2px dashed #ce93d8;padding-top:28px;margin-top:10px;">
+          <p style="font-family:'Bubblegum Sans',cursive;font-size:1.1rem;color:#7b1fa2;margin-bottom:8px;">Escrito por</p>
+          <p style="font-family:'Bubblegum Sans',cursive;font-size:1.7rem;color:#1a0a2e;">Milagros Sosa Racca</p>
+        </div>
+        <div style="margin-top:36px;font-size:1.8rem;letter-spacing:4px;">🌿⭐❄️🔥🧚🔮💧🌟🌑</div>
+      </div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('personajes')">← Personajes</button>
+      <button class="btn-nav-esp" onclick="irA('indice')">Índice →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ÍNDICE -->
+<div class="pagina" id="indice" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">📋</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Índice</div>
+    </div>
+    <div class="pag-body">
+      <h3 class="seccion-titulo">— Capítulos —</h3>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap0')">🏫 Capítulo 0 — La Fairy Hero Academy</button><span class="indice-tag">1 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap1')">🔐 Capítulo 1 — Los Secretos de la Directora Alma</button><span class="indice-tag">2 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap2')">🌑 Capítulo 2 — La Piedra de la Discordia</button><span class="indice-tag">3 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap3')">⛈️ Capítulo 3 — Mora</button><span class="indice-tag">4 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap4')">🌑 Capítulo 4 — El Error del Árbol</button><span class="indice-tag">5 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap5')">🕳️ Capítulo 5 — La Dimensión Oscura</button><span class="indice-tag">6 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap6')">🔍 Capítulo 6 — Sospechas</button><span class="indice-tag">7 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap7')">💥 Capítulo 7 — La Caída</button><span class="indice-tag">8 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap8')">🌅 Capítulo 8 — Lo que Dijo Mora</button><span class="indice-tag">9 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap9')">🌄 Capítulo 9 — El Regreso</button><span class="indice-tag">10 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap10')">💬 Capítulo 10 — La Verdad de Mati</button><span class="indice-tag">11 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap11')">🗳️ Capítulo 11 — La Votación</button><span class="indice-tag">12 / 13</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('cap12')">🌑 Capítulo 12 — La Oscuridad Aliada</button><span class="indice-tag">13 / 13</span></div>
+      <h3 class="seccion-titulo">— Extras —</h3>
+      <div class="indice-item"><button class="indice-link" onclick="irA('personajes')">👥 Personajes</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('dedicatoria')">💖 Dedicatoria</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('mapa')">🗺️ Mapa del Mundo</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('glosario')">💫 Glosario de Poderes</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('curiosidades')">🌟 Curiosidades</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('records')">🏆 Récords del Equipo</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('tarjetitas')">🃏 Tarjetitas</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('historias')">📖 Historias</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('test')">🌟 ¿Qué superheroína sos?</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('creditos')">✍️ Créditos</button><span class="indice-tag">→</span></div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('dedicatoria')">← Dedicatoria</button>
+      <button class="btn-nav-esp" onclick="irA('mapa')">Mapa →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAPA DEL MUNDO -->
+<div class="pagina" id="mapa" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">🗺️</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Mapa del Mundo</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">Los lugares del Libro 2</div>
+    </div>
+    <div class="pag-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+
+        <div style="background:#e8f5e9;border-radius:12px;padding:16px;border-left:4px solid #2d7a3a;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🌳</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1a3a1f;margin-bottom:4px;">El Bosque Mágico</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">Donde el Árbol de la Memoria vive. El corazón de los poderes del equipo.</div>
+        </div>
+
+        <div style="background:#e3f2fd;border-radius:12px;padding:16px;border-left:4px solid #1565c0;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🏫</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#0d1f3a;margin-bottom:4px;">La Fairy Hero Academy</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">La academia que parece normal pero esconde magia. El escenario principal del Libro 2.</div>
+        </div>
+
+        <div style="background:#fce4ec;border-radius:12px;padding:16px;border-left:4px solid #b71c1c;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🕳️</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#b71c1c;margin-bottom:4px;">La Dimensión Oscura</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">La dimensión que Mati creó para atrapar a Vicky. Sin luz. Sin sonido. Sin salida... hasta que llegó el equipo.</div>
+        </div>
+
+        <div style="background:#fff9c4;border-radius:12px;padding:16px;border-left:4px solid #f9a825;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">✨</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#5c3d00;margin-bottom:4px;">El Claro del Árbol</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">El claro secreto dentro del Bosque Mágico donde el Árbol de la Memoria le entregó sus poderes a Mati.</div>
+        </div>
+
+        <div style="background:#f3e5f5;border-radius:12px;padding:16px;border-left:4px solid #7b1fa2;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🌑</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#4a148c;margin-bottom:4px;">El Bosque de Mati</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">El bosque oscuro donde Mati se escondió tres días después de escapar. Donde el Absol siempre estuvo a su lado.</div>
+        </div>
+
+        <div style="background:#e8f5e9;border-radius:12px;padding:16px;border-left:4px solid #388e3c;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🏠</div>
+          <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1b5e20;margin-bottom:4px;">Las casas de las heroínas</div>
+          <div style="font-size:0.82rem;color:#555;line-height:1.5;">Nueve lugares distintos del mundo. Ninguna sabía que las demás existían... hasta que el Árbol las reunió.</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('indice')">← Índice</button>
+      <button class="btn-nav-esp" onclick="irA('glosario')">Glosario →</button>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSARIO -->
+<div class="pagina" id="glosario" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">💫</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Glosario de Poderes</div>
+    </div>
+    <div class="pag-body">
+
+      <h3 class="seccion-titulo">🐾 Pokémon de cada heroína</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;">
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🌿 Mimi</strong><br>Eevee → Leafeon</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>⭐ Superstar</strong><br>Eevee → Astreon</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>❄️ Super Ice</strong><br>Spheal → Spheal potente</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🔥 Super Fire</strong><br>Charmander → Charizard</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🧚 Super Fairy</strong><br>Cleffa → Cleffa potente</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🔮 Super Psy</strong><br>Psyduck → Psyduck con jaquecas</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>💧 Super Aqua</strong><br>Marill → Marill potente</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🌈 Super Nova</strong><br>Silvion (único)</div>
+        <div style="background:#f5f9ff;border-radius:8px;padding:10px 12px;font-size:0.85rem;"><strong>🌑 Super Mora</strong><br>Absol (siempre igual)</div>
+      </div>
+
+      <h3 class="seccion-titulo">⚡ Poderes de las 9 heroínas</h3>
+      <div style="margin-bottom:14px;"><strong style="color:#1a5c2a;">🌿 Super Leaf — Mimi</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Hablar con animales y Pokémon</li><li>Hacer crecer plantas gigantes</li><li>Curar animales y plantas</li><li>Hablar con todo el bosque a la vez (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#b8860b;">⭐ Superstar — Cata</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Lanzar rayos de luz brillante</li><li>Crear arco iris</li><li>Copiar los poderes de sus amigas</li><li>Unir todos los poderes del equipo (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#0288d1;">❄️ Super Ice — Sofi</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Congelar con las manos</li><li>Crear tormentas de nieve</li><li>Paredes y puentes de hielo</li><li>Hielo curativo (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#e65100;">🔥 Super Fire — Juana</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Lanzar bolas de fuego</li><li>Crear escudos de llamas</li><li>Explosiones de lava</li><li>Llamas que nunca queman lo que no deben (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#c2185b;">🧚 Super Fairy — Lara</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Polvo mágico brillante</li><li>Curar a sus amigas</li><li>Dormir a contrincantes</li><li>Romper cualquier control oscuro (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#6a1b9a;">🔮 Super Psy — Cata</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Leer mentes</li><li>Mover objetos con la mente</li><li>Explosiones psíquicas</li><li>Leer todas las mentes del bosque (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#1565c0;">💧 Super Aqua — Calu</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Chorros de agua potentes</li><li>Crear olas gigantes</li><li>Respirar bajo el agua</li><li>Saltar a cualquier lugar (regalo del Árbol)</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#7c4dff;">🌈 Super Nova — Vicky</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Aurora de todos los colores</li><li>Aurora escudo</li><li>Explosión Nova</li><li>Ver el futuro</li><li>Fusión de luz y sombra con Super Mora</li></ul></div>
+      <div style="margin-bottom:14px;"><strong style="color:#37474f;">🌑 Super Mora — Mati</strong><ul style="margin:6px 0 0 20px;font-size:0.9rem;line-height:2;color:#444;"><li>Neutralizar y absorber oscuridad</li><li>Ver el pasado y el futuro (borroso)</li><li>Calmar Pokémon con sus sombras</li><li>Fusión de luz y sombra con Super Nova</li></ul></div>
+
+      <h3 class="seccion-titulo">📖 Términos del universo</h3>
+      <div style="font-size:0.9rem;line-height:2;color:#444;">
+        <p><strong>Árbol de la Memoria:</strong> Árbol antiguo del Bosque Mágico que da poderes. Puede ver el futuro y elige a sus heroínas con cuidado.</p>
+        <p><strong>Dimensión Oscura:</strong> Espacio sin luz creado por Mati. Absorbe los poderes de aurora. Colapsó cuando Mati escapó.</p>
+        <p><strong>Fairy Hero Academy:</strong> Academia que parece normal pero es mágica. La Directora Alma la dirige en secreto con ayuda del Árbol.</p>
+        <p><strong>Piedra de la Discordia:</strong> Cristal oscuro que Mati usó para tentar a las heroínas y sembrar desconfianza.</p>
+        <p><strong>Cristales oscuros:</strong> Armas que Mati construyó durante dos años. Pueden interrumpir los poderes del Árbol si están bien apuntados.</p>
+        <p><strong>Aurora:</strong> Tipo de poder único que el Árbol creó específicamente para contrarrestar la oscuridad pura. No aparece en ningún libro ni registro histórico.</p>
+      </div>
+
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('mapa')">← Mapa</button>
+      <button class="btn-nav-esp" onclick="irA('curiosidades')">Curiosidades →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CURIOSIDADES -->
+<div class="pagina" id="curiosidades" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">🌟</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Curiosidades</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">Secretos de la historia</div>
+    </div>
+    <div class="pag-body">
+      <p class="parrafo" style="text-align:center;font-style:italic;color:#90caf9;">Esta sección la escribe Milagros Sosa Racca. ✏️</p>
+      <div style="background:#e3f2fd;border-radius:12px;padding:24px;text-align:center;margin-top:20px;">
+        <div style="font-size:3rem;margin-bottom:12px;">✏️</div>
+        <p style="font-family:'Bubblegum Sans',cursive;font-size:1.1rem;color:#1565c0;">¡Próximamente!</p>
+        <p style="font-size:0.9rem;color:#666;margin-top:8px;">Las curiosidades del Libro 2 serán escritas por la autora.</p>
+      </div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('glosario')">← Glosario</button>
+      <button class="btn-nav-esp" onclick="irA('records')">Récords →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RÉCORDS -->
+<div class="pagina" id="records" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#5c3d00,#b8860b,#d4a017);">
+      <div style="font-size:2.5rem">🏆</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Récords del Equipo</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">¿Quién es la mejor en cada cosa? — 9 heroínas</div>
+    </div>
+    <div class="pag-body" style="padding:16px 16px 30px;">
+      <table style="width:100%;border-collapse:collapse;font-family:'Nunito',sans-serif;font-size:0.88rem;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#0d1f3a,#1565c0);">
+            <th style="padding:10px 12px;text-align:left;color:var(--amarillo);font-family:'Bubblegum Sans',cursive;border-radius:8px 0 0 0;">Categoría</th>
+            <th style="padding:10px 12px;text-align:left;color:var(--amarillo);font-family:'Bubblegum Sans',cursive;">Ganadora</th>
+            <th style="padding:10px 12px;text-align:left;color:var(--amarillo);font-family:'Bubblegum Sans',cursive;border-radius:0 8px 0 0;">Por qué</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">😂 La más graciosa</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#e65100;">Juana</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Siempre tiene una broma lista para cualquier momento.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🎨 La más creativa</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#c2185b;">Lara</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Dibujó a todas en la tierra con un palito durante la tregua.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🧠 La más inteligente</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#b8860b;">Cata (Superstar)</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Siempre tiene razón. Siempre. Y lo sabe.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🌀 La más misteriosa</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#4a148c;">Cata (Super Psy)</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Fue la primera en sentir el cristal oscuro. Nadie le preguntó cómo.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">💖 La más dulce</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#1a5c2a;">Mimi</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Le apretó la mano a Vicky sin decir nada, en el momento exacto.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🏃 La más rápida</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#01579b;">Calu</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Trepó el árbol más alto del claro solo para ver el horizonte.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">❄️ La más tranquila</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#0288d1;">Sofi</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Levantó paredes de hielo sin decir una palabra ni una queja.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🌿 La más poderosa</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#1a5c2a;">Mimi</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Sigue siendo la que más poderes acumuló. El bosque habla con ella.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🌪️ La más caótica</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#e65100;">Juana</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Ella y su Charizard armaron un caos adorable en el jardín de la academia.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🤗 La más compañera</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#1a5c2a;">Mimi</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Fue la primera en votar sí para Mati cuando nadie sabía qué decir.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🌟 La más valiente</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#7c4dff;">Vicky</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Estuvo sola en la oscuridad total sin rendirse. Y encendió su aurora de todas formas.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🔥 La más intensa</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#7c4dff;">Vicky</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Cuando entra a un cuarto, la aurora llena todo. No hay forma de no notarla.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">🤫 La más terca</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#37474f;">Mati</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Pasó dos años sola construyendo un plan. Nadie la convenció de parar hasta el final.</td></tr>
+          <tr style="background:#f5f9ff;"><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:800;">📚 La que más estudió</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;font-weight:700;color:#37474f;">Mati</td><td style="padding:9px 12px;border-bottom:1px solid #e3f2fd;color:#555;">Memorizó todos los poderes de todas las heroínas de todos los equipos anteriores.</td></tr>
+          <tr style="background:#fffdf6;"><td style="padding:9px 12px;font-weight:800;">🐾 La mejor dueña de Pokémon</td><td style="padding:9px 12px;font-weight:700;color:#37474f;">Mati</td><td style="padding:9px 12px;color:#555;">El Absol ganó la carrera de Pokémon por lejos. Y Mati lo miró con satisfacción evidente aunque no lo dijera.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('curiosidades')">← Curiosidades</button>
+      <button class="btn-nav-esp" onclick="irA('tarjetitas')">Tarjetitas →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TARJETITAS -->
+<div class="pagina" id="tarjetitas" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">🃏</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Tarjetitas</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">🌿⭐❄️🔥🧚🔮💧🌈🌑</div>
+    </div>
+    <div class="pag-body">
+      <div class="tarjeta-grid">
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#0a2e10,#1a5c2a);">
+          <img src="img/personajes/mimi.png" alt="Super Leaf">
+          <div class="tarjeta-nombre">Super Leaf 🌿</div>
+          <div class="tarjeta-tipo">Mimi · Tipo: Planta</div>
+          <div class="tarjeta-pokemon">Pokémon: Leafeon</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#4a3500,#b8860b);">
+          <img src="img/personajes/superstar.png" alt="Superstar">
+          <div class="tarjeta-nombre">Superstar ⭐</div>
+          <div class="tarjeta-tipo">Cata · Tipo: Multi</div>
+          <div class="tarjeta-pokemon">Pokémon: Astreon</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#003050,#0277bd);">
+          <img src="img/personajes/superice.png" alt="Super Ice">
+          <div class="tarjeta-nombre">Super Ice ❄️</div>
+          <div class="tarjeta-tipo">Sofi · Tipo: Hielo</div>
+          <div class="tarjeta-pokemon">Pokémon: Spheal</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#3e1000,#bf360c);">
+          <img src="img/personajes/superfire.png" alt="Super Fire">
+          <div class="tarjeta-nombre">Super Fire 🔥</div>
+          <div class="tarjeta-tipo">Juana · Tipo: Fuego</div>
+          <div class="tarjeta-pokemon">Pokémon: Charizard</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#3d0030,#c2185b);">
+          <img src="img/personajes/superfairy.png" alt="Super Fairy">
+          <div class="tarjeta-nombre">Super Fairy 🧚</div>
+          <div class="tarjeta-tipo">Lara · Tipo: Hada</div>
+          <div class="tarjeta-pokemon">Pokémon: Cleffa</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#2d0050,#6a1b9a);">
+          <img src="img/personajes/superpsy.png" alt="Super Psy">
+          <div class="tarjeta-nombre">Super Psy 🔮</div>
+          <div class="tarjeta-tipo">Cata · Tipo: Psíquico</div>
+          <div class="tarjeta-pokemon">Pokémon: Psyduck</div>
+        </div>
+
+        <div class="tarjeta">
+          <img src="img/personajes/superaqua.png" alt="Super Aqua">
+          <div class="tarjeta-nombre">Super Aqua 💧</div>
+          <div class="tarjeta-tipo">Calu · Tipo: Agua</div>
+          <div class="tarjeta-pokemon">Pokémon: Marill</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#1a004a,#6200ea);">
+          <img src="img/personajes/supernova.png" alt="Super Nova">
+          <div class="tarjeta-nombre">Super Nova 🌈</div>
+          <div class="tarjeta-tipo">Vicky · Tipo: Aurora</div>
+          <div class="tarjeta-pokemon">Pokémon: Silvion</div>
+        </div>
+
+        <div class="tarjeta" style="background:linear-gradient(160deg,#1a1a1a,#37474f);">
+          <div class="tarjeta-ph">🌑</div>
+          <div class="tarjeta-nombre">Super Mora 🌑</div>
+          <div class="tarjeta-tipo">Mati · Tipo: Oscuridad</div>
+          <div class="tarjeta-pokemon">Pokémon: Absol</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('records')">← Récords</button>
+      <button class="btn-nav-esp" onclick="irA('historias')">Historias →</button>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORIAS -->
+<div class="pagina" id="historias" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">📖</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Historias</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">Antes de que todo empezara</div>
+    </div>
+    <div class="pag-body">
+      <p class="parrafo" style="text-align:center;font-style:italic;color:#90caf9;">Las nuevas del equipo, antes de que el Árbol las encontrara. 🌟</p>
+
+      <div style="border-left:4px solid #7c4dff;background:#f5f0ff;border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:24px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1.15rem;color:#7c4dff;margin-bottom:10px;">🌈 Vicky — antes de ser Super Nova</div>
+        <p class="parrafo" style="margin:0;">Vicky vivía en la sombra de su hermana. No porque Mimi la hiciera sentir así, sino porque Mimi era Mimi: amaba los animales, entendía el bosque, tenía algo especial que todo el mundo podía ver. Y Vicky la quería demasiado como para tenerle envidia, pero a veces, cuando estaban juntas en el bosque y Leafeon seguía a Mimi y no a ella, sentía algo que no sabía muy bien cómo llamar.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Silvion la encontró a ella primero. No a Mimi. A Vicky. Una tarde de tormenta, cuando todos se habían quedado adentro, Vicky salió sola al jardín porque le gustaba la lluvia. Y ahí estaba: un Pokémon que brillaba con todos los colores incluso bajo el agua, mirándola como si la conociera de toda la vida. No habló. No hizo nada especial. Solo se acercó y se quedó a su lado.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Esa noche Vicky entendió algo importante: no era la hermana de Mimi. Era algo completamente suyo. Solo que todavía no sabía qué. 🌈</p>
+      </div>
+
+      <div style="border-left:4px solid #37474f;background:#f5f5f5;border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:24px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1.15rem;color:#37474f;margin-bottom:10px;">🌑 Mati — antes de encontrar el Árbol</div>
+        <p class="parrafo" style="margin:0;">Mati aprendió a leer sola. No porque nadie le quisiera enseñar, sino porque nadie tenía tiempo. Vivía con su abuela en una casa al borde de un bosque oscuro, y su abuela era buena pero cansada, y Mati era chica pero autosuficiente, y eso a veces se parece a estar sola aunque no lo sea.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">El Absol la encontró cuando tenía siete años. Apareció en el jardín una mañana como si siempre hubiera estado ahí. La abuela quiso espantarlo. Mati puso el cuerpo en el medio. El Absol se quedó.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Fue el Absol el que la llevó al Árbol de la Memoria por primera vez. Caminaron horas por el bosque oscuro siguiendo algo que Mati no podía ver pero que el Absol sí. Y cuando llegaron al claro y la luz dorada pulsó, Mati sintió algo que no había sentido nunca: que era exactamente el lugar donde tenía que estar.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Que había algo en el mundo hecho para ella.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Volvió todos los días durante un año. Estudió todo lo que pudo. Se preparó con todo lo que tenía. Y la noche que la luz dorada la envolvió por primera vez, supo que tenía razón.</p>
+        <p class="parrafo" style="margin-top:12px; margin-bottom:0;">Y cuando se apagó, supo que todavía no había llegado el momento. Solo que eso le llevó mucho tiempo entenderlo. 🌑</p>
+      </div>
+
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('tarjetitas')">← Tarjetitas</button>
+      <button class="btn-nav-esp" onclick="irA('test')">¿Qué superheroína sos? →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEST -->
+<div class="pagina" id="test" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header" style="background:linear-gradient(135deg,#1a0a2e,#4a0072,#7b1fa2);">
+      <div style="font-size:2.5rem">🌟</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">¿Qué superheroína sos?</div>
+      <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">🌿⭐❄️🔥🧚🔮💧🌈🌑</div>
+    </div>
+    <div class="pag-body" style="padding:16px 16px 30px;">
+
+      <div class="test-pregunta" data-id="1">
+        <p>1. ¿Qué hacés cuando el equipo está en problemas?</p>
+        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Me pongo delante y pienso en los demás primero.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Analizo rápido y uso lo que sea que funcione.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Espero el momento exacto y actúo sin apurarme.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Me lanzo directo. Después pregunto.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Saco todo lo que tengo, aunque me lastime.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Observo todo primero. Nunca actúo sin entender.</button>
+      </div>
+
+      <div class="test-pregunta" data-id="2">
+        <p>2. ¿Cuál de estas palabras te describe mejor?</p>
+        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Compasiva</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Brillante</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Tranquila</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Energética</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Soñadora</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Estratega</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Libre</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Intensa</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Compleja</button>
+      </div>
+
+      <div class="test-pregunta" data-id="3">
+        <p>3. ¿Qué preferís hacer en un día libre?</p>
+        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Estar en la naturaleza con los animales.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Aprender algo nuevo y ser la mejor en eso.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Leer o estar en silencio tranquila.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Salir, moverse, hacer algo emocionante.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Dibujar, crear o inventar cosas.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Observar a la gente y entender cómo piensa.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Nadar, trepar, explorar.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Estar en la tormenta. Me gusta la lluvia.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Estar con mi Pokémon, solo nosotros dos.</button>
+      </div>
+
+      <div class="test-pregunta" data-id="4">
+        <p>4. Alguien te hace algo injusto. ¿Qué hacés?</p>
+        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Lo perdono, pero no lo olvido.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Lo confronto con argumentos. Tengo razón y lo sé.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Me quedo callada, pero no me olvido.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Se lo digo en la cara. Directo.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Me duele mucho. Dibujo para procesar.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Analizo por qué lo hizo antes de reaccionar.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Lo ignoro y sigo adelante.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Lo enfrento sola, sin pedir ayuda.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Lo guardo. Y tardo mucho en soltar.</button>
+      </div>
+
+      <div class="test-pregunta" data-id="5">
+        <p>5. ¿Qué te importa más?</p>
+        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Que todos estén bien.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Ser la mejor.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Hacer lo correcto en el momento correcto.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Vivir todo con intensidad.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Crear algo hermoso.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Entender cómo funcionan las cosas.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'A')">La libertad.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Demostrar de lo que soy capaz.</button>
+        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Que me vean como soy de verdad.</button>
+      </div>
+
+      <button onclick="calcularTest()" style="display:block;width:100%;background:var(--azul);color:white;border:none;border-radius:30px;padding:16px;font-family:'Bubblegum Sans',cursive;font-size:1.2rem;cursor:pointer;margin-top:10px;box-shadow:0 4px 0 #0d47a1;">✨ Ver mi resultado</button>
+
+      <div class="test-resultado" id="test-resultado">
+        <div style="font-size:3rem;margin-bottom:10px;" id="test-emoji">🌟</div>
+        <h3 id="test-resultado-nombre">—</h3>
+        <p style="font-size:0.95rem;opacity:0.9;margin-top:10px;" id="test-resultado-desc">—</p>
+        <button onclick="reiniciarTest()" style="margin-top:16px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4);border-radius:20px;padding:8px 20px;font-family:'Nunito',sans-serif;cursor:pointer;">Reiniciar 🔄</button>
+      </div>
+
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('historias')">← Historias</button>
+      <button class="btn-nav-esp" onclick="irA('creditos')">Créditos →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CRÉDITOS -->
+<div class="pagina" id="creditos" style="display:none">
+  <div class="pag-especial">
+    <div class="pag-header">
+      <div style="font-size:2.5rem">✍️</div>
+      <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Créditos</div>
+    </div>
+    <div class="pag-body" style="text-align:center;padding-top:40px;padding-bottom:40px;">
+      <div style="font-size:4rem;margin-bottom:20px;">🌑</div>
+      <p style="font-family:'Bubblegum Sans',cursive;font-size:1.2rem;color:#90caf9;margin-bottom:15px;">Escrito por</p>
+      <p style="font-family:'Bubblegum Sans',cursive;font-size:2.5rem;color:#0d1f3a;margin-bottom:30px;">Milagros Sosa Racca</p>
+      <div style="border-top:2px dashed #90caf9;border-bottom:2px dashed #90caf9;padding:20px 0;margin:20px 0;">
+        <p style="font-size:1rem;color:#555;line-height:2.4;">
+          🌿 Personajes creados por Milagros Sosa Racca<br>
+          ⭐ Inspirado en las amigas del cole<br>
+          🏫 Ambientado en la Fairy Hero Academy<br>
+          🌳 Con el permiso del Árbol de la Memoria<br>
+          💖 Dedicado a toda la gente que alguna vez se sintió como Mati
+        </p>
+      </div>
+      <p style="font-family:'Bubblegum Sans',cursive;font-size:1.1rem;color:var(--azul);margin-bottom:20px;">¡Gracias por leer la historia del Equipo Leaf! 🌿✨</p>
+      <div style="font-size:2rem;letter-spacing:4px;">🌿⭐❄️🔥🧚🔮💧🌟🌑</div>
+    </div>
+    <div class="pag-footer">
+      <button class="btn-nav-esp" onclick="irA('test')">← Test</button>
+      <button class="btn-nav-esp" disabled style="opacity:0.35;">Fin ✓</button>
     </div>
   </div>
 </div>
 
 <script>
   let paginaActual = null;
+
+  // TEST
+  let respuestasTest = {};
+  function elegirOpcion(btn, letra) {
+    const pregunta = btn.closest('.test-pregunta');
+    pregunta.querySelectorAll('.test-opcion').forEach(b => b.classList.remove('elegida'));
+    btn.classList.add('elegida');
+    respuestasTest[pregunta.dataset.id] = letra;
+  }
+  function calcularTest() {
+    const conteo = {};
+    Object.values(respuestasTest).forEach(l => { conteo[l] = (conteo[l]||0) + 1; });
+    const entradas = Object.entries(conteo).sort((a,b) => b[1]-a[1]);
+    const ganadora = entradas.length ? entradas[0][0] : 'M';
+    const resultados = {
+      M: { emoji:'🌿', nombre:'Mimi / Super Leaf', desc:'Sos la líder natural. Pensás en los demás antes que en vos. Los animales te adoran y vos los entendés sin que digan nada.' },
+      C: { emoji:'⭐', nombre:'Cata / Superstar', desc:'Sos brillante y multitarea. Encontrás la solución cuando nadie más la ve. Y casi siempre tenés razón.' },
+      S: { emoji:'❄️', nombre:'Sofi / Super Ice', desc:'Tu calma es tu mayor poder. Actúas en el momento exacto, sin apurarte, sin equivocarte.' },
+      J: { emoji:'🔥', nombre:'Juana / Super Fire', desc:'Sos pura energía. Te lanzás primero y preguntás después. Y generalmente sale bien.' },
+      L: { emoji:'🧚', nombre:'Lara / Super Fairy', desc:'Sos el corazón del equipo. Traés color y magia a todo lo que tocás. El mundo es más lindo cuando estás.' },
+      P: { emoji:'🔮', nombre:'Cata / Super Psy', desc:'Sos la estratega. Observás todo, analizás todo, y cuando hablás vale la pena escucharte.' },
+      A: { emoji:'💧', nombre:'Calu / Super Aqua', desc:'Sos libre y adaptable. Te movés con la corriente pero nunca perdés tu dirección.' },
+      V: { emoji:'🌈', nombre:'Vicky / Super Nova', desc:'Sos intensa y luminosa. Cuando entrás a un lugar, todos lo notan. Tu luz es tuya, de nadie más.' },
+      T: { emoji:'🌑', nombre:'Mati / Super Mora', desc:'Sos compleja y poderosa. Tardaste en confiar, pero cuando lo hacés, es para siempre. La oscuridad también puede proteger.' }
+    };
+    const r = resultados[ganadora];
+    document.getElementById('test-emoji').textContent = r.emoji;
+    document.getElementById('test-resultado-nombre').textContent = 'Sos: ' + r.nombre;
+    document.getElementById('test-resultado-desc').textContent = r.desc;
+    document.getElementById('test-resultado').classList.add('visible');
+    document.getElementById('test-resultado').scrollIntoView({ behavior:'smooth' });
+  }
+  function reiniciarTest() {
+    respuestasTest = {};
+    document.querySelectorAll('.test-opcion').forEach(b => b.classList.remove('elegida'));
+    document.getElementById('test-resultado').classList.remove('visible');
+  }
 
   function irA(id) {
     cerrarSidebar();
