@@ -248,14 +248,19 @@
   .indice-tag { font-size:0.78rem; color:#90caf9; }
 
   /* TEST */
-  .test-pregunta { background:#f5f9ff; border-radius:10px; padding:14px 16px; margin-bottom:14px; border-left:3px solid var(--azul); }
-  .test-pregunta p { font-weight:700; margin-bottom:10px; color:var(--azul); font-size:0.95rem; }
-  .test-opcion { display:block; width:100%; text-align:left; background:#fff; border:2px solid #bbdefb; border-radius:8px; padding:9px 14px; margin-bottom:7px; font-family:'Nunito',sans-serif; font-size:0.88rem; cursor:pointer; transition:background 0.15s; }
-  .test-opcion:hover { background:#e3f2fd; }
-  .test-opcion.elegida { background:var(--azul); color:#fff; border-color:var(--azul); }
-  .test-resultado { background:linear-gradient(135deg,#0d1f3a,#1565c0); color:white; border-radius:14px; padding:24px; text-align:center; margin-top:20px; display:none; }
-  .test-resultado.visible { display:block; }
-  .test-resultado h3 { font-family:'Bubblegum Sans',cursive; font-size:1.4rem; color:var(--amarillo); margin-bottom:8px; }
+  .quiz2-progreso-wrap { background:rgba(0,0,0,0.08); border-radius:4px; height:7px; margin-bottom:18px; overflow:hidden; }
+  .quiz2-progreso-barra { background:linear-gradient(90deg,#1565c0,#42a5f5); height:100%; transition:width 0.4s ease; border-radius:4px; }
+  .quiz2-num { font-family:'Bubblegum Sans',cursive; font-size:0.85rem; color:#1565c0; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
+  .quiz2-estrellitas { letter-spacing:3px; }
+  .quiz2-pregunta-texto { font-family:'Bubblegum Sans',cursive; font-size:1.15rem; color:#0d1f3a; margin-bottom:18px; line-height:1.5; background:linear-gradient(135deg,#e3f2fd,#f0f4ff); border-radius:14px; padding:18px 16px; border-left:4px solid var(--azul); box-shadow:0 2px 8px rgba(21,101,192,0.1); }
+  .quiz2-opcion { display:block; width:100%; text-align:left; background:#fff; border:2px solid #bbdefb; border-radius:12px; padding:12px 16px; margin-bottom:10px; font-family:'Nunito',sans-serif; font-size:0.9rem; cursor:pointer; transition:all 0.18s; color:#1a1a2e; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+  .quiz2-opcion:hover { background:#1565c0; color:white; border-color:#1565c0; transform:translateX(6px); box-shadow:0 4px 12px rgba(21,101,192,0.25); }
+  .quiz2-resultado { color:white; border-radius:18px; padding:28px 20px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+  .quiz2-resultado-titulo { font-family:'Bubblegum Sans',cursive; font-size:0.9rem; opacity:0.8; margin-bottom:6px; }
+  .quiz2-resultado-nombre { font-family:'Bubblegum Sans',cursive; font-size:2rem; color:var(--amarillo); margin-bottom:4px; line-height:1.2; }
+  .quiz2-resultado-hero { font-family:'Bubblegum Sans',cursive; font-size:1rem; opacity:0.8; margin-bottom:16px; }
+  .quiz2-resultado-desc { font-size:0.92rem; line-height:1.75; background:rgba(255,255,255,0.12); border-radius:12px; padding:14px; margin-bottom:16px; text-align:left; }
+  .quiz2-btn-reiniciar { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.4); border-radius:20px; padding:10px 26px; font-family:'Bubblegum Sans',cursive; font-size:1rem; cursor:pointer; }
 
   @media print {
     .topbar, .sidebar, .sidebar-overlay { display: none !important; }
@@ -302,6 +307,12 @@
     <button class="sidebar-close" onclick="event.stopPropagation();cerrarSidebar()">✕</button>
   </div>
 
+  <div class="sidebar-grupo">El libro</div>
+  <button class="sidebar-btn" data-page="personajes" onclick="irA('personajes')">👥 Personajes</button>
+  <button class="sidebar-btn" data-page="dedicatoria" onclick="irA('dedicatoria')">💖 Dedicatoria</button>
+  <button class="sidebar-btn" data-page="indice" onclick="irA('indice')">📋 Índice</button>
+  <button class="sidebar-btn" data-page="mapa" onclick="irA('mapa')">🗺️ Mapa del Mundo</button>
+
   <div class="sidebar-grupo">Capítulos</div>
   <button class="sidebar-btn" data-page="cap0" onclick="irA('cap0')">🏫 Cap. 0 — La Fairy Hero Academy</button>
   <button class="sidebar-btn" data-page="cap1" onclick="irA('cap1')">🔐 Cap. 1 — Los Secretos de la Directora Alma</button>
@@ -318,10 +329,6 @@
   <button class="sidebar-btn" data-page="cap12" onclick="irA('cap12')">🌑 Cap. 12 — La Oscuridad Aliada</button>
 
   <div class="sidebar-grupo">Extras</div>
-  <button class="sidebar-btn" data-page="personajes" onclick="irA('personajes')">👥 Personajes</button>
-  <button class="sidebar-btn" data-page="dedicatoria" onclick="irA('dedicatoria')">💖 Dedicatoria</button>
-  <button class="sidebar-btn" data-page="indice" onclick="irA('indice')">📋 Índice</button>
-  <button class="sidebar-btn" data-page="mapa" onclick="irA('mapa')">🗺️ Mapa del Mundo</button>
   <button class="sidebar-btn" data-page="glosario" onclick="irA('glosario')">💫 Glosario</button>
   <button class="sidebar-btn" data-page="curiosidades" onclick="irA('curiosidades')">🌟 Curiosidades</button>
   <button class="sidebar-btn" data-page="records" onclick="irA('records')">🏆 Récords del Equipo</button>
@@ -2078,6 +2085,11 @@
       <div style="font-family:'Bubblegum Sans',cursive;font-size:1.9rem;color:var(--amarillo);margin-top:6px;">Índice</div>
     </div>
     <div class="pag-body">
+      <h3 class="seccion-titulo">— El libro —</h3>
+      <div class="indice-item"><button class="indice-link" onclick="irA('personajes')">👥 Personajes</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('dedicatoria')">💖 Dedicatoria</button><span class="indice-tag">→</span></div>
+      <div class="indice-item"><button class="indice-link" onclick="irA('mapa')">🗺️ Mapa del Mundo</button><span class="indice-tag">→</span></div>
+
       <h3 class="seccion-titulo">— Capítulos —</h3>
       <div class="indice-item"><button class="indice-link" onclick="irA('cap0')">🏫 Capítulo 0 — La Fairy Hero Academy</button><span class="indice-tag">1 / 13</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('cap1')">🔐 Capítulo 1 — Los Secretos de la Directora Alma</button><span class="indice-tag">2 / 13</span></div>
@@ -2092,10 +2104,8 @@
       <div class="indice-item"><button class="indice-link" onclick="irA('cap10')">💬 Capítulo 10 — La Verdad de Mati</button><span class="indice-tag">11 / 13</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('cap11')">🗳️ Capítulo 11 — La Votación</button><span class="indice-tag">12 / 13</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('cap12')">🌑 Capítulo 12 — La Oscuridad Aliada</button><span class="indice-tag">13 / 13</span></div>
+
       <h3 class="seccion-titulo">— Extras —</h3>
-      <div class="indice-item"><button class="indice-link" onclick="irA('personajes')">👥 Personajes</button><span class="indice-tag">→</span></div>
-      <div class="indice-item"><button class="indice-link" onclick="irA('dedicatoria')">💖 Dedicatoria</button><span class="indice-tag">→</span></div>
-      <div class="indice-item"><button class="indice-link" onclick="irA('mapa')">🗺️ Mapa del Mundo</button><span class="indice-tag">→</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('glosario')">💫 Glosario de Poderes</button><span class="indice-tag">→</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('curiosidades')">🌟 Curiosidades</button><span class="indice-tag">→</span></div>
       <div class="indice-item"><button class="indice-link" onclick="irA('records')">🏆 Récords del Equipo</button><span class="indice-tag">→</span></div>
@@ -2227,12 +2237,37 @@
       <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">Secretos de la historia</div>
     </div>
     <div class="pag-body">
-      <p class="parrafo" style="text-align:center;font-style:italic;color:#90caf9;">Esta sección la escribe Milagros Sosa Racca. ✏️</p>
-      <div style="background:#e3f2fd;border-radius:12px;padding:24px;text-align:center;margin-top:20px;">
-        <div style="font-size:3rem;margin-bottom:12px;">✏️</div>
-        <p style="font-family:'Bubblegum Sans',cursive;font-size:1.1rem;color:#1565c0;">¡Próximamente!</p>
-        <p style="font-size:0.9rem;color:#666;margin-top:8px;">Las curiosidades del Libro 2 serán escritas por la autora.</p>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">🌈 El nombre de Vicky</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">Vicky eligió el nombre Super Nova porque una nova es una explosión de luz que aparece de repente en el cielo. Igual que ella: nadie la vio venir.</div>
       </div>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">🌳 El secreto del Árbol</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">El Árbol del Bosque Mágico le dio los poderes a Vicky en secreto, mucho antes de que ella lo supiera. La noche de la tormenta no fue el comienzo: fue el momento en que ya no pudo ocultarlos más.</div>
+      </div>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">🌑 Por qué Absol eligió a Mati</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">Absol es el Pokémon que aparece antes de las catástrofes. La encontró a Mati cuando era chica y no se fue más. Como si supiera que algo grande, bueno o malo, iba a pasar con ella.</div>
+      </div>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">🏫 La academia tenía un secreto desde siempre</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">La Fairy Hero Academy no empezó a ser mágica cuando llegaron las chicas. Era mágica desde mucho antes. Solo esperaba a las personas correctas para revelarlo.</div>
+      </div>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">💖 El perdón que cambió todo</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">Mati esperaba que la expulsaran. En cambio la perdonaron. Ese momento fue el más difícil de escribir y el más importante de toda la historia.</div>
+      </div>
+
+      <div style="background:#e3f2fd;border-left:4px solid #1565c0;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:14px;">
+        <div style="font-family:'Bubblegum Sans',cursive;font-size:1rem;color:#1565c0;margin-bottom:4px;">🔮 Vicky siempre supo algo</div>
+        <div style="font-size:0.88rem;color:#333;line-height:1.6;">Uno de los poderes de Vicky es ver el futuro. Pero ella nunca dice cuándo lo usa. ¿Y si algunas de sus decisiones en el libro no fueron casualidad?</div>
+      </div>
+
     </div>
     <div class="pag-footer">
       <button class="btn-nav-esp" onclick="irA('glosario')">← Glosario</button>
@@ -2412,78 +2447,7 @@
       <div style="font-size:0.9rem;opacity:0.75;margin-top:4px;">🌿⭐❄️🔥🧚🔮💧🌈🌑</div>
     </div>
     <div class="pag-body" style="padding:16px 16px 30px;">
-
-      <div class="test-pregunta" data-id="1">
-        <p>1. ¿Qué hacés cuando el equipo está en problemas?</p>
-        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Me pongo delante y pienso en los demás primero.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Analizo rápido y uso lo que sea que funcione.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Espero el momento exacto y actúo sin apurarme.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Me lanzo directo. Después pregunto.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Saco todo lo que tengo, aunque me lastime.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Observo todo primero. Nunca actúo sin entender.</button>
-      </div>
-
-      <div class="test-pregunta" data-id="2">
-        <p>2. ¿Cuál de estas palabras te describe mejor?</p>
-        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Compasiva</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Brillante</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Tranquila</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Energética</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Soñadora</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Estratega</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Libre</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Intensa</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Compleja</button>
-      </div>
-
-      <div class="test-pregunta" data-id="3">
-        <p>3. ¿Qué preferís hacer en un día libre?</p>
-        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Estar en la naturaleza con los animales.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Aprender algo nuevo y ser la mejor en eso.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Leer o estar en silencio tranquila.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Salir, moverse, hacer algo emocionante.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Dibujar, crear o inventar cosas.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Observar a la gente y entender cómo piensa.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Nadar, trepar, explorar.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Estar en la tormenta. Me gusta la lluvia.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Estar con mi Pokémon, solo nosotros dos.</button>
-      </div>
-
-      <div class="test-pregunta" data-id="4">
-        <p>4. Alguien te hace algo injusto. ¿Qué hacés?</p>
-        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Lo perdono, pero no lo olvido.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Lo confronto con argumentos. Tengo razón y lo sé.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Me quedo callada, pero no me olvido.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Se lo digo en la cara. Directo.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Me duele mucho. Dibujo para procesar.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Analizo por qué lo hizo antes de reaccionar.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'A')">Lo ignoro y sigo adelante.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Lo enfrento sola, sin pedir ayuda.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Lo guardo. Y tardo mucho en soltar.</button>
-      </div>
-
-      <div class="test-pregunta" data-id="5">
-        <p>5. ¿Qué te importa más?</p>
-        <button class="test-opcion" onclick="elegirOpcion(this,'M')">Que todos estén bien.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'C')">Ser la mejor.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'S')">Hacer lo correcto en el momento correcto.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'J')">Vivir todo con intensidad.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'L')">Crear algo hermoso.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'P')">Entender cómo funcionan las cosas.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'A')">La libertad.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'V')">Demostrar de lo que soy capaz.</button>
-        <button class="test-opcion" onclick="elegirOpcion(this,'T')">Que me vean como soy de verdad.</button>
-      </div>
-
-      <button onclick="calcularTest()" style="display:block;width:100%;background:var(--azul);color:white;border:none;border-radius:30px;padding:16px;font-family:'Bubblegum Sans',cursive;font-size:1.2rem;cursor:pointer;margin-top:10px;box-shadow:0 4px 0 #0d47a1;">✨ Ver mi resultado</button>
-
-      <div class="test-resultado" id="test-resultado">
-        <div style="font-size:3rem;margin-bottom:10px;" id="test-emoji">🌟</div>
-        <h3 id="test-resultado-nombre">—</h3>
-        <p style="font-size:0.95rem;opacity:0.9;margin-top:10px;" id="test-resultado-desc">—</p>
-        <button onclick="reiniciarTest()" style="margin-top:16px;background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4);border-radius:20px;padding:8px 20px;font-family:'Nunito',sans-serif;cursor:pointer;">Reiniciar 🔄</button>
-      </div>
-
+      <div id="test2-container"></div>
     </div>
     <div class="pag-footer">
       <button class="btn-nav-esp" onclick="irA('historias')">← Historias</button>
@@ -2525,41 +2489,123 @@
 <script>
   let paginaActual = null;
 
-  // TEST
-  let respuestasTest = {};
-  function elegirOpcion(btn, letra) {
-    const pregunta = btn.closest('.test-pregunta');
-    pregunta.querySelectorAll('.test-opcion').forEach(b => b.classList.remove('elegida'));
-    btn.classList.add('elegida');
-    respuestasTest[pregunta.dataset.id] = letra;
+  // TEST — una pregunta a la vez
+  const QUIZ2_PREGUNTAS = [
+    { texto:'¿Qué hacés cuando el equipo está en problemas?', opciones:[
+      { key:'M', texto:'Me pongo delante y pienso en los demás primero.' },
+      { key:'C', texto:'Analizo rápido y uso lo que sea que funcione.' },
+      { key:'S', texto:'Espero el momento exacto y actúo sin apurarme.' },
+      { key:'J', texto:'Me lanzo directo. Después pregunto.' },
+      { key:'V', texto:'Saco todo lo que tengo, aunque me lastime.' },
+      { key:'T', texto:'Observo todo primero. Nunca actúo sin entender.' }
+    ]},
+    { texto:'¿Cuál de estas palabras te describe mejor?', opciones:[
+      { key:'M', texto:'Compasiva' }, { key:'C', texto:'Brillante' },
+      { key:'S', texto:'Tranquila' }, { key:'J', texto:'Energética' },
+      { key:'L', texto:'Soñadora' }, { key:'P', texto:'Estratega' },
+      { key:'A', texto:'Libre' },    { key:'V', texto:'Intensa' },
+      { key:'T', texto:'Compleja' }
+    ]},
+    { texto:'¿Qué preferís hacer en un día libre?', opciones:[
+      { key:'M', texto:'Estar en la naturaleza con los animales.' },
+      { key:'C', texto:'Aprender algo nuevo y ser la mejor en eso.' },
+      { key:'S', texto:'Leer o estar en silencio tranquila.' },
+      { key:'J', texto:'Salir, moverse, hacer algo emocionante.' },
+      { key:'L', texto:'Dibujar, crear o inventar cosas.' },
+      { key:'P', texto:'Observar a la gente y entender cómo piensa.' },
+      { key:'A', texto:'Nadar, trepar, explorar.' },
+      { key:'V', texto:'Estar en la tormenta. Me gusta la lluvia.' },
+      { key:'T', texto:'Estar con mi Pokémon, solo nosotros dos.' }
+    ]},
+    { texto:'Alguien te hace algo injusto. ¿Qué hacés?', opciones:[
+      { key:'M', texto:'Lo perdono, pero no lo olvido.' },
+      { key:'C', texto:'Lo confronto con argumentos. Tengo razón y lo sé.' },
+      { key:'S', texto:'Me quedo callada, pero no me olvido.' },
+      { key:'J', texto:'Se lo digo en la cara. Directo.' },
+      { key:'L', texto:'Me duele mucho. Dibujo para procesar.' },
+      { key:'P', texto:'Analizo por qué lo hizo antes de reaccionar.' },
+      { key:'A', texto:'Lo ignoro y sigo adelante.' },
+      { key:'V', texto:'Lo enfrento sola, sin pedir ayuda.' },
+      { key:'T', texto:'Lo guardo. Y tardo mucho en soltar.' }
+    ]},
+    { texto:'¿Qué te importa más?', opciones:[
+      { key:'M', texto:'Que todos estén bien.' },
+      { key:'C', texto:'Ser la mejor.' },
+      { key:'S', texto:'Hacer lo correcto en el momento correcto.' },
+      { key:'J', texto:'Vivir todo con intensidad.' },
+      { key:'L', texto:'Crear algo hermoso.' },
+      { key:'P', texto:'Entender cómo funcionan las cosas.' },
+      { key:'A', texto:'La libertad.' },
+      { key:'V', texto:'Demostrar de lo que soy capaz.' },
+      { key:'T', texto:'Que me vean como soy de verdad.' }
+    ]}
+  ];
+  const QUIZ2_RESULTADOS = {
+    M: { emoji:'🌿', nombre:'Mimi', hero:'Super Leaf', color:'#1a5c2a', bg:'linear-gradient(135deg,#0a2e10,#1a5c2a)', pokemon:'Leafeon', desc:'Sos la líder natural. Pensás en los demás antes que en vos. Los animales te adoran y vos los entendés sin que digan nada.' },
+    C: { emoji:'⭐', nombre:'Cata', hero:'Superstar', color:'#b8860b', bg:'linear-gradient(135deg,#4a3500,#b8860b)', pokemon:'Astreon', desc:'Sos brillante y multitarea. Encontrás la solución cuando nadie más la ve. Y casi siempre tenés razón.' },
+    S: { emoji:'❄️', nombre:'Sofi', hero:'Super Ice', color:'#0277bd', bg:'linear-gradient(135deg,#003050,#0277bd)', pokemon:'Spheal', desc:'Tu calma es tu mayor poder. Actúas en el momento exacto, sin apurarte, sin equivocarte.' },
+    J: { emoji:'🔥', nombre:'Juana', hero:'Super Fire', color:'#bf360c', bg:'linear-gradient(135deg,#3e1000,#bf360c)', pokemon:'Charizard', desc:'Sos pura energía. Te lanzás primero y preguntás después. Y generalmente sale bien.' },
+    L: { emoji:'🧚', nombre:'Lara', hero:'Super Fairy', color:'#c2185b', bg:'linear-gradient(135deg,#3d0030,#c2185b)', pokemon:'Cleffa', desc:'Sos el corazón del equipo. Traés color y magia a todo lo que tocás. El mundo es más lindo cuando estás.' },
+    P: { emoji:'🔮', nombre:'Cata', hero:'Super Psy', color:'#6a1b9a', bg:'linear-gradient(135deg,#2d0050,#6a1b9a)', pokemon:'Psyduck', desc:'Sos la estratega. Observás todo, analizás todo, y cuando hablás vale la pena escucharte.' },
+    A: { emoji:'💧', nombre:'Calu', hero:'Super Aqua', color:'#0d47a1', bg:'linear-gradient(135deg,#0d2a50,#1565c0)', pokemon:'Marill', desc:'Sos libre y adaptable. Te movés con la corriente pero nunca perdés tu dirección.' },
+    V: { emoji:'🌈', nombre:'Vicky', hero:'Super Nova', color:'#6200ea', bg:'linear-gradient(135deg,#1a004a,#6200ea)', pokemon:'Silvion', desc:'Sos intensa y luminosa. Cuando entrás a un lugar, todos lo notan. Tu luz es tuya, de nadie más.' },
+    T: { emoji:'🌑', nombre:'Mati', hero:'Super Mora', color:'#37474f', bg:'linear-gradient(135deg,#1a1a1a,#37474f)', pokemon:'Absol', desc:'Sos compleja y poderosa. Tardaste en confiar, pero cuando lo hacés, es para siempre. La oscuridad también puede proteger.' }
+  };
+
+  let quiz2Scores = {};
+  let quiz2Actual = 0;
+
+  function test2Iniciar() {
+    quiz2Scores = {};
+    quiz2Actual = 0;
+    quiz2MostrarPregunta();
   }
-  function calcularTest() {
-    const conteo = {};
-    Object.values(respuestasTest).forEach(l => { conteo[l] = (conteo[l]||0) + 1; });
-    const entradas = Object.entries(conteo).sort((a,b) => b[1]-a[1]);
-    const ganadora = entradas.length ? entradas[0][0] : 'M';
-    const resultados = {
-      M: { emoji:'🌿', nombre:'Mimi / Super Leaf', desc:'Sos la líder natural. Pensás en los demás antes que en vos. Los animales te adoran y vos los entendés sin que digan nada.' },
-      C: { emoji:'⭐', nombre:'Cata / Superstar', desc:'Sos brillante y multitarea. Encontrás la solución cuando nadie más la ve. Y casi siempre tenés razón.' },
-      S: { emoji:'❄️', nombre:'Sofi / Super Ice', desc:'Tu calma es tu mayor poder. Actúas en el momento exacto, sin apurarte, sin equivocarte.' },
-      J: { emoji:'🔥', nombre:'Juana / Super Fire', desc:'Sos pura energía. Te lanzás primero y preguntás después. Y generalmente sale bien.' },
-      L: { emoji:'🧚', nombre:'Lara / Super Fairy', desc:'Sos el corazón del equipo. Traés color y magia a todo lo que tocás. El mundo es más lindo cuando estás.' },
-      P: { emoji:'🔮', nombre:'Cata / Super Psy', desc:'Sos la estratega. Observás todo, analizás todo, y cuando hablás vale la pena escucharte.' },
-      A: { emoji:'💧', nombre:'Calu / Super Aqua', desc:'Sos libre y adaptable. Te movés con la corriente pero nunca perdés tu dirección.' },
-      V: { emoji:'🌈', nombre:'Vicky / Super Nova', desc:'Sos intensa y luminosa. Cuando entrás a un lugar, todos lo notan. Tu luz es tuya, de nadie más.' },
-      T: { emoji:'🌑', nombre:'Mati / Super Mora', desc:'Sos compleja y poderosa. Tardaste en confiar, pero cuando lo hacés, es para siempre. La oscuridad también puede proteger.' }
-    };
-    const r = resultados[ganadora];
-    document.getElementById('test-emoji').textContent = r.emoji;
-    document.getElementById('test-resultado-nombre').textContent = 'Sos: ' + r.nombre;
-    document.getElementById('test-resultado-desc').textContent = r.desc;
-    document.getElementById('test-resultado').classList.add('visible');
-    document.getElementById('test-resultado').scrollIntoView({ behavior:'smooth' });
+  function quiz2MostrarPregunta() {
+    const container = document.getElementById('test2-container');
+    if (!container) return;
+    const p = QUIZ2_PREGUNTAS[quiz2Actual];
+    const total = QUIZ2_PREGUNTAS.length;
+    const progreso = Math.round((quiz2Actual / total) * 100);
+    const estrellas = '🌟'.repeat(quiz2Actual) + '☆'.repeat(total - quiz2Actual);
+    let html = `
+      <div class="quiz2-num">
+        <span>Pregunta ${quiz2Actual + 1} de ${total}</span>
+        <span class="quiz2-estrellitas">${estrellas}</span>
+      </div>
+      <div class="quiz2-progreso-wrap">
+        <div class="quiz2-progreso-barra" style="width:${progreso}%"></div>
+      </div>
+      <div class="quiz2-pregunta-texto">${p.texto}</div>`;
+    p.opciones.forEach(op => {
+      html += `<button class="quiz2-opcion" onclick="quiz2Responder('${op.key}')">${op.texto}</button>`;
+    });
+    container.innerHTML = html;
   }
-  function reiniciarTest() {
-    respuestasTest = {};
-    document.querySelectorAll('.test-opcion').forEach(b => b.classList.remove('elegida'));
-    document.getElementById('test-resultado').classList.remove('visible');
+  function quiz2Responder(key) {
+    quiz2Scores[key] = (quiz2Scores[key] || 0) + 1;
+    quiz2Actual++;
+    if (quiz2Actual >= QUIZ2_PREGUNTAS.length) {
+      quiz2MostrarResultado();
+    } else {
+      quiz2MostrarPregunta();
+    }
+  }
+  function quiz2MostrarResultado() {
+    const ganadora = Object.keys(quiz2Scores).reduce((a, b) => quiz2Scores[a] >= quiz2Scores[b] ? a : b);
+    const r = QUIZ2_RESULTADOS[ganadora];
+    const container = document.getElementById('test2-container');
+    container.innerHTML = `
+      <div class="quiz2-resultado" style="background:${r.bg}">
+        <div style="font-size:4rem;margin-bottom:10px;">${r.emoji}</div>
+        <div class="quiz2-resultado-titulo">¡Sos...</div>
+        <div class="quiz2-resultado-nombre">${r.nombre}</div>
+        <div class="quiz2-resultado-hero">${r.hero}</div>
+        <div class="quiz2-resultado-desc">
+          <p style="margin:0 0 10px;">${r.desc}</p>
+          <p style="font-size:0.83rem;opacity:0.75;margin:0;">🐾 Tu Pokémon: <strong>${r.pokemon}</strong></p>
+        </div>
+        <button class="quiz2-btn-reiniciar" onclick="test2Iniciar()">🔄 Hacerlo de nuevo</button>
+      </div>`;
   }
 
   function irA(id) {
@@ -2569,6 +2615,7 @@
     }
     document.getElementById(id).style.display = 'block';
     paginaActual = id;
+    if (id === 'test') test2Iniciar();
     document.getElementById('topbar').classList.add('visible');
     document.getElementById('sidebar').classList.add('visible');
     document.getElementById('portada-page').style.display = 'none';
