@@ -153,6 +153,21 @@ function quizResponder(key) {
   }
 }
 
+// LIGHTBOX
+function abrirLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+function cerrarLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+document.addEventListener('click', function(e) {
+  if (e.target.matches('.personaje-img, .tarjeta img')) abrirLightbox(e.target.src);
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') cerrarLightbox();
+});
+
 function quizMostrarResultado() {
   const winner = Object.keys(quizScores).reduce((a, b) => quizScores[a] >= quizScores[b] ? a : b);
   const r = QUIZ_RESULTADOS[winner];
