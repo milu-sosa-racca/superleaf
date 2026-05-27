@@ -108,7 +108,7 @@ const QUIZ_RESULTADOS = {
   sofi:     { nombre: "Sofi",  hero: "Super Ice",   emoji: "❄️", color: "#1565c0", bg: "#e3f2fd", pokemon: "Spheal",     desc: "Seria, tranquila y muy reflexiva. Pensás dos veces antes de hablar, y cuando actuás, lo hacés con precisión. Tu calma es tu mayor poder." },
   juana:    { nombre: "Juana", hero: "Super Fire",  emoji: "🔥", color: "#bf360c", bg: "#fff3f0", pokemon: "Charmander", desc: "Alegre, impulsiva y llena de energía. Siempre tenés una broma lista y actuás antes de pensar. ¡Con vos en el equipo nunca hay un momento aburrido!" },
   lara:     { nombre: "Lara",  hero: "Super Fairy", emoji: "🧚", color: "#6a1b9a", bg: "#f9f0ff", pokemon: "Cleffa",     desc: "Soñadora, creativa y con una imaginación enorme. Siempre estás dibujando, inventando o decorando algo. El mundo es más lindo con vos en él." },
-  cata_psy: { nombre: "Cata",  hero: "Super Psy",   emoji: "🔮", color: "#4a148c", bg: "#ede7f6", pokemon: "Psyduck",    desc: "Observadora, seria y muy inteligente. Siempre sabés más de lo que decís. Analizás todo antes de actuar y casi nunca te equivocás." },
+  cata_psy: { nombre: "Luz",  hero: "Super Psy",   emoji: "🔮", color: "#4a148c", bg: "#ede7f6", pokemon: "Psyduck",    desc: "Observadora, seria y muy inteligente. Siempre sabés más de lo que decís. Analizás todo antes de actuar y casi nunca te equivocás." },
   calu:     { nombre: "Calu",  hero: "Super Aqua",  emoji: "💧", color: "#01579b", bg: "#e1f5fe", pokemon: "Marill",     desc: "Alegre como las olas y siempre en movimiento. Sos energética, espontánea y te lanzás a la aventura sin dudar. ¡Nadie te para!" }
 };
 
