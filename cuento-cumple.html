@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Leaf — Cuento de Cumpleaños</title>
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0faf0;
+    color: #1a1a1a;
+  }
+
+  /* ── PÁGINAS ── */
+  .pagina {
+    width: 148mm;
+    min-height: 210mm;
+    margin: 20px auto;
+    background: white;
+    padding: 16mm 14mm;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    position: relative;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ── PORTADA ── */
+  .portada {
+    background: linear-gradient(160deg, #0d3b0d, #1a5c2a, #2d7a3a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20mm 14mm;
+    min-height: 210mm;
+  }
+  .port-emoji { font-size: 4rem; margin-bottom: 12px; }
+  .port-titulo {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 3rem;
+    color: #ffe066;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .port-subtitulo {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.1rem;
+    color: #a9dfbf;
+    margin-bottom: 30px;
+  }
+  .port-separador {
+    width: 60px;
+    height: 3px;
+    background: #ffe066;
+    border-radius: 2px;
+    margin: 20px auto;
+  }
+  .port-desc {
+    font-size: 0.95rem;
+    color: #d5f5e3;
+    line-height: 1.7;
+    max-width: 240px;
+    margin-bottom: 30px;
+  }
+  .port-autor {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.95rem;
+    color: #ffe066;
+    margin-top: 20px;
+  }
+  .port-cumple {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.4rem;
+    color: white;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 8px 22px;
+    margin-top: 16px;
+  }
+
+  /* ── ENCABEZADO DE SECCIÓN ── */
+  .sec-header {
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .sec-header .sec-label {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .sec-header .sec-titulo {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  /* ── PERSONAJES ── */
+  .seccion-titulo {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1rem;
+    color: #1a5c2a;
+    margin: 16px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e8f5e9;
+  }
+  .pj {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .pj-emoji {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .pj-nombre {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.95rem;
+    color: #1a5c2a;
+    line-height: 1.3;
+  }
+  .pj-alias {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 1px 0 3px;
+  }
+  .pj-poder {
+    font-size: 0.78rem;
+    color: #444;
+    line-height: 1.5;
+  }
+  .pj-nombre.rojo { color: #c62828; }
+  .pj-nombre.morado { color: #6a1b9a; }
+  .pj-nombre.gris { color: #37474f; }
+
+  /* ── CAPÍTULOS ── */
+  .cap-header {
+    background: linear-gradient(135deg, #0d3b0d, #1a5c1a);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .cap-num {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .cap-titulo {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.3rem;
+    color: #ffe066;
+  }
+
+  p.parrafo {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    color: #222;
+  }
+  .dialogo {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin: 6px 0;
+    padding: 4px 10px;
+    border-left: 3px solid #a5d6a7;
+    background: #f9fdf9;
+    border-radius: 0 6px 6px 0;
+    color: #1a3a1a;
+  }
+  .dialogo.arbol {
+    border-color: #f9a825;
+    background: #fff9e6;
+    color: #5a3e00;
+    font-style: italic;
+  }
+  .dialogo.villano {
+    border-color: #ef9a9a;
+    background: #fff5f5;
+    color: #7a0000;
+  }
+  .divisor {
+    text-align: center;
+    font-size: 1rem;
+    margin: 14px 0;
+    color: #81c784;
+    letter-spacing: 6px;
+  }
+  .fin-cap {
+    margin-top: 18px;
+    background: #f1f8e9;
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.9rem;
+    color: #2e7d32;
+    line-height: 2;
+  }
+  .accion {
+    background: #fff3e0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-weight: 800;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #bf360c;
+  }
+  strong.v { color: #1a5c2a; }
+  em { color: #5a3e00; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .pagina {
+      width: 100%;
+      margin: 0;
+      padding: 15mm 14mm;
+      box-shadow: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ PORTADA ══ -->
+<div class="pagina portada">
+  <div class="port-emoji">🌿✨🌿</div>
+  <div class="port-titulo">Super Leaf</div>
+  <div class="port-subtitulo">El Equipo Leaf</div>
+  <div class="port-separador"></div>
+  <div class="port-desc">
+    Siete nenas. Siete Pokémon. Un bosque que las estaba esperando.<br><br>
+    Esta es la historia de cómo todo empezó.
+  </div>
+  <div style="font-size:2.5rem; letter-spacing:8px; margin: 10px 0;">🌿⭐❄️🔥🧚🔮💧</div>
+  <div class="port-separador"></div>
+  <div class="port-autor">Escrito por Milagros Sosa Racca</div>
+  <div class="port-cumple">🎂 ¡Feliz cumpleaños! 🎂</div>
+</div>
+
+<!-- ══ PERSONAJES ══ -->
+<div class="pagina">
+  <div class="sec-header" style="background:linear-gradient(135deg,#1a5c2a,#2d7a3a);">
+    <div class="sec-label">El universo Super Leaf</div>
+    <div class="sec-titulo">👥 Personajes</div>
+  </div>
+
+  <div class="seccion-titulo">🌿 La protagonista</div>
+  <div class="pj">
+    <div class="pj-emoji">🌿</div>
+    <div>
+      <div class="pj-nombre">Super Leaf — Mimi</div>
+      <div class="pj-alias">Tipo: Planta · Pokémon: Leafeon</div>
+      <div class="pj-poder">🗣️ Hablar con animales · 🌿 Hacer crecer plantas gigantes · 🌟 Curar animales y plantas</div>
+    </div>
+  </div>
+
+  <div class="seccion-titulo">⭐❄️🔥🧚🔮💧 El equipo</div>
+  <div class="pj">
+    <div class="pj-emoji">⭐</div>
+    <div>
+      <div class="pj-nombre">Superstar — Cata</div>
+      <div class="pj-alias">Tipo: Multi/Brillo · Pokémon: Astreon</div>
+      <div class="pj-poder">⚡ Rayos de estrella · 🌈 Crear arco iris · ✨ Copiar poderes del equipo</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">❄️</div>
+    <div>
+      <div class="pj-nombre">Super Ice — Sofi</div>
+      <div class="pj-alias">Tipo: Hielo · Pokémon: Spheal</div>
+      <div class="pj-poder">🧊 Congelar cosas · 🌨️ Tormentas de nieve · 💙 Hielo curativo</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🔥</div>
+    <div>
+      <div class="pj-nombre">Super Fire — Juana</div>
+      <div class="pj-alias">Tipo: Fuego · Pokémon: Charizard</div>
+      <div class="pj-poder">🔥 Lanzar fuego · 💥 Explosiones de llamas · 🛡️ Escudo de fuego</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🧚</div>
+    <div>
+      <div class="pj-nombre">Super Fairy — Lara</div>
+      <div class="pj-alias">Tipo: Hada · Pokémon: Cleffa</div>
+      <div class="pj-poder">✨ Magia brillante · 💖 Curación mágica · 🌟 Romper control oscuro</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🔮</div>
+    <div>
+      <div class="pj-nombre">Super Psy — Luz</div>
+      <div class="pj-alias">Tipo: Psíquico · Pokémon: Psyduck</div>
+      <div class="pj-poder">🧠 Leer mentes · 🌀 Telekinesia · 💜 Explosiones psíquicas</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">💧</div>
+    <div>
+      <div class="pj-nombre">Super Aqua — Calu</div>
+      <div class="pj-alias">Tipo: Agua · Pokémon: Marill</div>
+      <div class="pj-poder">💦 Chorros de agua · 🌊 Olas gigantes · 🐟 Respirar bajo el agua</div>
+    </div>
+  </div>
+
+  <div class="seccion-titulo">🌑 Aliados especiales</div>
+  <div class="pj">
+    <div class="pj-emoji">🌑</div>
+    <div>
+      <div class="pj-nombre">Umbra</div>
+      <div class="pj-alias">Pokémon misterioso de tipo oscuro</div>
+      <div class="pj-poder">Puede volar entre las sombras sin que lo vean</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">✨</div>
+    <div>
+      <div class="pj-nombre">Argenta</div>
+      <div class="pj-alias">Antigua villana convertida en aliada</div>
+      <div class="pj-poder">Conoce a todos los Pokémon legendarios del mundo</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🌙</div>
+    <div>
+      <div class="pj-nombre">Mamá de Umbra</div>
+      <div class="pj-alias">Pokémon oscuro del Bosque Sombrío</div>
+      <div class="pj-poder">Guardiana del Bosque Sombrío</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🦡</div>
+    <div>
+      <div class="pj-nombre">Obstagoon</div>
+      <div class="pj-alias">Pokémon del Valle Oscuro</div>
+      <div class="pj-poder">Ayudó al equipo a encontrar a Argenta</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🌳</div>
+    <div>
+      <div class="pj-nombre">El Árbol de la Memoria</div>
+      <div class="pj-alias">Árbol antiguo del Bosque Mágico</div>
+      <div class="pj-poder">Guardó la energía de Leafeon y dio poderes al equipo</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🐾</div>
+    <div>
+      <div class="pj-nombre">Eevee pequeñito</div>
+      <div class="pj-alias">Pokémon del Bosque Mágico</div>
+      <div class="pj-poder">El primero en resistir el control oscuro gracias a Super Leaf</div>
+    </div>
+  </div>
+
+  <div class="seccion-titulo">😈 Enemigos</div>
+  <div class="pj">
+    <div class="pj-emoji">🦹</div>
+    <div>
+      <div class="pj-nombre rojo">Doctor Cero</div>
+      <div class="pj-alias">Villano principal</div>
+      <div class="pj-poder">Quería robar todos los Pokémon del mundo. Era el mensajero de La Sombra.</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">🌑</div>
+    <div>
+      <div class="pj-nombre morado">La Sombra</div>
+      <div class="pj-alias">Argenta en su forma malvada</div>
+      <div class="pj-poder">Quería atrapar todos los Pokémon legendarios. Fue derrotada por el Equipo Leaf.</div>
+    </div>
+  </div>
+  <div class="pj">
+    <div class="pj-emoji">👁️</div>
+    <div>
+      <div class="pj-nombre gris">Hermana de Argenta</div>
+      <div class="pj-alias">Villana de los Capítulos 9 y 10</div>
+      <div class="pj-poder">Estuvo 100 años en la dimensión de las sombras. Al final dejó una flor plateada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CAPÍTULO 0 ══ -->
+<div class="pagina">
+  <div class="cap-header">
+    <div class="cap-num">Capítulo 0</div>
+    <div class="cap-titulo">🌱 El Día que Todo Empezó</div>
+  </div>
+
+  <p class="parrafo">Mimi fue la primera en llegar.</p>
+  <p class="parrafo">Salió de su casita en el bosque con su Eevee corriendo adelante de ella. El sueño de la noche anterior le daba vueltas en la cabeza: esa voz, ese bosque, esa luz dorada. Eevee también estaba inquieto. Paraba cada tres pasos y miraba hacia el centro del bosque como si supiera algo que ella todavía no.</p>
+  <p class="parrafo">Cuando llegó al claro del Árbol de la Memoria, se detuvo de golpe. No estaba sola.</p>
+  <p class="parrafo">Había una nena con un Eevee igual al suyo mirándola con los ojos muy abiertos.</p>
+  <div class="dialogo">— Vos también — dijo.</div>
+  <div class="dialogo">— Vos también — repitió Mimi.</div>
+  <p class="parrafo">Antes de que pudieran decir algo más, llegó otra corriendo descalza con un Marill chapoteando en los charcos. Luego una con un Charmander en el hombro. Después una con un Cleffa dormido en los brazos. Luego una seria con un Psyduck con cara de dolor de cabeza. Y por último, una envuelta en un abrigo aunque no hacía tanto frío, con un Spheal rodando feliz detrás de ella.</p>
+  <p class="parrafo">Siete nenas. Siete Pokémon. Ninguna se conocía. Todas se miraron en silencio.</p>
+  <div class="dialogo">— Yo soñé con este lugar — dijo la del Charmander.</div>
+  <div class="dialogo">— Yo también — dijeron todas al mismo tiempo.</div>
+  <p class="parrafo">Y después de ese momento raro se rieron todas juntas, aunque no supieran muy bien por qué.</p>
+  <div class="divisor">🌿 🌱 🌿</div>
+  <p class="parrafo">Se presentaron de a una. Mimi. Cata, la del Eevee. Calu, la descalza del Marill. Juana, la del Charmander. Lara, la del Cleffa. Luz, la seria del Psyduck. Y Sofi, la del abrigo y el Spheal.</p>
+  <div class="dialogo">— Somos siete — dijo Lara mirando alrededor.</div>
+  <div class="dialogo">— Y nuestros Pokémon son todos diferentes — observó Luz.</div>
+  <div class="dialogo">— El sueño dijo que éramos especiales. Todas — dijo Mimi.</div>
+  <div class="dialogo">— ¿Y qué se supone que hagamos acá? — preguntó Juana mirando el árbol enorme.</div>
+  <p class="parrafo">Como si hubiera estado esperando exactamente esa pregunta, el Árbol de la Memoria pulsó. Una vez. Dos veces. Y luego habló.</p>
+  <div class="divisor">🌳 ✨ 🌳</div>
+  <div class="dialogo arbol">— <em>Bienvenidas. Las estaba esperando. Este bosque necesita protección. El mundo Pokémon necesita protección. Y ustedes fueron elegidas para dársela.</em></div>
+  <div class="dialogo">— ¿Nosotras? — dijo Calu — ¿Por qué nosotras?</div>
+  <div class="dialogo arbol">— <em>Porque cada una de ustedes tiene algo especial adentro. Un tipo. Un poder. Y un Pokémon que va a crecer con ustedes.</em></div>
+  <p class="parrafo">El árbol brilló más fuerte. De las raíces salieron destellos de luz de distintos colores, uno para cada nena. Verde para Mimi. Plateado para Cata. Rojo y naranja para Juana. Azul frío para Sofi. Rosa y violeta para Lara. Violeta profundo para Luz. Azul turquesa para Calu.</p>
+  <p class="parrafo">Los destellos las envolvieron a todas durante un segundo. Y cuando la luz se apagó, cada una sentía algo diferente.</p>
+  <div class="divisor">⭐ ✨ ⭐</div>
+  <p class="parrafo">Mimi tocó un árbol cercano y lo <em>escuchó</em>. No con los oídos. Con algo más adentro.</p>
+  <div class="dialogo">— ¡El árbol me habló! — gritó.</div>
+  <div class="dialogo">— ¡A mí también me pasó algo! — gritó Juana.</div>
+  <p class="parrafo">Su Charmander había lanzado una llama y ella la había atajado con la mano sin quemarse. La llama le bailaba entre los dedos como si fuera agua.</p>
+  <div class="dialogo">— Yo puedo ver pensamientos — dijo Luz — El Psyduck está pensando en comida.</div>
+  <p class="parrafo">El Psyduck asintió muy seriamente.</p>
+  <div class="dialogo">— Yo salté hasta aquella rama sin querer — dijo Calu señalando una rama altísima.</div>
+  <div class="dialogo">— Mi Cleffa se curó solo cuando lo toqué — susurró Lara mirando sus manos.</div>
+  <div class="dialogo">— Congelé el charco — dijo Sofi señalando un charco perfectamente congelado.</div>
+  <p class="parrafo">Todas miraron a Cata, que estaba muy quieta.</p>
+  <div class="dialogo">— ¿Y vos? — le preguntó Mimi.</div>
+  <p class="parrafo">Cata extendió las manos hacia el cielo. De sus dedos salió una luz brillante y plateada que formó un <strong>arco iris enorme</strong> que cruzó todo el claro. Después brilló con luz dorada y copió los poderes de Mimi. Habló con un árbol. Lo escuchó responder. Y luego el brillo desapareció.</p>
+  <div class="dialogo">— Puedo crear arco iris. Y copiar lo que hace cualquiera de ustedes también.</div>
+  <p class="parrafo">Silencio.</p>
+  <div class="dialogo">— Eso es lo más increíble que vi en mi vida — dijo Juana.</div>
+  <div class="dialogo arbol">— <em>Cada una tiene un tipo. Mimi, tipo Planta. Sofi, tipo Hielo. Juana, tipo Fuego. Lara, tipo Hada. Luz, tipo Psíquico. Calu, tipo Agua. Y Cata, tipo Multi: podés usar todos los tipos. Cuando el mundo las necesite, van a transformarse. Y sus Pokémon también.</em></div>
+  <div class="dialogo">— ¿En qué nos transformamos? — preguntó Juana.</div>
+  <div class="dialogo arbol">— <em>Ya lo van a ver. Y cuando pase, van a saber exactamente qué hacer.</em></div>
+  <div class="divisor">🌿 🌱 🌿</div>
+  <p class="parrafo">Se quedaron en el claro hasta que el sol empezó a bajar. Juana hacía bromas. Sofi escuchaba sin decir mucho. Lara dibujaba con un palito en la tierra. Luz registraba mentalmente todo. Calu trepaba árboles solo porque podía. Cata copiaba los poderes de todas para practicar. Y Mimi hablaba con cada animal que pasaba.</p>
+  <p class="parrafo">Antes de irse, las siete se pusieron de pie alrededor del árbol.</p>
+  <div class="dialogo">— Somos un equipo — dijo Mimi.</div>
+  <div class="dialogo">— Un equipo rarísimo — dijo Juana.</div>
+  <div class="dialogo">— El mejor equipo — dijo Calu.</div>
+  <p class="parrafo">Y el Árbol de la Memoria brilló una última vez. Como diciendo: <em>sí. Exactamente eso.</em></p>
+  <p class="parrafo">Esa noche, de vuelta en sus casas, cada una guardó el secreto. Pero todas sabían que nada iba a ser igual. Y tenían razón.</p>
+  <div class="fin-cap">
+    🌱 ¡Fin del Capítulo 0! 🌱<br>
+    Las siete nenas se conocieron. ✅<br>
+    El Árbol de la Memoria les dio sus poderes. ✅<br>
+    El Equipo Leaf nació. ✅<br>
+    <em style="font-size:0.85rem;">Pero el mundo Pokémon ya estaba en peligro... ¡La aventura recién comenzaba! 🌿✨</em>
+  </div>
+</div>
+
+<!-- ══ CAPÍTULO 1 ══ -->
+<div class="pagina">
+  <div class="cap-header" style="background:linear-gradient(135deg,#1a3a1f,#2d7a3a);">
+    <div class="cap-num">Capítulo 1</div>
+    <div class="cap-titulo">🌿 Super Leaf y el Bosque Mágico</div>
+  </div>
+
+  <p class="parrafo">Pasaron algunas semanas desde aquella tarde en el claro del Árbol de la Memoria.</p>
+  <p class="parrafo">Las siete nenas habían vuelto a sus casas. Habían guardado el secreto. Pero cada una practicaba sus poderes a escondidas, esperando el momento en que el bosque las necesitara de verdad.</p>
+  <p class="parrafo">Ese momento llegó un día cualquiera.</p>
+  <p class="parrafo">Mimi paseaba con su Eevee por el parque cuando de repente sintió algo raro. El viento traía un mensaje extraño, como un susurro entre las hojas. Cerró los ojos y usó su poder de hablar con los animales.</p>
+  <div class="dialogo">— <em>¡Ayuda! ¡Alguien está entrando al Bosque Mágico!</em> — le dijo un pajarito asustado.</div>
+  <div class="dialogo">— ¿Qué está pasando? — preguntó Mimi muy preocupada.</div>
+  <div class="dialogo">— <em>¡Un hombre misterioso está atrapando a todos los Pokémon del bosque!</em></div>
+  <p class="parrafo">Mimi miró a su Eevee, que ya estaba listo con los ojitos brillando. Y por primera vez desde aquella tarde en el claro, sintió que algo dentro de ella hacía clic. Era el momento.</p>
+  <p class="parrafo">Una luz verde la envolvió. Su Eevee brilló y se transformó en un poderoso <strong>Leafeon</strong>. Y cuando la luz se apagó, Mimi ya no era Mimi.</p>
+  <p class="parrafo">Era <strong class="v">Super Leaf</strong>. 🌿</p>
+  <p class="parrafo">Salieron corriendo hacia el Bosque Mágico.</p>
+  <div class="divisor">🌿 🍃 🌱</div>
+  <p class="parrafo">El Bosque Mágico estaba muy mal. Las flores estaban cerradas. Los pájaros no cantaban. Y en el aire se sentía un silencio aterrador.</p>
+  <p class="parrafo">Super Leaf avanzó despacio entre los árboles. De repente escuchó una voz grave y malvada.</p>
+  <div class="dialogo villano">— ¡Ajá! ¡Otro Pokémon para mi colección!</div>
+  <p class="parrafo">Super Leaf se asomó entre los arbustos y vio a un hombre alto con una capa negra y un sombrero enorme. Se llamaba <strong>Doctor Cero</strong>, el villano más peligroso del mundo Pokémon. Tenía una máquina gigante plateada que atrapaba a los Pokémon dentro de unas esferas especiales.</p>
+  <div class="dialogo">— ¡Para! — gritó Super Leaf saliendo de los arbustos.</div>
+  <div class="dialogo villano">— ¡Ah, Super Leaf! ¡Justo a tiempo para ver cómo me llevo a todos los Pokémon del bosque! ¡Ja, ja, ja!</div>
+  <div class="dialogo">— ¡Eso no va a pasar! — dijo Super Leaf con valentía.</div>
+  <p class="parrafo">Levantó las manos. De la tierra empezaron a crecer enredaderas gigantes que rodearon la máquina del Doctor Cero. Pero el villano apretó un botón y la máquina las cortó todas de un rayo.</p>
+  <div class="dialogo villano">— Mi máquina es <em>invencible</em>. ¡No podés sola, Super Leaf!</div>
+  <p class="parrafo">Super Leaf sabía que tenía razón. Necesitaba a su equipo. Sacó su hoja mágica brillante y la lanzó al cielo. En el aire dibujó una luz verde que se veía desde toda la ciudad. La señal del equipo.</p>
+  <div class="divisor">⭐ ❄️ 🔥 🧚 🔮 💧</div>
+  <p class="parrafo">En distintos lugares del mundo, seis nenas vieron la señal. Y en seis destellos de colores distintos, las seis superheroínas se transformaron y volaron hacia el Bosque Mágico.</p>
+  <p class="parrafo">Cuando llegaron, el Doctor Cero las miró sorprendido pero enseguida volvió a sonreír.</p>
+  <div class="dialogo villano">— ¡Son solo unas nenas! ¡Mi máquina puede con todas!</div>
+  <div class="dialogo">— ¡Equipo, juntas! — gritó Super Leaf.</div>
+  <p class="parrafo">🔮 <strong>Super Psy</strong> cerró los ojos y leyó la mente del Doctor Cero.</p>
+  <div class="dialogo">— ¡La máquina tiene un punto débil en el centro! ¡Si lo golpeamos ahí, se apaga!</div>
+  <p class="parrafo">❄️ Super Ice congeló las patas de la máquina. 🔥 Super Fire creó un escudo para proteger al equipo. 🧚 Super Fairy durmió a los ayudantes del villano con su polvo mágico. 💧 Super Aqua saltó altísimo y lanzó un chorro de agua potentísimo. ⭐ Superstar creó un arco iris que rodeó la máquina y copió el poder de Super Leaf para hacer crecer enredaderas gigantes.</p>
+  <div class="dialogo" style="text-align:center; font-family:'Bubblegum Sans',cursive; font-size:1rem; border-color:#1a5c2a; background:#f1f8e9; color:#1a3a1a; font-weight:800;">— ¡AHORA, SUPER LEAF! — gritaron todas juntas.</div>
+  <p class="parrafo">Super Leaf respiró hondo y con un grito lanzó las plantas más gigantes que había hecho. Enormes raíces salieron de la tierra y aplastaron el centro de la máquina.</p>
+  <div class="accion">💥 ¡BOOM! 💥<br><span style="font-size:0.85rem;color:#555;font-weight:400;">La máquina explotó en mil pedazos brillantes. Todos los Pokémon quedaron libres.</span></div>
+  <p class="parrafo">El Doctor Cero quiso escapar pero Super Psy lo detuvo moviendo un árbol enorme con la mente. Los Pokémon del bosque lo rodearon. El villano no tuvo más remedio que rendirse.</p>
+  <p class="parrafo">Cuando todo terminó, el Bosque Mágico volvió a brillar. Las flores se abrieron, los pájaros cantaron y el agua del río volvió a correr feliz. Super Leaf curó a todos los Pokémon que estaban lastimados.</p>
+  <p class="parrafo">Las siete superheroínas se miraron y chocaron las manos todas juntas en el centro.</p>
+  <div class="dialogo" style="text-align:center; font-family:'Bubblegum Sans',cursive; font-size:1rem; border-color:#1a5c2a; background:#f1f8e9; color:#1a3a1a; font-weight:800;">— ¡<strong>Equipo Leaf</strong>! — gritaron al mismo tiempo. 🌿⭐❄️🔥🧚🔮💧</div>
+  <div class="fin-cap">
+    🌿 ¡Fin del Capítulo 1! 🌿<br>
+    El Doctor Cero fue derrotado. ✅<br>
+    Los Pokémon del bosque quedaron libres. ✅<br>
+    El Equipo Leaf actuó junto por primera vez. ✅<br>
+    <em style="font-size:0.85rem;">Pero el mundo Pokémon era grande... ¿Qué nuevas aventuras esperaban al Equipo Leaf? 🌿✨</em>
+  </div>
+  <div style="text-align:center; font-size:1.8rem; margin-top:16px; letter-spacing:6px;">🌿⭐❄️🔥🧚🔮💧✨</div>
+</div>
+
+</body>
+</html>
