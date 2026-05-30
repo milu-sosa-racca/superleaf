@@ -242,11 +242,55 @@
   /* ── PRINT ── */
   @media print {
     body { background: white; }
+
     .pagina {
       width: 100%;
+      min-height: unset;
       margin: 0;
-      padding: 15mm 14mm;
+      padding: 12mm 14mm;
       box-shadow: none;
+      page-break-after: unset;
+      break-after: unset;
+    }
+
+    /* Salto de página solo en la portada */
+    .portada {
+      page-break-after: always;
+      break-after: page;
+      min-height: 100vh;
+    }
+
+    /* Personajes empieza en página nueva */
+    .sec-header {
+      page-break-before: always;
+      break-before: page;
+    }
+
+    /* Capítulos: solo espacio visual, sin forzar página nueva */
+    .cap-header {
+      margin-top: 16mm;
+    }
+
+    /* Evitar saltos en medio de elementos */
+    .dialogo, .fin-cap, .accion, .pj {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Imágenes más chicas en impresión para no desperdiciar página */
+    .ilustracion {
+      max-width: 200px;
+      box-shadow: none;
+    }
+
+    /* Evitar que una imagen quede sola al inicio de página */
+    .ilustracion + p, .ilustracion + .dialogo {
+      page-break-before: avoid;
+      break-before: avoid;
+    }
+    p + .ilustracion {
+      page-break-after: avoid;
+      break-after: avoid;
     }
   }
 </style>
