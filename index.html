@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Leaf — Índice</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<meta name="theme-color" content="#2d7a3a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/icons/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -93,6 +96,7 @@
   .card-libro1 { background: linear-gradient(160deg, #1e5c22, #2d7a3a, #1a4a1a); }
   .card-libro2 { background: linear-gradient(160deg, #0d3a6e, #1565c0, #0a2a52); }
   .card-cumple { background: linear-gradient(160deg, #7a1e5c, #b8226e, #4a0a3a); }
+  .card-extra  { background: linear-gradient(160deg, #4a2b7a, #6a3bb0, #2a1650); }
 </style>
 </head>
 <body>
@@ -101,39 +105,59 @@
 <div class="indice-titulo">Super Leaf</div>
 <div class="indice-subtitulo">Elegí qué libro querés leer</div>
 
-<div class="libros">
+<div class="libros" id="libros"></div>
 
-  <a class="libro-card card-libro1" href="super-leaf-y-el-bosque-magico.html">
-    <div class="libro-lomo"></div>
-    <div class="libro-contenido">
-      <div class="libro-emoji">🌿</div>
-      <div class="libro-titulo">Super Leaf<br>y el Bosque Mágico</div>
-      <div class="libro-desc">Libro 1 — completo.<br>Siete amigas descubren que tienen poderes increíbles.</div>
-      <span class="libro-btn">📖 Leer</span>
-    </div>
-  </a>
+<script>
+  // ════════════════════════════════════════════════════════════════
+  //  📚 LISTA DE APPS / LIBROS
+  //  Para agregar otra: copiá un bloque { ... } y cambiá los datos.
+  //    archivo → el nombre del HTML          emoji → el ícono
+  //    titulo / desc → texto (podés usar <br> para cortar renglón)
+  //    clase → color de la tapa: card-libro1 (verde) · card-libro2 (azul)
+  //            · card-cumple (rosa) · card-extra (violeta)
+  // ════════════════════════════════════════════════════════════════
+  const LIBROS = [
+    {
+      archivo: "super-leaf-y-el-bosque-magico.html",
+      emoji: "🌿",
+      titulo: "Super Leaf<br>y el Bosque Mágico",
+      desc: "Libro 1 — completo.<br>Siete amigas descubren que tienen poderes increíbles.",
+      clase: "card-libro1"
+    },
+    {
+      archivo: "super-leaf-y-la-fairy-hero-academy.html",
+      emoji: "🌟",
+      titulo: "Super Leaf y la<br>Fairy Hero Academy",
+      desc: "Libro 2.<br>El equipo tiene una nueva academia y una nueva amenaza en las sombras.",
+      clase: "card-libro2"
+    },
+    {
+      archivo: "Cumple-super-leaf-y-el-bosque-magico.html",
+      emoji: "🎂",
+      titulo: "Super Leaf<br>Cuento de Cumpleaños",
+      desc: "Versión reducida del Libro 1, pensada para regalar en el cumple.",
+      clase: "card-cumple"
+    }
+  ];
 
-  <a class="libro-card card-libro2" href="super-leaf-y-la-fairy-hero-academy.html">
-    <div class="libro-lomo"></div>
-    <div class="libro-contenido">
-      <div class="libro-emoji">🌟</div>
-      <div class="libro-titulo">Super Leaf y la<br>Fairy Hero Academy</div>
-      <div class="libro-desc">Libro 2.<br>El equipo tiene una nueva academia y una nueva amenaza en las sombras.</div>
-      <span class="libro-btn">📖 Leer</span>
-    </div>
-  </a>
+  document.getElementById('libros').innerHTML = LIBROS.map(function (l) {
+    return '<a class="libro-card ' + l.clase + '" href="' + l.archivo + '">'
+      + '<div class="libro-lomo"></div>'
+      + '<div class="libro-contenido">'
+      + '<div class="libro-emoji">' + l.emoji + '</div>'
+      + '<div class="libro-titulo">' + l.titulo + '</div>'
+      + '<div class="libro-desc">' + l.desc + '</div>'
+      + '<span class="libro-btn">📖 Leer</span>'
+      + '</div></a>';
+  }).join('');
 
-  <a class="libro-card card-cumple" href="Cumple-super-leaf-y-el-bosque-magico.html">
-    <div class="libro-lomo"></div>
-    <div class="libro-contenido">
-      <div class="libro-emoji">🎂</div>
-      <div class="libro-titulo">Super Leaf<br>Cuento de Cumpleaños</div>
-      <div class="libro-desc">Versión reducida del Libro 1, pensada para regalar en el cumple.</div>
-      <span class="libro-btn">📖 Leer</span>
-    </div>
-  </a>
-
-</div>
+  // Registrar el service worker → permite "Instalar" la app y usarla sin conexión.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+</script>
 
 </body>
 </html>
