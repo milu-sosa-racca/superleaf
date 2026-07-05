@@ -1,0 +1,25 @@
+{
+  "name": "superleaf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milu-sosa-racca/superleaf.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/milu-sosa-racca/superleaf/issues"
+  },
+  "homepage": "https://github.com/milu-sosa-racca/superleaf#readme",
+  "dependencies": {
+    "playwright-core": "^1.59.1",
+    "puppeteer": "^24.41.0"
+  }
+}

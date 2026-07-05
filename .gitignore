@@ -1,0 +1,8 @@
+# Dependencias de Node (no se versionan; se reinstalan con "npm install")
+node_modules/
+
+# PDF generado (artefacto de generate-pdf.js)
+superleaf.pdf
+
+# Basura del sistema
+.DS_Store
