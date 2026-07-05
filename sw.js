@@ -1,7 +1,7 @@
 // Service worker de la app Super Leaf.
-// Cachea el "esqueleto" para que la app abra y funcione sin conexión,
-// y guarda imágenes/páginas a medida que se visitan.
-const CACHE = 'superleaf-v1';
+// Estrategia "network-first": si hay internet, siempre trae la última versión
+// (así los cambios se ven al toque) y guarda una copia; sin conexión, usa el cache.
+const CACHE = 'superleaf-v2';
 const SHELL = [
   './',
   './index.html',
@@ -32,14 +32,11 @@ self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   e.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((resp) => {
-        // Guardamos una copia para la próxima (imágenes, capítulos, etc.)
-        const copy = resp.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
-        return resp;
-      }).catch(() => cached);
-    })
+    fetch(req).then((resp) => {
+      // Guardamos una copia fresca para poder usarla sin conexión.
+      const copy = resp.clone();
+      caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
+      return resp;
+    }).catch(() => caches.match(req)) // sin internet → lo último que quedó guardado
   );
 });
