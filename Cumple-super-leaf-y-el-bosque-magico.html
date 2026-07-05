@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Leaf — Cuento de Cumpleaños</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -240,8 +241,18 @@
   }
 
   /* ── PRINT ── */
+  .volver-indice {
+    position: fixed; bottom: 16px; left: 16px; z-index: 9999;
+    background: rgba(0,0,0,0.65); color: #ffe066; text-decoration: none;
+    padding: 10px 16px; border-radius: 24px;
+    font-family: 'Bubblegum Sans', cursive; font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+  .volver-indice:hover { background: rgba(0,0,0,0.8); }
+
   @media print {
     body { background: white; }
+    .volver-indice { display: none !important; }
 
     .pagina {
       width: 100%;
@@ -303,6 +314,9 @@
 </style>
 </head>
 <body>
+
+<!-- VOLVER AL ÍNDICE GENERAL -->
+<a href="index.html" class="volver-indice">🏠 Índice</a>
 
 <!-- ══ PORTADA ══ -->
 <div class="pagina portada">

@@ -417,6 +417,7 @@
   /* Fondo blanco en todo */
   body { background: white !important; }
   .portada { display: none !important; }
+  .volver-indice { display: none !important; }
 
   /* Corregir headers oscuros → claros */
   .libro-header, .pag-header {
@@ -475,4 +476,21 @@
 .tarjeta-ph { width:70px; height:70px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 8px; border:2px solid rgba(255,255,255,0.3); }
 .tarjeta-nombre { font-family:'Bubblegum Sans',cursive; font-size:0.95rem; line-height:1.3; }
 .tarjeta-tipo { font-size:0.75rem; opacity:0.75; margin-top:3px; }
+
+/* BOTÓN VOLVER AL ÍNDICE GENERAL */
+.volver-indice {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 9999;
+  background: rgba(0,0,0,0.65);
+  color: #ffe066;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+.volver-indice:hover { background: rgba(0,0,0,0.8); }
 .tarjeta-pokemon { font-size:0.72rem; opacity:0.6; margin-top:4px; border-top:1px solid rgba(255,255,255,0.15); padding-top:5px; }

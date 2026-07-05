@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Leaf y la Fairy Hero Academy</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -139,6 +140,14 @@
   .hamburger { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; padding: 8px; }
   .topbar-logo { font-family:'Bubblegum Sans',cursive; font-size:1.1rem; color:var(--amarillo); cursor:pointer; }
   .topbar-print { background: none; border: none; color: white; font-size: 0.8rem; cursor: pointer; opacity: 0.7; }
+  .volver-indice {
+    position: fixed; bottom: 16px; left: 16px; z-index: 9999;
+    background: rgba(0,0,0,0.65); color: #ffe066; text-decoration: none;
+    padding: 10px 16px; border-radius: 24px;
+    font-family: 'Bubblegum Sans', cursive; font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+  .volver-indice:hover { background: rgba(0,0,0,0.8); }
 
   /* SIDEBAR */
   .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:150; }
@@ -270,7 +279,7 @@
   .quiz2-btn-reiniciar { background:rgba(255,255,255,0.2); color:white; border:2px solid rgba(255,255,255,0.4); border-radius:20px; padding:10px 26px; font-family:'Bubblegum Sans',cursive; font-size:1rem; cursor:pointer; }
 
   @media print {
-    .topbar, .sidebar, .sidebar-overlay { display: none !important; }
+    .topbar, .sidebar, .sidebar-overlay, .volver-indice { display: none !important; }
     .pagina { display: block !important; padding: 20px 0 !important; }
     .pagina { break-after: page; page-break-after: always; }
     .pagina:last-child { break-after: auto !important; page-break-after: auto !important; }
@@ -281,6 +290,9 @@
 </style>
 </head>
 <body>
+
+<!-- VOLVER AL ÍNDICE GENERAL -->
+<a href="index.html" class="volver-indice">🏠 Índice</a>
 
 <!-- PORTADA -->
 <div class="portada" id="portada-page" onclick="comenzar()">
