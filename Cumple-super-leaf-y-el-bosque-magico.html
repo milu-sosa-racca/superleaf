@@ -261,10 +261,27 @@
       width: 100%;
       min-height: unset !important;
       margin: 0;
-      padding: 12mm 14mm;
+      padding: 10mm 14mm;
       box-shadow: none;
       page-break-after: unset;
       break-after: unset;
+    }
+
+    /* Compactar un poco el texto para aprovechar mejor cada hoja */
+    p.parrafo { margin-bottom: 6px !important; line-height: 1.6 !important; }
+    .dialogo { margin: 4px 0 !important; line-height: 1.55 !important; }
+    .fin-cap { margin-top: 10px !important; padding: 9px 12px !important; line-height: 1.7 !important; }
+
+    /* Contraportada: sola en su hoja y centrada verticalmente */
+    .contraportada-pag {
+      page-break-before: always;
+      break-before: page;
+      padding-top: 0 !important;
+      min-height: 100vh !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     /* Dedicatoria y portada: cada una en su hoja */
@@ -300,7 +317,7 @@
 
     /* Capítulos: solo espacio visual, sin forzar página nueva */
     .cap-header {
-      margin-top: 16mm;
+      margin-top: 9mm;
     }
 
     /* Evitar saltos en medio de elementos */
