@@ -253,8 +253,15 @@
   }
   .volver-indice:hover { background: rgba(0,0,0,0.8); }
 
+  /* Página de creadores: contenido centrado verticalmente */
+  .creadores-pag { display: flex; flex-direction: column; }
+  .creadores-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
   @media print {
     body { background: white; }
+    /* Creadores: en su propia hoja y que la llene (sin hoja en blanco) */
+    .pagina.creadores-pag { min-height: 100vh !important; page-break-before: always; break-before: page; }
+    .creadores-pag .sec-header { page-break-before: auto !important; break-before: auto !important; }
     .volver-indice { display: none !important; }
 
     .pagina {
@@ -625,11 +632,11 @@
 </div>
 
 <!-- ══ CREADORES ══ -->
-<div class="pagina" style="background:#f0fff8; -webkit-print-color-adjust:exact; print-color-adjust:exact;">
+<div class="pagina creadores-pag" style="background:#f0fff8; -webkit-print-color-adjust:exact; print-color-adjust:exact;">
   <div class="sec-header" style="background:linear-gradient(135deg,#1a5c2a,#2d7a3a);">
     <div class="sec-titulo">Los creadores</div>
   </div>
-  <div style="text-align:center; padding: 34px 0 24px;">
+  <div class="creadores-body" style="text-align:center; padding: 20px 0;">
     <p style="font-family:'Bubblegum Sans',cursive; font-size:1.1rem; color:#2d7a3a; margin:0;">Este cuento lo hicimos entre todos</p>
     <div style="width:56px; height:2px; background:#a5d6a7; border-radius:2px; margin:16px auto 34px;"></div>
     <div style="max-width:320px; margin:0 auto;">
